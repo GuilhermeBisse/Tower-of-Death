@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var animation = $animation
+@onready var sword_area = $Area2D
 
 const SPEED = 250.0
 const JUMP_VELOCITY = -450.0
@@ -8,6 +9,8 @@ const JUMP_VELOCITY = -450.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _ready():
+	Global.global_player = self
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -35,5 +38,12 @@ func handle_animation():
 		animation.play("Atlas_run")
 	if velocity.x > 0:
 		animation.flip_h = false
+		sword_area.scale.x = 1
 	elif velocity.x < 0:
 		animation.flip_h = true
+		sword_area.scale.x = -1
+
+
+func _on_area_2d_body_entered(body):
+	if body.name == "Enemy1":
+		body.hurt()
