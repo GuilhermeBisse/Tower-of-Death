@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2hcqohgaw0t5"]
+[gd_scene load_steps=5 format=3 uid="uid://c2hcqohgaw0t5"]
 
-[ext_resource type="Script" path="res://Prefabs/enemy_1.gd" id="1_riyx6"]
+[ext_resource type="Script" path="res://Scripts/enemy_1.gd" id="1_riyx6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_slq3n"]
 size = Vector2(40, 40)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qncv4"]
 radius = 198.01
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gs42d"]
+radius = 158.0
 
 [node name="Enemy1" type="CharacterBody2D"]
 script = ExtResource("1_riyx6")
@@ -27,4 +30,13 @@ shape = SubResource("RectangleShape2D_slq3n")
 shape = SubResource("CircleShape2D_qncv4")
 debug_color = Color(0.892952, 0.14188, 0.707504, 0.42)
 
+[node name="DashArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashArea"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_gs42d")
+debug_color = Color(0.989781, 0, 0.286363, 0.42)
+
 [connection signal="body_entered" from="SightArea" to="." method="_on_sight_area_body_entered"]
+[connection signal="body_entered" from="DashArea" to="." method="_on_dash_area_body_entered"]
+[connection signal="body_exited" from="DashArea" to="." method="_on_dash_area_body_exited"]
