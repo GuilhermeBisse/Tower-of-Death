@@ -54,3 +54,13 @@ func dash():
 	await get_tree().create_timer(0.5).timeout
 	chasing = true
 	is_dashing = false
+
+
+func _on_collision_area_body_entered(body):
+	if body==player:
+		if(body.life > 10):
+			body.life -= 10
+			body.LifeBar.visible = true
+		else:
+			body.queue_free();
+			print("Você morreu seu animal!")
