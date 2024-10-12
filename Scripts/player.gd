@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 @onready var animation = $animation
-@onready var sword_area = $Area2D
+@onready var sword_area_side = $SwordSideArea
+@onready var sword_area_up = $SwordUpArea
+
 @onready var LifeBar = $ProgressBar
 
 const SPEED = 250.0
@@ -17,7 +19,6 @@ func _ready():
 
 func _physics_process(delta):
 	LifeBar.value = life
-	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
@@ -25,14 +26,13 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	handle_animation()
+	handle_attack()
 	move_and_slide()
 
 func handle_animation():
@@ -42,13 +42,32 @@ func handle_animation():
 		animation.play("Atlas_run")
 	if velocity.x > 0:
 		animation.flip_h = false
-		sword_area.scale.x = 1
+		sword_area_side.scale.x = 1
 	elif velocity.x < 0:
 		animation.flip_h = true
-		sword_area.scale.x = -1
+		sword_area_side.scale.x = -1
 
 
 func _on_area_2d_body_entered(body):
 	if body.name == "Enemy1":
 		print("achei")
 		body.hurt()
+
+
+func _on_sword_up_area_body_entered(body):
+	if body.name == "Enemy1":
+		print("achei")
+		body.hurt()
+
+func handle_attack():
+	var damage_zone_side = sword_area_side.get_node("CollisionShape2D")
+	var damage_zone_up = sword_area_up.get_node("CollisionShape2D")
+	if Input.is_action_just_pressed("attack"):
+		if Input.is_action_pressed("up"):
+			damage_zone_up.disabled = false
+			await get_tree().create_timer(0.3).timeout
+			damage_zone_up.disabled = true
+		else:
+			damage_zone_side.disabled = false
+			await get_tree().create_timer(0.3).timeout
+			damage_zone_side.disabled = true
