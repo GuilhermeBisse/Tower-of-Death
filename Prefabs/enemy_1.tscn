@@ -1,15 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2hcqohgaw0t5"]
+[gd_scene load_steps=10 format=3 uid="uid://c2hcqohgaw0t5"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_1.gd" id="1_riyx6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_slq3n"]
-size = Vector2(42, 42)
+size = Vector2(40, 40)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qncv4"]
 radius = 198.01
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gs42d"]
 radius = 158.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vctl"]
+size = Vector2(42, 42)
 
 [sub_resource type="Animation" id="Animation_m2ynq"]
 length = 0.001
@@ -59,7 +62,6 @@ script = ExtResource("1_riyx6")
 shape = SubResource("RectangleShape2D_slq3n")
 
 [node name="SightArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SightArea"]
 shape = SubResource("CircleShape2D_qncv4")
@@ -83,7 +85,8 @@ offset_bottom = 20.0
 color = Color(0.914954, 0, 0.0668436, 1)
 
 [node name="HitBox" type="CollisionShape2D" parent="CollisionArea"]
-shape = SubResource("RectangleShape2D_slq3n")
+shape = SubResource("RectangleShape2D_5vctl")
+debug_color = Color(0.668713, 0, 0.268887, 0.42)
 
 [node name="anim" type="AnimationPlayer" parent="."]
 libraries = {

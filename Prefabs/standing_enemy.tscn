@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://7wlia6j3uw4f"]
+
+[ext_resource type="Script" path="res://Scripts/StandingEnemy.gd" id="1_3uqiy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkonv"]
+size = Vector2(63, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_apssp"]
+size = Vector2(157, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywmt5"]
+size = Vector2(168.307, 31.6614)
+
+[node name="StandingEnemy" type="CharacterBody2D"]
+scale = Vector2(0.536931, 0.536931)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_3uqiy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -31.0
+offset_top = -57.0
+offset_right = 32.0
+offset_bottom = 56.0
+color = Color(0.0862745, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="SightRay1" type="RayCast2D" parent="."]
+position = Vector2(0, -36)
+target_position = Vector2(357, -1)
+collision_mask = 3
+
+[node name="hurtbox" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_fkonv")
+
+[node name="SpearRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpearRange"]
+position = Vector2(108.5, -5)
+shape = SubResource("RectangleShape2D_apssp")
+debug_color = Color(0.995991, 0, 0.195235, 0.42)
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(115.127, -4.65609)
+shape = SubResource("RectangleShape2D_ywmt5")
+disabled = true
+debug_color = Color(0.797637, 0.28198, 0.788478, 0.42)
+
+[node name="WalkTime" type="Timer" parent="."]
+autostart = true
+
+[node name="AttackDelay" type="Timer" parent="."]
+wait_time = 0.37
+
+[connection signal="body_entered" from="SpearRange" to="." method="_on_spear_range_body_entered"]
+[connection signal="body_exited" from="SpearRange" to="." method="_on_spear_range_body_exited"]
+[connection signal="timeout" from="WalkTime" to="." method="_on_walk_time_timeout"]
+[connection signal="timeout" from="AttackDelay" to="." method="_on_attack_delay_timeout"]

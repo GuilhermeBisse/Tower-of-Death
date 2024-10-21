@@ -66,9 +66,8 @@ func dash():
 
 func _on_collision_area_body_entered(body):
 	if body==player:
-		if(body.life > 10):
-			body.life -= 10
-			body.LifeBar.visible = true
-		else:
-			body.queue_free()
-			print("Você morreu seu animal!")
+		body.hurt(self,10)
+		knockback_vector = (global_position - player.global_position) * 0.5
+		var knockback_tween:= get_tree().create_tween()
+		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
+		
