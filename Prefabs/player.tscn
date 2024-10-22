@@ -184,7 +184,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30y0u"]
-size = Vector2(25.5, 63)
+size = Vector2(15, 63)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ksw4m"]
 bg_color = Color(0.624696, 0, 0.167078, 1)
@@ -193,10 +193,10 @@ bg_color = Color(0.624696, 0, 0.167078, 1)
 bg_color = Color(0, 0.361545, 0.202743, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hnlc7"]
-size = Vector2(48, 36)
+size = Vector2(77, 42)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1qvv"]
-size = Vector2(29, 41)
+size = Vector2(40, 64)
 
 [node name="player" type="CharacterBody2D"]
 collision_mask = 3
@@ -210,7 +210,7 @@ autoplay = "Atlas_idle"
 frame_progress = 0.485127
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(1.5, 1)
 shape = SubResource("RectangleShape2D_30y0u")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -224,17 +224,21 @@ value = 70.0
 show_percentage = false
 
 [node name="SwordSideArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordSideArea"]
-position = Vector2(38, -8)
+position = Vector2(52.5, -11)
 shape = SubResource("RectangleShape2D_hnlc7")
 disabled = true
 debug_color = Color(0.945721, 0.213935, 0.248147, 0.42)
 
 [node name="SwordUpArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordUpArea"]
-position = Vector2(0.5, -50.5)
+position = Vector2(0, -62)
 shape = SubResource("RectangleShape2D_q1qvv")
 disabled = true
 debug_color = Color(0.934515, 0.238558, 0.245729, 0.42)

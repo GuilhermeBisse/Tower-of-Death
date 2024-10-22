@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://Prefabs/player.tscn" id="1_jsjsy"]
 [ext_resource type="Texture2D" uid="uid://qmsohnvdnmax" path="res://Sprites/TileSet/main.png" id="2_5xgrh"]
-[ext_resource type="PackedScene" uid="uid://c2hcqohgaw0t5" path="res://Prefabs/enemy_1.tscn" id="3_bqtq6"]
+[ext_resource type="PackedScene" uid="uid://c2hcqohgaw0t5" path="res://Prefabs/flying_enemy.tscn" id="3_bqtq6"]
 [ext_resource type="PackedScene" uid="uid://7wlia6j3uw4f" path="res://Prefabs/standing_enemy.tscn" id="4_038jh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_084tw"]
@@ -168,4 +168,4 @@ position = Vector2(349, 356)
 position = Vector2(444, 460)
 
 [node name="Enemy2" parent="." instance=ExtResource("3_bqtq6")]
-position = Vector2(271, 313)
+position = Vector2(463, 280)
