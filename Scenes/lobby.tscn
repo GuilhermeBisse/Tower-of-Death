@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://s2eb0658mlth"]
+[gd_scene load_steps=7 format=3 uid="uid://s2eb0658mlth"]
 
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://Prefabs/player.tscn" id="1_jsjsy"]
 [ext_resource type="Texture2D" uid="uid://qmsohnvdnmax" path="res://Sprites/TileSet/main.png" id="2_5xgrh"]
-[ext_resource type="PackedScene" uid="uid://c2hcqohgaw0t5" path="res://Prefabs/flying_enemy.tscn" id="3_bqtq6"]
+[ext_resource type="PackedScene" uid="uid://c2hcqohgaw0t5" path="res://Prefabs/enemy_1.tscn" id="3_bqtq6"]
 [ext_resource type="PackedScene" uid="uid://7wlia6j3uw4f" path="res://Prefabs/standing_enemy.tscn" id="4_038jh"]
-[ext_resource type="Texture2D" uid="uid://dh2d4xtynbo5y" path="res://Sprites/Fundo.png" id="5_51ura"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_084tw"]
 texture = ExtResource("2_5xgrh")
@@ -169,14 +168,4 @@ position = Vector2(349, 356)
 position = Vector2(444, 460)
 
 [node name="Enemy2" parent="." instance=ExtResource("3_bqtq6")]
-position = Vector2(463, 280)
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="background" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.1, 0.1)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/background"]
-position = Vector2(446, 96)
-scale = Vector2(0.525071, 0.484838)
-texture = ExtResource("5_51ura")
+position = Vector2(271, 313)

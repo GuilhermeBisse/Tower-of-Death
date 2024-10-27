@@ -52,13 +52,13 @@ func handle_animation():
 
 
 func _on_area_2d_body_entered(body):
-	if body.has_method("hurt"):
+	if body.name == "Enemy1":
 		print("achei")
 		body.hurt()
 
 
 func _on_sword_up_area_body_entered(body):
-	if body.has_method("hurt"):
+	if body.name == "Enemy1":
 		print("achei")
 		body.hurt()
 

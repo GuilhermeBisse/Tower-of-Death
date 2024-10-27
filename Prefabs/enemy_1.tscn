@@ -1,10 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://c2hcqohgaw0t5"]
+[gd_scene load_steps=10 format=3 uid="uid://c2hcqohgaw0t5"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_1.gd" id="1_riyx6"]
-[ext_resource type="Texture2D" uid="uid://cho3gamjywlvt" path="res://Sprites/FlyingEnemy/flying_skull2.png" id="2_gouph"]
-[ext_resource type="Texture2D" uid="uid://sjeeopb3q48y" path="res://Sprites/FlyingEnemy/flying_skull3.png" id="3_2d228"]
-[ext_resource type="Texture2D" uid="uid://1qfy2nyi8hja" path="res://Sprites/FlyingEnemy/flying_skull4.png" id="4_y18c1"]
-[ext_resource type="Texture2D" uid="uid://cljiigss5i7tx" path="res://Sprites/FlyingEnemy/flying_skull5.png" id="5_6l67o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_slq3n"]
 size = Vector2(40, 40)
@@ -19,7 +15,19 @@ radius = 158.0
 size = Vector2(42, 42)
 
 [sub_resource type="Animation" id="Animation_m2ynq"]
-length = 0.4
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionArea/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.914954, 0, 0.0668436, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_57l3a"]
 resource_name = "hurt"
@@ -27,14 +35,14 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("CollisionArea/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.231373, 0.796078, 0.47451, 1), Color(1, 1, 1, 1)]
+"values": [Color(0.0196078, 0.694118, 0.290196, 1), Color(0.914954, 0, 0.0668436, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_dbkeg"]
@@ -47,44 +55,7 @@ _data = {
 "new_animation": SubResource("Animation_dbkeg")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_prrqy"]
-atlas = ExtResource("2_gouph")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d31hj"]
-atlas = ExtResource("3_2d228")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4qbd1"]
-atlas = ExtResource("4_y18c1")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v0xha"]
-atlas = ExtResource("5_6l67o")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vpwl4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_prrqy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d31hj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4qbd1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v0xha")
-}],
-"loop": true,
-"name": &"default",
-"speed": 6.0
-}]
-
-[node name="FlyingEnemy" type="CharacterBody2D"]
-collision_layer = 4
+[node name="Enemy1" type="CharacterBody2D"]
 script = ExtResource("1_riyx6")
 
 [node name="HurtBox" type="CollisionShape2D" parent="."]
@@ -106,6 +77,13 @@ debug_color = Color(0.989781, 0, 0.286363, 0.42)
 
 [node name="CollisionArea" type="Area2D" parent="."]
 
+[node name="ColorRect" type="ColorRect" parent="CollisionArea"]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0.914954, 0, 0.0668436, 1)
+
 [node name="HitBox" type="CollisionShape2D" parent="CollisionArea"]
 shape = SubResource("RectangleShape2D_5vctl")
 debug_color = Color(0.668713, 0, 0.268887, 0.42)
@@ -114,13 +92,6 @@ debug_color = Color(0.668713, 0, 0.268887, 0.42)
 libraries = {
 "": SubResource("AnimationLibrary_hh2wh")
 }
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-scale = Vector2(0.559999, 0.559999)
-sprite_frames = SubResource("SpriteFrames_vpwl4")
-autoplay = "default"
-frame_progress = 0.72064
 
 [connection signal="body_entered" from="SightArea" to="." method="_on_sight_area_body_entered"]
 [connection signal="body_entered" from="DashArea" to="." method="_on_dash_area_body_entered"]
