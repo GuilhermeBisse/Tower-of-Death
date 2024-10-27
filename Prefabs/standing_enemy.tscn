@@ -13,8 +13,8 @@ size = Vector2(168.307, 31.6614)
 
 [node name="StandingEnemy" type="CharacterBody2D"]
 scale = Vector2(0.536931, 0.536931)
-collision_layer = 3
-collision_mask = 3
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_3uqiy")
 
 [node name="ColorRect" type="ColorRect" parent="."]

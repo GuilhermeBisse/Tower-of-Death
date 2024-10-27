@@ -9,6 +9,7 @@ var knockback_vector = Vector2.ZERO
 var dash_vector = Vector2.ZERO
 var soul_particle = preload("res://Prefabs/hit_particle.tscn")
 @onready var sight_area = $SightArea
+@onready var animated_sprite = $AnimatedSprite2D
 
 func _ready():
 	player = Global.global_player
@@ -24,7 +25,9 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func chase(delta):
-	velocity = global_position.direction_to(player.global_position) * SPEED * delta
+	var dir = global_position.direction_to(player.global_position)
+	velocity = dir * SPEED * delta
+	handle_animation(dir)
 
 
 func _on_sight_area_body_entered(body):
@@ -70,4 +73,9 @@ func _on_collision_area_body_entered(body):
 		knockback_vector = (global_position - player.global_position) * 0.5
 		var knockback_tween:= get_tree().create_tween()
 		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
-		
+
+func handle_animation(dir):
+	if dir.x > 0:
+		animated_sprite.flip_h = true
+	if dir.x < 0:
+		animated_sprite.flip_h = false
