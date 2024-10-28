@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4coijn8kr066"]
+[gd_scene load_steps=4 format=3 uid="uid://d4coijn8kr066"]
 
 [ext_resource type="PackedScene" uid="uid://ov7ad3qfr5xd" path="res://Prefabs/first_boss.tscn" id="1_aymlm"]
+[ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://Prefabs/player.tscn" id="2_tkrer"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0nvh7"]
 distance = -642.0
@@ -14,4 +15,7 @@ position = Vector2(284, 0)
 shape = SubResource("WorldBoundaryShape2D_0nvh7")
 
 [node name="FirstBoss" parent="." instance=ExtResource("1_aymlm")]
-position = Vector2(290, -35)
+position = Vector2(511, 249)
+
+[node name="player" parent="." instance=ExtResource("2_tkrer")]
+position = Vector2(536, 327)
