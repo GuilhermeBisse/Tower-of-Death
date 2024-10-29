@@ -15,7 +15,6 @@ position = Vector2(284, 0)
 shape = SubResource("WorldBoundaryShape2D_0nvh7")
 
 [node name="FirstBoss" parent="." instance=ExtResource("1_aymlm")]
-position = Vector2(511, 249)
 
 [node name="player" parent="." instance=ExtResource("2_tkrer")]
 position = Vector2(536, 327)

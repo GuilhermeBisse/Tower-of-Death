@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://ov7ad3qfr5xd"]
+[gd_scene load_steps=17 format=3 uid="uid://ov7ad3qfr5xd"]
 
 [ext_resource type="Script" path="res://Scripts/state.gd" id="1_5v5qb"]
+[ext_resource type="Script" path="res://Prefabs/first_boss.gd" id="1_eswcn"]
 [ext_resource type="Script" path="res://FiniteStateMachine.gd" id="1_qq1eb"]
 [ext_resource type="Script" path="res://Prefabs/Idle.gd" id="2_mfagn"]
 [ext_resource type="Script" path="res://Prefabs/AttackTimer.gd" id="4_2675q"]
+[ext_resource type="Script" path="res://Prefabs/SincPunch.gd" id="4_lrd34"]
 [ext_resource type="Animation" uid="uid://51e6u8co5oqe" path="res://RightPunch.res" id="5_opkhw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhqj6"]
@@ -14,6 +16,22 @@ size = Vector2(100, 528)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m131q"]
 size = Vector2(99, 96.5)
+
+[sub_resource type="Animation" id="Animation_qtwvj"]
+resource_name = "LeftPunchTest"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Left_Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 2.5, 5),
+"transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-5, -200), Vector2(-50, 0), Vector2(-70, 350), Vector2(-20, 700), Vector2(-20, 670), Vector2(-20, 700), Vector2(-20, 700), Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_vd4in"]
 length = 0.001
@@ -41,27 +59,22 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_qtwvj"]
-resource_name = "LeftPunchTest"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Left_Hand:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 2.5, 5),
-"transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-5, -200), Vector2(-50, 0), Vector2(-70, 350), Vector2(-20, 700), Vector2(-20, 670), Vector2(-20, 700), Vector2(-20, 700), Vector2(0, 0)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_30bt2"]
 resource_name = "SincPunch"
 length = 5.0
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -87,8 +100,26 @@ tracks/1/keys = {
 "values": [Vector2(0, 0), Vector2(40, -200), Vector2(50, 0), Vector2(70, 350), Vector2(20, 700), Vector2(20, 670), Vector2(20, 700), Vector2(20, 700), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_lo370"]
+resource_name = "Idle"
+length = 4.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2.1, 2.5, 2.9, 3.3, 3.7, 4.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(204, 64), Vector2(265, 10), Vector2(329, -61), Vector2(439, -4), Vector2(539, 60), Vector2(724, -97), Vector2(824, -1), Vector2(902, 49), Vector2(1066, 67), Vector2(1152, -8)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0eui"]
 _data = {
+"Idle": SubResource("Animation_lo370"),
 "LeftPunchTest": SubResource("Animation_qtwvj"),
 "RESET": SubResource("Animation_vd4in"),
 "RightPunch": ExtResource("5_opkhw"),
@@ -100,15 +131,13 @@ _data = {
 "RightPunch": ExtResource("5_opkhw")
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_aw6gc"]
-_data = {
-"RightPunch": ExtResource("5_opkhw")
-}
-
 [node name="FirstBoss" type="Node2D"]
+script = ExtResource("1_eswcn")
 
 [node name="Left_Hand" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
+lock_rotation = true
+freeze = true
 
 [node name="ColorRect" type="ColorRect" parent="Left_Hand"]
 offset_left = -263.0
@@ -131,6 +160,8 @@ shape = SubResource("RectangleShape2D_o8p7p")
 
 [node name="Right_Hand" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
+lock_rotation = true
+freeze = true
 
 [node name="ColorRect2" type="ColorRect" parent="Right_Hand"]
 offset_left = 168.0
@@ -157,7 +188,7 @@ script = ExtResource("1_qq1eb")
 script = ExtResource("2_mfagn")
 
 [node name="SincPunch" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("1_5v5qb")
+script = ExtResource("4_lrd34")
 
 [node name="RightPunch" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("1_5v5qb")
@@ -181,12 +212,8 @@ libraries = {
 "": SubResource("AnimationLibrary_u0eui"),
 "MyLibrary": SubResource("AnimationLibrary_mtqvn")
 }
-autoplay = "SincPunch"
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-libraries = {
-"Punch": SubResource("AnimationLibrary_aw6gc")
-}
+autoplay = "Idle"
 
 [connection signal="timeout" from="AttackTimer" to="FiniteStateMachine/Idle" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="AttackTimer" method="_on_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/SincPunch" method="_on_animation_player_animation_finished"]
