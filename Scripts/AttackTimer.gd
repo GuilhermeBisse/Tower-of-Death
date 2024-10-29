@@ -8,4 +8,4 @@ func _ready():
 
 func _on_timeout():
 	print("boss attack!")
-	wait_time = rng.randi_range(0,3)
+	wait_time = rng.randi_range(10,20)

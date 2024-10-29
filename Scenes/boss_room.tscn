@@ -1,10 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4coijn8kr066"]
+[gd_scene load_steps=6 format=3 uid="uid://d4coijn8kr066"]
 
 [ext_resource type="PackedScene" uid="uid://ov7ad3qfr5xd" path="res://Prefabs/first_boss.tscn" id="1_aymlm"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://Prefabs/player.tscn" id="2_tkrer"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0nvh7"]
 distance = -642.0
+
+[sub_resource type="GDScript" id="GDScript_qam0w"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_voi4g"]
+size = Vector2(72.5, 656)
 
 [node name="BossRoom" type="Node2D"]
 
@@ -17,4 +34,19 @@ shape = SubResource("WorldBoundaryShape2D_0nvh7")
 [node name="FirstBoss" parent="." instance=ExtResource("1_aymlm")]
 
 [node name="player" parent="." instance=ExtResource("2_tkrer")]
-position = Vector2(536, 327)
+position = Vector2(283, 642)
+
+[node name="RightLimit" type="Area2D" parent="."]
+position = Vector2(1148, 0)
+script = SubResource("GDScript_qam0w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightLimit"]
+position = Vector2(45, 332)
+shape = SubResource("RectangleShape2D_voi4g")
+
+[node name="LeftLimit" type="Area2D" parent="."]
+position = Vector2(-3, -7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftLimit"]
+position = Vector2(-27, 339)
+shape = SubResource("RectangleShape2D_voi4g")

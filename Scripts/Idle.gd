@@ -2,10 +2,9 @@ extends State
 @onready var animation_player = $"../../AnimationPlayer"
 
 var is_attacking = false
-
 func enter():
 	super.enter()
-	animation_player.play("Idle")
+	owner.set_physics_process(true)
 
 func _on_attack_timer_timeout():
 	is_attacking = true
