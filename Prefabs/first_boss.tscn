@@ -1,12 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://ov7ad3qfr5xd"]
+[gd_scene load_steps=19 format=3 uid="uid://ov7ad3qfr5xd"]
 
 [ext_resource type="Script" path="res://Scripts/first_boss.gd" id="1_5jpeh"]
 [ext_resource type="Script" path="res://Scripts/state.gd" id="1_5v5qb"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="2_1c10y"]
 [ext_resource type="Script" path="res://Scripts/Idle.gd" id="3_q53aw"]
 [ext_resource type="Script" path="res://SincPunch.gd" id="4_e68tk"]
+[ext_resource type="Script" path="res://Prefabs/RightPunch.gd" id="5_htkkd"]
 [ext_resource type="Animation" uid="uid://51e6u8co5oqe" path="res://RightPunch.res" id="5_opkhw"]
-[ext_resource type="Script" path="res://Scripts/AttackTimer.gd" id="6_qte1e"]
+[ext_resource type="Script" path="res://Prefabs/LeftPunch.gd" id="6_vyi7q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o8p7p"]
 size = Vector2(100, 528)
@@ -207,10 +208,10 @@ script = ExtResource("3_q53aw")
 script = ExtResource("4_e68tk")
 
 [node name="RightPunch" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("1_5v5qb")
+script = ExtResource("5_htkkd")
 
 [node name="LeftPunch" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("1_5v5qb")
+script = ExtResource("6_vyi7q")
 
 [node name="RightPush" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("1_5v5qb")
@@ -220,8 +221,7 @@ script = ExtResource("1_5v5qb")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 4.338
-autostart = true
-script = ExtResource("6_qte1e")
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -234,3 +234,5 @@ libraries = {
 [connection signal="timeout" from="AttackTimer" to="FiniteStateMachine/Idle" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="AttackTimer" method="_on_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/SincPunch" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/RightPunch" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/LeftPunch" method="_on_animation_player_animation_finished"]

@@ -11,7 +11,9 @@ func _ready():
 	
 
 func change_state(state):
+	owner.set_physics_process(false)
 	current_state = find_child(state) as State
-	current_state.enter()
 	previous_state.exit()
+	owner.set_physics_process(false)
+	current_state.enter()
 	previous_state = current_state
