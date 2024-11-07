@@ -10,6 +10,7 @@ func enter():
 	owner.set_physics_process(true)
 	print("on idle")
 	attack_timer.start()
+	is_attacking = false
 
 func _on_attack_timer_timeout():
 	is_attacking = true
@@ -21,9 +22,6 @@ func transition():
 	if is_attacking:
 		attacks.shuffle()
 		get_parent().change_state(attacks.front())
-		is_attacking = false
-	else:
-		owner.move()
 func exit():
 	super.exit()
 	print("it stops idling")

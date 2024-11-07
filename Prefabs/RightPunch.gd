@@ -4,6 +4,7 @@ extends State
 
 var attack_finished = false
 func enter():
+	attack_finished = false
 	super.enter()
 	owner.set_physics_process(false)
 	animation_player.play("RightPunch")
