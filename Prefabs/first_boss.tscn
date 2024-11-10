@@ -1,13 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://ov7ad3qfr5xd"]
+[gd_scene load_steps=24 format=3 uid="uid://ov7ad3qfr5xd"]
 
 [ext_resource type="Script" path="res://Scripts/first_boss.gd" id="1_5jpeh"]
-[ext_resource type="Script" path="res://Scripts/state.gd" id="1_5v5qb"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="2_1c10y"]
 [ext_resource type="Script" path="res://Scripts/Idle.gd" id="3_q53aw"]
 [ext_resource type="Script" path="res://SincPunch.gd" id="4_e68tk"]
 [ext_resource type="Script" path="res://Prefabs/RightPunch.gd" id="5_htkkd"]
 [ext_resource type="Animation" uid="uid://51e6u8co5oqe" path="res://RightPunch.res" id="5_opkhw"]
 [ext_resource type="Script" path="res://Prefabs/LeftPunch.gd" id="6_vyi7q"]
+[ext_resource type="Script" path="res://Prefabs/RightPush.gd" id="7_urmt7"]
+[ext_resource type="Script" path="res://Prefabs/LeftPush.gd" id="8_c2eyx"]
+[ext_resource type="Script" path="res://Prefabs/PressAttack.gd" id="9_rhmxr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o8p7p"]
 size = Vector2(100, 528)
@@ -121,12 +123,75 @@ tracks/1/keys = {
 "values": [Vector2(0, 0), Vector2(40, -200), Vector2(50, 0), Vector2(70, 167), Vector2(20, 517), Vector2(20, 497), Vector2(20, 517), Vector2(20, 517), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_pe2rm"]
+resource_name = "LeftPush"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Left_Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 1.7, 1.9, 2.4, 3.5),
+"transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-5, -200), Vector2(-50, 0), Vector2(-70, 167), Vector2(-20, 517), Vector2(-20, 497), Vector2(-20, 517), Vector2(-20, 517), Vector2(-30, 517), Vector2(700, 510), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gkv1e"]
+resource_name = "RightPush"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Right_Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 1.7, 1.9, 2.4, 3.5),
+"transitions": PackedFloat32Array(0.901249, 12.996, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, -200), Vector2(50, 0), Vector2(70, 167), Vector2(20, 517), Vector2(20, 497), Vector2(20, 517), Vector2(20, 517), Vector2(50, 517), Vector2(-700, 517), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8ukyw"]
+resource_name = "PressAttack"
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Left_Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 1.7, 2, 2.1, 2.6),
+"transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-40, -200), Vector2(-50, 0), Vector2(-70, 167), Vector2(-20, 517), Vector2(-20, 497), Vector2(-20, 517), Vector2(-20, 517), Vector2(-40, 517), Vector2(170, 517), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Right_Hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 1.7, 2, 2.1, 2.6),
+"transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(40, -200), Vector2(50, 0), Vector2(70, 167), Vector2(20, 517), Vector2(20, 497), Vector2(20, 517), Vector2(20, 517), Vector2(40, 517), Vector2(-170, 517), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0eui"]
 _data = {
 "Idle": SubResource("Animation_lo370"),
 "LeftPunchTest": SubResource("Animation_qtwvj"),
+"LeftPush": SubResource("Animation_pe2rm"),
+"PressAttack": SubResource("Animation_8ukyw"),
 "RESET": SubResource("Animation_vd4in"),
 "RightPunch": ExtResource("5_opkhw"),
+"RightPush": SubResource("Animation_gkv1e"),
 "SincPunch": SubResource("Animation_30bt2")
 }
 
@@ -214,10 +279,13 @@ script = ExtResource("5_htkkd")
 script = ExtResource("6_vyi7q")
 
 [node name="RightPush" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("1_5v5qb")
+script = ExtResource("7_urmt7")
 
 [node name="LeftPush" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("1_5v5qb")
+script = ExtResource("8_c2eyx")
+
+[node name="PressAttack" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("9_rhmxr")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 4.338
@@ -236,3 +304,6 @@ libraries = {
 [connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/SincPunch" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/RightPunch" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/LeftPunch" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/RightPush" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/LeftPush" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/PressAttack" method="_on_animation_player_animation_finished"]
