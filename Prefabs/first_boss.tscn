@@ -4,12 +4,12 @@
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="2_1c10y"]
 [ext_resource type="Script" path="res://Scripts/Idle.gd" id="3_q53aw"]
 [ext_resource type="Script" path="res://SincPunch.gd" id="4_e68tk"]
-[ext_resource type="Script" path="res://Prefabs/RightPunch.gd" id="5_htkkd"]
+[ext_resource type="Script" path="res://Scripts/RightPunch.gd" id="5_5c452"]
 [ext_resource type="Animation" uid="uid://51e6u8co5oqe" path="res://RightPunch.res" id="5_opkhw"]
-[ext_resource type="Script" path="res://Prefabs/LeftPunch.gd" id="6_vyi7q"]
-[ext_resource type="Script" path="res://Prefabs/RightPush.gd" id="7_urmt7"]
-[ext_resource type="Script" path="res://Prefabs/LeftPush.gd" id="8_c2eyx"]
-[ext_resource type="Script" path="res://Prefabs/PressAttack.gd" id="9_rhmxr"]
+[ext_resource type="Script" path="res://Scripts/LeftPunch.gd" id="6_g7id8"]
+[ext_resource type="Script" path="res://Scripts/RightPush.gd" id="7_ocs27"]
+[ext_resource type="Script" path="res://Scripts/LeftPush.gd" id="8_wvy8a"]
+[ext_resource type="Script" path="res://Scripts/PressAttack.gd" id="9_4btxr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o8p7p"]
 size = Vector2(100, 528)
@@ -273,19 +273,19 @@ script = ExtResource("3_q53aw")
 script = ExtResource("4_e68tk")
 
 [node name="RightPunch" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("5_htkkd")
+script = ExtResource("5_5c452")
 
 [node name="LeftPunch" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("6_vyi7q")
+script = ExtResource("6_g7id8")
 
 [node name="RightPush" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("7_urmt7")
+script = ExtResource("7_ocs27")
 
 [node name="LeftPush" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("8_c2eyx")
+script = ExtResource("8_wvy8a")
 
 [node name="PressAttack" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("9_rhmxr")
+script = ExtResource("9_4btxr")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 4.338
