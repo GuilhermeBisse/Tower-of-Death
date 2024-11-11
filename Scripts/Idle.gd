@@ -4,6 +4,9 @@ extends State
 var rng
 var is_attacking = false
 var attacks = ["SincPunch", "RightPunch", "LeftPunch", "LeftPush", "RightPush", "PressAttack"];
+var penalty = (100 / attacks.size()) / 4 
+var attack_chance = [(100 / attacks.size()),100 / attacks.size(),100 / attacks.size(),100 / attacks.size(),100 / attacks.size(),100 / attacks.size()]
+
 func enter():
 	randomize()
 	super.enter()
@@ -19,8 +22,37 @@ func _on_attack_timer_timeout():
 	
 func transition():
 	if is_attacking:
-		attacks.shuffle()
-		get_parent().change_state(attacks.front())
+		var choice = randf_range(1,100)
+		if choice >= 0 and choice < attacks[0]:
+			get_parent().change_state("SincPunch")
+			attacks[0]-= penalty
+			for a in attack_chance:
+				if a==0:
+					continue
+				attack_chance[a]+=(penalty/attack_chance.size() - 1)
+		elif choice >= attack_chance[0] and choice < attack_chance[0] + attack_chance[1]:
+			get_parent().change_state("SincPunch")
+			attack_chance[1]-= penalty
+			for a in attack_chance:
+				if a==1:
+					continue
+				attack_chance[a]+=(penalty/attack_chance.size() - 1)
+		elif choice >= attack_chance[0] + attack_chance[1] and choice < attack_chance[0] + attack_chance[1] + attack_chance[3]:
+			get_parent().change_state("SincPunch")
+			attack_chance[2]-= penalty
+			for a in attack_chance:
+				if a==2:
+					continue
+				attack_chance[a]+=(penalty/attack_chance.size() - 1)
+			
+		elif choice >= attack_chance[0] + attack_chance[1] and choice < attack_chance[0] + attack_chance[1] + attack_chance[3]:
+			get_parent().change_state("SincPunch")
+			attack_chance[3]-= penalty
+			for a in attack_chance:
+				if a==3:
+					continue
+				attack_chance[a]+=(penalty/attack_chance.size() - 1)
+						
 func exit():
 	super.exit()
 	print("it stops idling")
