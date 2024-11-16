@@ -4,9 +4,10 @@ extends State
 var rng
 var is_attacking = false
 var attacks = ["SincPunch", "RightPunch", "LeftPunch", "LeftPush", "RightPush", "PressAttack"];
-var penalty = (100 / attacks.size()) / 4 
-var attack_chance = [(100 / attacks.size()),100 / attacks.size(),100 / attacks.size(),100 / attacks.size(),100 / attacks.size(),100 / attacks.size()]
+var attack_chance = [(100 / attacks.size()),(100 / attacks.size()),(100 / attacks.size()),(100 / attacks.size()),(100 / attacks.size()),(100 / attacks.size())]
 
+func _ready():
+	print(attack_chance.size())
 func enter():
 	randomize()
 	super.enter()
@@ -23,36 +24,30 @@ func _on_attack_timer_timeout():
 func transition():
 	if is_attacking:
 		var choice = randf_range(1,100)
-		if choice >= 0 and choice < attacks[0]:
-			get_parent().change_state("SincPunch")
-			attacks[0]-= penalty
-			for a in attack_chance:
-				if a==0:
-					continue
-				attack_chance[a]+=(penalty/attack_chance.size() - 1)
-		elif choice >= attack_chance[0] and choice < attack_chance[0] + attack_chance[1]:
-			get_parent().change_state("SincPunch")
-			attack_chance[1]-= penalty
-			for a in attack_chance:
-				if a==1:
-					continue
-				attack_chance[a]+=(penalty/attack_chance.size() - 1)
-		elif choice >= attack_chance[0] + attack_chance[1] and choice < attack_chance[0] + attack_chance[1] + attack_chance[3]:
-			get_parent().change_state("SincPunch")
-			attack_chance[2]-= penalty
-			for a in attack_chance:
-				if a==2:
-					continue
-				attack_chance[a]+=(penalty/attack_chance.size() - 1)
-			
-		elif choice >= attack_chance[0] + attack_chance[1] and choice < attack_chance[0] + attack_chance[1] + attack_chance[3]:
-			get_parent().change_state("SincPunch")
-			attack_chance[3]-= penalty
-			for a in attack_chance:
-				if a==3:
-					continue
-				attack_chance[a]+=(penalty/attack_chance.size() - 1)
-						
+		var chance_changed = false
+		var current_chance = 0
+		var attack
+		var chance_removed
+		print("attack chance size : ", attack_chance.size())
+		#check for which attack is and remove its chance
+		for c in range(attack_chance.size()):
+			current_chance+=attack_chance[c]
+			if choice < current_chance and not chance_changed:
+				attack = attacks[c]
+				chance_removed = attack_chance[c]/2
+				attack_chance[c]-=attack_chance[c]/2
+				chance_changed = true
+				print(attacks[c]," : ", attack_chance[c])
+		print("Current total chance: ", current_chance)
+		#add to the other attack the chance that was removed, and remove the integer error.
+		for i in range(attack_chance.size()):
+			attack_chance[i] -= (current_chance-100)/attack_chance.size()
+			if attacks[i] != attack:
+				print(attacks[i]," : ", attack_chance[i])
+				attack_chance[i]+=chance_removed/attack_chance.size() + 1
+		get_parent().change_state(attack)
+		
+
 func exit():
 	super.exit()
 	print("it stops idling")
