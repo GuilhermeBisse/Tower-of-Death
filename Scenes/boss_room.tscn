@@ -24,14 +24,13 @@ func _process(delta):
 size = Vector2(72.5, 656)
 
 [node name="BossRoom" type="Node2D"]
+position = Vector2(0, 3)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(284, 0)
 shape = SubResource("WorldBoundaryShape2D_0nvh7")
-
-[node name="FirstBoss" parent="." instance=ExtResource("1_aymlm")]
 
 [node name="player" parent="." instance=ExtResource("2_tkrer")]
 position = Vector2(283, 642)
@@ -50,3 +49,5 @@ position = Vector2(-3, -7)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftLimit"]
 position = Vector2(-27, 339)
 shape = SubResource("RectangleShape2D_voi4g")
+
+[node name="FirstBoss" parent="." instance=ExtResource("1_aymlm")]

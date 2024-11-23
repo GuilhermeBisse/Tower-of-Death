@@ -4,7 +4,7 @@ extends State
 var rng
 var is_attacking = false
 var attacks = ["SincPunch", "RightPunch", "LeftPunch", "LeftPush", "RightPush", "PressAttack"];
-var attack_chance = [(100 / attacks.size()),(100 / attacks.size()),(100 / attacks.size()),(100 / attacks.size()),(100 / attacks.size()),(100 / attacks.size())]
+var attack_chance = [(100.0 / attacks.size()),(100.0 / attacks.size()),(100.0 / attacks.size()),(100.0 / attacks.size()),(100.0 / attacks.size()),(100.0 / attacks.size())]
 
 func _ready():
 	print(attack_chance.size())
@@ -34,8 +34,8 @@ func transition():
 			current_chance+=attack_chance[c]
 			if choice < current_chance and not chance_changed:
 				attack = attacks[c]
-				chance_removed = attack_chance[c]/2
-				attack_chance[c]-=attack_chance[c]/2
+				chance_removed = attack_chance[c]/3
+				attack_chance[c]-=attack_chance[c]/3
 				chance_changed = true
 				print(attacks[c]," : ", attack_chance[c])
 		print("Current total chance: ", current_chance)
@@ -44,8 +44,8 @@ func transition():
 			attack_chance[i] -= (current_chance-100)/attack_chance.size()
 			if attacks[i] != attack:
 				print(attacks[i]," : ", attack_chance[i])
-				attack_chance[i]+=chance_removed/attack_chance.size() + 1
-		get_parent().change_state(attack)
+				attack_chance[i]+=chance_removed/attack_chance.size()
+		get_parent().change_state("SincPunch")
 		
 
 func exit():
