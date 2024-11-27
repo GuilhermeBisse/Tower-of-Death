@@ -1,8 +1,13 @@
 extends Node2D
 var direction : Vector2
 var speed = 1000
+@onready var left_hand = $Left_Hand
+@onready var right_hand = $Right_Hand
+
 func _ready():
 	#set_physics_process(false)
+	right_hand.position = Vector2(270,70)
+	left_hand.position = Vector2(-270,70)
 	direction.x = 1
 	
 

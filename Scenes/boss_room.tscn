@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://d4coijn8kr066"]
 
-[ext_resource type="PackedScene" uid="uid://ov7ad3qfr5xd" path="res://Prefabs/first_boss.tscn" id="1_aymlm"]
-[ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://Prefabs/player.tscn" id="2_tkrer"]
+[ext_resource type="PackedScene" uid="uid://c1cm4q3gijxok" path="res://Prefabs/first_boss.tscn" id="1_aymlm"]
+[ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://Prefabs/player.tscn" id="2_q5s4j"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0nvh7"]
-distance = -642.0
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l3tre"]
+distance = -634.0
 
 [sub_resource type="GDScript" id="GDScript_qam0w"]
 script/source = "extends Area2D
@@ -27,13 +27,11 @@ size = Vector2(72.5, 656)
 position = Vector2(0, 3)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(284, 0)
-shape = SubResource("WorldBoundaryShape2D_0nvh7")
-
-[node name="player" parent="." instance=ExtResource("2_tkrer")]
-position = Vector2(283, 642)
+shape = SubResource("WorldBoundaryShape2D_l3tre")
 
 [node name="RightLimit" type="Area2D" parent="."]
 position = Vector2(1148, 0)
@@ -51,3 +49,10 @@ position = Vector2(-27, 339)
 shape = SubResource("RectangleShape2D_voi4g")
 
 [node name="FirstBoss" parent="." instance=ExtResource("1_aymlm")]
+
+[node name="player" parent="." instance=ExtResource("2_q5s4j")]
+position = Vector2(439, 350)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(619, 68)
+zoom = Vector2(0.5, 0.5)

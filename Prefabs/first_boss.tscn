@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ov7ad3qfr5xd"]
+[gd_scene load_steps=22 format=3 uid="uid://c1cm4q3gijxok"]
 
 [ext_resource type="Script" path="res://Scripts/first_boss.gd" id="1_5jpeh"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="2_1c10y"]
@@ -14,14 +14,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o8p7p"]
 size = Vector2(100, 528)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhqj6"]
-size = Vector2(101, 96)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eh0n2"]
 size = Vector2(112, 103)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m131q"]
-size = Vector2(99, 96.5)
 
 [sub_resource type="Animation" id="Animation_lo370"]
 resource_name = "Idle"
@@ -66,10 +60,10 @@ tracks/0/path = NodePath("Left_Hand:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 1.7, 1.9, 2.4, 3.5),
+"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 1.7, 2.1, 2.4, 3.5),
 "transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-5, -200), Vector2(-50, 0), Vector2(-70, 167), Vector2(-20, 517), Vector2(-20, 497), Vector2(-20, 517), Vector2(-20, 517), Vector2(-30, 517), Vector2(700, 510), Vector2(0, 0)]
+"values": [Vector2(-270, 70), Vector2(-275, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 587), Vector2(-290, 587), Vector2(-340, 587), Vector2(430, 580), Vector2(-270, 70)]
 }
 
 [sub_resource type="Animation" id="Animation_8ukyw"]
@@ -85,7 +79,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 1.7, 2, 2.1, 2.6),
 "transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-40, -200), Vector2(-50, 0), Vector2(-70, 167), Vector2(-20, 517), Vector2(-20, 497), Vector2(-20, 517), Vector2(-20, 517), Vector2(-40, 517), Vector2(170, 517), Vector2(0, 0)]
+"values": [Vector2(-270, 70), Vector2(-310, -200), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 587), Vector2(-290, 587), Vector2(-310, 587), Vector2(-30, 587), Vector2(-270, 70)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -97,7 +91,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 1.7, 2, 2.1, 2.6),
 "transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(40, -200), Vector2(50, 0), Vector2(70, 167), Vector2(20, 517), Vector2(20, 497), Vector2(20, 517), Vector2(20, 517), Vector2(40, 517), Vector2(-170, 517), Vector2(0, 0)]
+"values": [Vector2(270, 70), Vector2(310, -200), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(290, 587), Vector2(310, 587), Vector2(30, 587), Vector2(270, 70)]
 }
 
 [sub_resource type="Animation" id="Animation_vd4in"]
@@ -139,22 +133,6 @@ tracks/2/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_gkv1e"]
-resource_name = "RightPush"
-length = 3.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Right_Hand:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.5, 0.8, 0.9, 1, 1.7, 3.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(270, 70), Vector2(270, -30), Vector2(300, 210), Vector2(280, 597), Vector2(280, 577), Vector2(280, 597), Vector2(280, 597), Vector2(270, 70)]
-}
-
 [sub_resource type="Animation" id="Animation_30bt2"]
 resource_name = "SincPunch"
 length = 5.0
@@ -165,10 +143,10 @@ tracks/0/path = NodePath("Left_Hand:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 2.5, 5),
+"times": PackedFloat32Array(0, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 2.5, 5),
 "transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-40, -200), Vector2(-50, 0), Vector2(-70, 167), Vector2(-20, 517), Vector2(-20, 497), Vector2(-20, 517), Vector2(-20, 517), Vector2(0, 0)]
+"values": [Vector2(-270, 70), Vector2(-270, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 587), Vector2(-290, 587), Vector2(-270, 70)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -177,10 +155,26 @@ tracks/1/path = NodePath("Right_Hand:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 2.5, 5),
+"times": PackedFloat32Array(0, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 2.5, 5),
 "transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(40, -200), Vector2(50, 0), Vector2(70, 167), Vector2(20, 517), Vector2(20, 497), Vector2(20, 517), Vector2(20, 517), Vector2(0, 0)]
+"values": [Vector2(270, 70), Vector2(270, -130), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(290, 587), Vector2(270, 70)]
+}
+
+[sub_resource type="Animation" id="Animation_xmxvx"]
+resource_name = "RightPush"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Right_Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 1.7, 2.1, 2.4, 3.5),
+"transitions": PackedFloat32Array(1, 12.9, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(270, 70), Vector2(275, -130), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(290, 587), Vector2(340, 587), Vector2(-430, 580), Vector2(270, 70)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0eui"]
@@ -191,7 +185,7 @@ _data = {
 "PressAttack": SubResource("Animation_8ukyw"),
 "RESET": SubResource("Animation_vd4in"),
 "RightPunch": ExtResource("5_opkhw"),
-"RightPush": SubResource("Animation_gkv1e"),
+"RightPush": SubResource("Animation_xmxvx"),
 "SincPunch": SubResource("Animation_30bt2")
 }
 
@@ -203,10 +197,7 @@ _data = {
 [node name="FirstBoss" type="Node2D"]
 script = ExtResource("1_5jpeh")
 
-[node name="Left_Hand" type="RigidBody2D" parent="."]
-gravity_scale = 0.0
-lock_rotation = true
-freeze = true
+[node name="Left_Hand" type="Node2D" parent="."]
 
 [node name="LeftDetector" type="Area2D" parent="Left_Hand"]
 
@@ -221,20 +212,18 @@ offset_right = 51.0
 offset_bottom = 48.0
 metadata/_edit_use_anchors_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left_Hand"]
-shape = SubResource("RectangleShape2D_hhqj6")
-debug_color = Color(0.932424, 0.231302, 0.311413, 0.42)
-
 [node name="Hitbox" type="Area2D" parent="Left_Hand"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left_Hand/Hitbox"]
 shape = SubResource("RectangleShape2D_eh0n2")
 debug_color = Color(0.998734, 0, 0.134077, 0.42)
 
-[node name="Right_Hand" type="RigidBody2D" parent="."]
-gravity_scale = 0.0
-lock_rotation = true
-freeze = true
+[node name="isTouchingFloor" type="RayCast2D" parent="Left_Hand"]
+position = Vector2(1, 39)
+target_position = Vector2(0, 16)
+collision_mask = 3
+
+[node name="Right_Hand" type="Node2D" parent="."]
 
 [node name="ColorRect2" type="ColorRect" parent="Right_Hand"]
 offset_left = -49.0
@@ -242,10 +231,6 @@ offset_top = -47.0
 offset_right = 53.0
 offset_bottom = 47.0
 metadata/_edit_use_anchors_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right_Hand"]
-shape = SubResource("RectangleShape2D_m131q")
-debug_color = Color(0.976676, 0.146293, 0.102359, 0.42)
 
 [node name="RightDetector" type="Area2D" parent="Right_Hand"]
 
@@ -260,6 +245,7 @@ shape = SubResource("RectangleShape2D_eh0n2")
 debug_color = Color(0.998734, 0, 0.134077, 0.42)
 
 [node name="FiniteStateMachine" type="Node2D" parent="."]
+visible = false
 script = ExtResource("2_1c10y")
 
 [node name="Idle" type="Node2D" parent="FiniteStateMachine"]
@@ -267,6 +253,7 @@ script = ExtResource("3_q53aw")
 
 [node name="SincPunch" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("4_e68tk")
+wave_speed = 500
 
 [node name="RightPunch" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("5_5c452")
@@ -281,6 +268,7 @@ script = ExtResource("7_ocs27")
 script = ExtResource("8_wvy8a")
 
 [node name="PressAttack" type="Node2D" parent="FiniteStateMachine"]
+position = Vector2(-2, 2)
 script = ExtResource("9_4btxr")
 
 [node name="AttackTimer" type="Timer" parent="."]

@@ -45,7 +45,7 @@ func transition():
 			if attacks[i] != attack:
 				print(attacks[i]," : ", attack_chance[i])
 				attack_chance[i]+=chance_removed/attack_chance.size()
-		get_parent().change_state("SincPunch")
+		get_parent().change_state(attack)
 		
 
 func exit():
