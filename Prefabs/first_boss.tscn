@@ -1,293 +1,56 @@
-[gd_scene load_steps=22 format=3 uid="uid://c1cm4q3gijxok"]
+[gd_scene load_steps=12 format=3 uid="uid://b15ao87wkybpx"]
 
-[ext_resource type="Script" path="res://Scripts/first_boss.gd" id="1_5jpeh"]
-[ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="2_1c10y"]
-[ext_resource type="Script" path="res://Scripts/Idle.gd" id="3_q53aw"]
-[ext_resource type="Script" path="res://SincPunch.gd" id="4_e68tk"]
-[ext_resource type="Script" path="res://Scripts/RightPunch.gd" id="5_5c452"]
-[ext_resource type="Animation" uid="uid://51e6u8co5oqe" path="res://RightPunch.res" id="5_opkhw"]
-[ext_resource type="Script" path="res://Scripts/LeftPunch.gd" id="6_g7id8"]
-[ext_resource type="Script" path="res://Scripts/RightPush.gd" id="7_ocs27"]
-[ext_resource type="Script" path="res://Scripts/LeftPush.gd" id="8_wvy8a"]
-[ext_resource type="Script" path="res://Scripts/PressAttack.gd" id="9_4btxr"]
+[ext_resource type="Texture2D" uid="uid://lijbavn8s3mi" path="res://Sprites/Boss/Boss1.png" id="1_wj1q4"]
+[ext_resource type="Texture2D" uid="uid://crspjryfdho3i" path="res://Sprites/Boss/Boss2.png" id="2_lmuce"]
+[ext_resource type="Texture2D" uid="uid://orda6o4vaa8c" path="res://Sprites/Boss/Boss3.png" id="3_dn0gb"]
+[ext_resource type="Texture2D" uid="uid://dl0tncamekp7m" path="res://Sprites/Boss/Boss4.png" id="4_mdqaa"]
+[ext_resource type="Script" path="res://Prefabs/boss_body.gd" id="5_ic5w6"]
+[ext_resource type="PackedScene" uid="uid://c1cm4q3gijxok" path="res://Prefabs/boss_hands.tscn" id="5_pwilx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o8p7p"]
-size = Vector2(100, 528)
+[sub_resource type="AtlasTexture" id="AtlasTexture_0487o"]
+atlas = ExtResource("1_wj1q4")
+region = Rect2(0, 0, 200, 200)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eh0n2"]
-size = Vector2(112, 103)
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3qdj"]
+atlas = ExtResource("2_lmuce")
+region = Rect2(0, 0, 200, 200)
 
-[sub_resource type="Animation" id="Animation_lo370"]
-resource_name = "Idle"
-length = 4.2
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2.1, 2.5, 2.9, 3.3, 3.7, 4.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(204, 64), Vector2(265, 10), Vector2(329, -61), Vector2(439, -4), Vector2(539, 60), Vector2(724, -97), Vector2(824, -1), Vector2(902, 49), Vector2(1066, 67), Vector2(1152, -8)]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_a64v2"]
+atlas = ExtResource("3_dn0gb")
+region = Rect2(0, 0, 200, 200)
 
-[sub_resource type="Animation" id="Animation_qtwvj"]
-resource_name = "LeftPunchTest"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Left_Hand:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 2.5, 5),
-"transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-270, 70), Vector2(-275, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 597), Vector2(-290, 597), Vector2(-270, 70)]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_iaaxn"]
+atlas = ExtResource("4_mdqaa")
+region = Rect2(0, 0, 200, 200)
 
-[sub_resource type="Animation" id="Animation_pe2rm"]
-resource_name = "LeftPush"
-length = 3.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Left_Hand:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 1.7, 2.1, 2.4, 3.5),
-"transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-270, 70), Vector2(-275, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 587), Vector2(-290, 587), Vector2(-340, 587), Vector2(430, 580), Vector2(-270, 70)]
-}
-
-[sub_resource type="Animation" id="Animation_8ukyw"]
-resource_name = "PressAttack"
-length = 2.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Left_Hand:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 1.7, 2, 2.1, 2.6),
-"transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-270, 70), Vector2(-310, -200), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 587), Vector2(-290, 587), Vector2(-310, 587), Vector2(-30, 587), Vector2(-270, 70)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Right_Hand:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 1.7, 2, 2.1, 2.6),
-"transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(270, 70), Vector2(310, -200), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(290, 587), Vector2(310, 587), Vector2(30, 587), Vector2(270, 70)]
-}
-
-[sub_resource type="Animation" id="Animation_vd4in"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Right_Hand:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Left_Hand:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_30bt2"]
-resource_name = "SincPunch"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Left_Hand:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 2.5, 5),
-"transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-270, 70), Vector2(-270, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 587), Vector2(-290, 587), Vector2(-270, 70)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Right_Hand:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 2.5, 5),
-"transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(270, 70), Vector2(270, -130), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(290, 587), Vector2(270, 70)]
-}
-
-[sub_resource type="Animation" id="Animation_xmxvx"]
-resource_name = "RightPush"
-length = 3.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Right_Hand:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 1.7, 2.1, 2.4, 3.5),
-"transitions": PackedFloat32Array(1, 12.9, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(270, 70), Vector2(275, -130), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(290, 587), Vector2(340, 587), Vector2(-430, 580), Vector2(270, 70)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_u0eui"]
-_data = {
-"Idle": SubResource("Animation_lo370"),
-"LeftPunchTest": SubResource("Animation_qtwvj"),
-"LeftPush": SubResource("Animation_pe2rm"),
-"PressAttack": SubResource("Animation_8ukyw"),
-"RESET": SubResource("Animation_vd4in"),
-"RightPunch": ExtResource("5_opkhw"),
-"RightPush": SubResource("Animation_xmxvx"),
-"SincPunch": SubResource("Animation_30bt2")
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_mtqvn"]
-_data = {
-"RightPunch": ExtResource("5_opkhw")
-}
+[sub_resource type="SpriteFrames" id="SpriteFrames_difga"]
+animations = [{
+"frames": [{
+"duration": 10.1,
+"texture": SubResource("AtlasTexture_0487o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3qdj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a64v2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iaaxn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="FirstBoss" type="Node2D"]
-script = ExtResource("1_5jpeh")
 
-[node name="Left_Hand" type="Node2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -6)
+scale = Vector2(2.845, 2.845)
+sprite_frames = SubResource("SpriteFrames_difga")
+autoplay = "default"
+frame_progress = 0.390366
+script = ExtResource("5_ic5w6")
 
-[node name="LeftDetector" type="Area2D" parent="Left_Hand"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left_Hand/LeftDetector"]
-position = Vector2(0, 311)
-shape = SubResource("RectangleShape2D_o8p7p")
-
-[node name="ColorRect" type="ColorRect" parent="Left_Hand"]
-offset_left = -51.0
-offset_top = -46.0
-offset_right = 51.0
-offset_bottom = 48.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Hitbox" type="Area2D" parent="Left_Hand"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left_Hand/Hitbox"]
-shape = SubResource("RectangleShape2D_eh0n2")
-debug_color = Color(0.998734, 0, 0.134077, 0.42)
-
-[node name="isTouchingFloor" type="RayCast2D" parent="Left_Hand"]
-position = Vector2(1, 39)
-target_position = Vector2(0, 16)
-collision_mask = 3
-
-[node name="Right_Hand" type="Node2D" parent="."]
-
-[node name="ColorRect2" type="ColorRect" parent="Right_Hand"]
-offset_left = -49.0
-offset_top = -47.0
-offset_right = 53.0
-offset_bottom = 47.0
-metadata/_edit_use_anchors_ = true
-
-[node name="RightDetector" type="Area2D" parent="Right_Hand"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right_Hand/RightDetector"]
-position = Vector2(3, 314)
-shape = SubResource("RectangleShape2D_o8p7p")
-
-[node name="Hitbox2" type="Area2D" parent="Right_Hand"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right_Hand/Hitbox2"]
-shape = SubResource("RectangleShape2D_eh0n2")
-debug_color = Color(0.998734, 0, 0.134077, 0.42)
-
-[node name="FiniteStateMachine" type="Node2D" parent="."]
-visible = false
-script = ExtResource("2_1c10y")
-
-[node name="Idle" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("3_q53aw")
-
-[node name="SincPunch" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("4_e68tk")
-wave_speed = 500
-
-[node name="RightPunch" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("5_5c452")
-
-[node name="LeftPunch" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("6_g7id8")
-
-[node name="RightPush" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("7_ocs27")
-
-[node name="LeftPush" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("8_wvy8a")
-
-[node name="PressAttack" type="Node2D" parent="FiniteStateMachine"]
-position = Vector2(-2, 2)
-script = ExtResource("9_4btxr")
-
-[node name="AttackTimer" type="Timer" parent="."]
-wait_time = 4.338
-one_shot = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_u0eui"),
-"MyLibrary": SubResource("AnimationLibrary_mtqvn")
-}
-
-[connection signal="area_entered" from="Left_Hand/LeftDetector" to="." method="_on_left_detector_area_entered"]
-[connection signal="area_entered" from="Right_Hand/RightDetector" to="." method="_on_right_detector_area_entered"]
-[connection signal="timeout" from="AttackTimer" to="FiniteStateMachine/Idle" method="_on_attack_timer_timeout"]
-[connection signal="timeout" from="AttackTimer" to="AttackTimer" method="_on_timeout"]
-[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/SincPunch" method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/RightPunch" method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/LeftPunch" method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/RightPush" method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/LeftPush" method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/PressAttack" method="_on_animation_player_animation_finished"]
+[node name="Hands" parent="." instance=ExtResource("5_pwilx")]

@@ -22,3 +22,17 @@ func _on_left_detector_area_entered(area):
 
 func _physics_process(delta):
 	position += direction * speed * delta
+
+
+func _on_left_detector_body_entered(body):
+	pass # Replace with function body.
+
+
+func _on_hitbox_body_entered(body):
+	if body == Global.global_player:
+		body.hurt(left_hand,10)
+
+
+func _on_hitbox_2_body_entered(body):
+	if body == Global.global_player:
+		body.hurt(right_hand,10)
