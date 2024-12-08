@@ -54,13 +54,13 @@ func handle_animation():
 func _on_area_2d_body_entered(body):
 	if body.has_method("hurt"):
 		print("achei")
-		body.hurt()
+		body.hurt(self,10)
 
 
 func _on_sword_up_area_body_entered(body):
 	if body.has_method("hurt"):
 		print("achei")
-		body.hurt()
+		body.hurt(self,10)
 
 func handle_attack():
 	var damage_zone_side = sword_area_side.get_node("CollisionShape2D")
@@ -85,3 +85,9 @@ func hurt(body,damage):
 	knockback_vector = (global_position - body.global_position)
 	var knockback_tween:= get_tree().create_tween()
 	knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
+
+
+func _on_sword_side_area_area_entered(area):
+	if area.has_method("hurt"):
+		print("achei")
+		area.hurt(self,10)

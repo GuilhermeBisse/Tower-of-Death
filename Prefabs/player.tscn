@@ -243,5 +243,6 @@ shape = SubResource("RectangleShape2D_q1qvv")
 disabled = true
 debug_color = Color(0.934515, 0.238558, 0.245729, 0.42)
 
+[connection signal="area_entered" from="SwordSideArea" to="." method="_on_sword_side_area_area_entered"]
 [connection signal="body_entered" from="SwordSideArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="SwordUpArea" to="." method="_on_sword_up_area_body_entered"]

@@ -38,6 +38,8 @@ shape = SubResource("WorldBoundaryShape2D_l3tre")
 
 [node name="RightLimit" type="Area2D" parent="."]
 position = Vector2(1148, 0)
+collision_layer = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightLimit"]
 position = Vector2(45, 332)
@@ -45,6 +47,8 @@ shape = SubResource("RectangleShape2D_voi4g")
 
 [node name="LeftLimit" type="Area2D" parent="."]
 position = Vector2(-3, -7)
+collision_layer = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftLimit"]
 position = Vector2(-27, 339)
@@ -58,7 +62,7 @@ position = Vector2(619, 68)
 zoom = Vector2(0.5, 0.5)
 
 [node name="FirstBoss" parent="." instance=ExtResource("1_aymlm")]
-position = Vector2(607, 63)
+position = Vector2(517, 13)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hfpf1")

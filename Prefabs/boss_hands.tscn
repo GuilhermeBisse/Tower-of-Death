@@ -1,10 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://c1cm4q3gijxok"]
+[gd_scene load_steps=28 format=3 uid="uid://c1cm4q3gijxok"]
 
 [ext_resource type="Script" path="res://Scripts/boss_hands.gd" id="1_4jfak"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="2_1c10y"]
 [ext_resource type="Texture2D" uid="uid://jv77um3a3h1i" path="res://Sprites/Boss/Boss1-hand.png" id="2_exirc"]
+[ext_resource type="Script" path="res://Prefabs/Left_Hand.gd" id="2_iox5h"]
 [ext_resource type="Script" path="res://Scripts/Idle.gd" id="3_q53aw"]
+[ext_resource type="Script" path="res://Prefabs/Hitbox.gd" id="3_qhugr"]
 [ext_resource type="Script" path="res://Scripts/SincPunch.gd" id="4_e68tk"]
+[ext_resource type="Script" path="res://Prefabs/Right_Hand.gd" id="4_kdgyj"]
 [ext_resource type="Script" path="res://Scripts/RightPunch.gd" id="5_5c452"]
 [ext_resource type="Animation" uid="uid://51e6u8co5oqe" path="res://RightPunch.res" id="5_opkhw"]
 [ext_resource type="Script" path="res://Scripts/LeftPunch.gd" id="6_g7id8"]
@@ -56,6 +59,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-270, 70), Vector2(-275, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 597), Vector2(-290, 597), Vector2(-270, 70)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Left_Hand/Sprite_Left_Hand:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1, 1.3),
+"transitions": PackedFloat32Array(25709.2, 1, 220436, 1),
+"update": 0,
+"values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.26667, 2.26667)]
+}
 
 [sub_resource type="Animation" id="Animation_pe2rm"]
 resource_name = "LeftPush"
@@ -71,6 +86,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-270, 70), Vector2(-275, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 587), Vector2(-290, 587), Vector2(-340, 587), Vector2(430, 580), Vector2(-270, 70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Left_Hand/Sprite_Left_Hand:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1, 1.3, 2.1, 2.4),
+"transitions": PackedFloat32Array(5792.62, 1, 13777.2, 67847, 59064.1, 1),
+"update": 0,
+"values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.26667, 2.26667), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667)]
 }
 
 [sub_resource type="Animation" id="Animation_8ukyw"]
@@ -113,7 +140,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(270, 70)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -125,7 +152,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-270, 70)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -138,6 +165,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Right_Hand/Sprite_Right_Hand:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.26667, 2.26667)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Left_Hand/Sprite_Left_Hand:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.26667, 2.26667)]
 }
 
 [sub_resource type="Animation" id="Animation_xmxvx"]
@@ -154,6 +205,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 12.9, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(270, 70), Vector2(275, -130), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(290, 587), Vector2(340, 587), Vector2(-430, 580), Vector2(270, 70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Right_Hand/Sprite_Right_Hand:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8, 1.3, 2.1, 2.4),
+"transitions": PackedFloat32Array(1, 1, 349.707, 1176.27, 18820.3, 1),
+"update": 0,
+"values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.26667, 2.26667), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667)]
 }
 
 [sub_resource type="Animation" id="Animation_30bt2"]
@@ -183,6 +246,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(270, 70), Vector2(270, -130), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(290, 587), Vector2(270, 70)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Left_Hand/Sprite_Left_Hand:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.1, 1.3),
+"transitions": PackedFloat32Array(27554.5, 1, 16384, 1),
+"update": 0,
+"values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.26667, 2.26667)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Right_Hand/Sprite_Right_Hand:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.1, 1.3),
+"transitions": PackedFloat32Array(5220.6, 1, 14766.1, 1),
+"update": 0,
+"values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.26667, 2.26667)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0eui"]
 _data = {
@@ -205,59 +292,76 @@ _data = {
 script = ExtResource("1_4jfak")
 
 [node name="Left_Hand" type="RigidBody2D" parent="."]
+position = Vector2(-270, 70)
 gravity_scale = 0.0
 lock_rotation = true
 freeze = true
+script = ExtResource("2_iox5h")
 
 [node name="Body" type="CollisionShape2D" parent="Left_Hand"]
+visible = false
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_sel5h")
 
 [node name="LeftDetector" type="Area2D" parent="Left_Hand"]
+visible = false
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left_Hand/LeftDetector"]
+visible = false
 position = Vector2(0, 311)
 shape = SubResource("RectangleShape2D_o8p7p")
 
 [node name="Hitbox" type="Area2D" parent="Left_Hand"]
+collision_layer = 4
+script = ExtResource("3_qhugr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left_Hand/Hitbox"]
 shape = SubResource("RectangleShape2D_eh0n2")
 debug_color = Color(0.998734, 0, 0.134077, 0.42)
 
 [node name="isTouchingFloor" type="RayCast2D" parent="Left_Hand"]
-position = Vector2(1, 39)
-target_position = Vector2(0, 16)
+position = Vector2(1, 51)
+target_position = Vector2(0, 38)
 collision_mask = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Left_Hand"]
-position = Vector2(2.00001, 2.00001)
+[node name="Sprite_Left_Hand" type="Sprite2D" parent="Left_Hand"]
+position = Vector2(3, -10)
 scale = Vector2(2.26667, 2.26667)
 texture = ExtResource("2_exirc")
 
 [node name="Right_Hand" type="RigidBody2D" parent="."]
+position = Vector2(270, 70)
 gravity_scale = 0.0
 lock_rotation = true
 freeze = true
+script = ExtResource("4_kdgyj")
 
 [node name="Body" type="CollisionShape2D" parent="Right_Hand"]
 position = Vector2(2, -1)
 shape = SubResource("RectangleShape2D_bdu55")
 
 [node name="RightDetector" type="Area2D" parent="Right_Hand"]
+visible = false
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right_Hand/RightDetector"]
 position = Vector2(3, 314)
 shape = SubResource("RectangleShape2D_o8p7p")
 
 [node name="Hitbox2" type="Area2D" parent="Right_Hand"]
+visible = false
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right_Hand/Hitbox2"]
 shape = SubResource("RectangleShape2D_eh0n2")
 debug_color = Color(0.998734, 0, 0.134077, 0.42)
 
-[node name="Sprite2D" type="Sprite2D" parent="Right_Hand"]
-position = Vector2(-2, 4)
+[node name="Sprite_Right_Hand" type="Sprite2D" parent="Right_Hand"]
+position = Vector2(-2, -9)
 scale = Vector2(2.26667, 2.26667)
 texture = ExtResource("2_exirc")
 flip_h = true
@@ -300,6 +404,7 @@ libraries = {
 }
 
 [connection signal="area_entered" from="Left_Hand/LeftDetector" to="." method="_on_left_detector_area_entered"]
+[connection signal="area_entered" from="Left_Hand/Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Left_Hand/Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="area_entered" from="Right_Hand/RightDetector" to="." method="_on_right_detector_area_entered"]
 [connection signal="body_entered" from="Right_Hand/Hitbox2" to="." method="_on_hitbox_2_body_entered"]

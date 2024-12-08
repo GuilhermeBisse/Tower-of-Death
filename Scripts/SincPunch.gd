@@ -34,6 +34,7 @@ func transition():
 		throw_wave = true
 		print("is touching floor")
 	if throw_wave and not already_waved:
+		print("throwing a wave")
 		already_waved = true
 		var new_wave_right = WAVE.instantiate()
 		var new_wave_left = WAVE.instantiate()
