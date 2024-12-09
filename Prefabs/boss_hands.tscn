@@ -1,19 +1,26 @@
-[gd_scene load_steps=28 format=3 uid="uid://c1cm4q3gijxok"]
+[gd_scene load_steps=29 format=3 uid="uid://c1cm4q3gijxok"]
 
 [ext_resource type="Script" path="res://Scripts/boss_hands.gd" id="1_4jfak"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="2_1c10y"]
 [ext_resource type="Texture2D" uid="uid://jv77um3a3h1i" path="res://Sprites/Boss/Boss1-hand.png" id="2_exirc"]
-[ext_resource type="Script" path="res://Prefabs/Left_Hand.gd" id="2_iox5h"]
 [ext_resource type="Script" path="res://Scripts/Idle.gd" id="3_q53aw"]
 [ext_resource type="Script" path="res://Prefabs/Hitbox.gd" id="3_qhugr"]
 [ext_resource type="Script" path="res://Scripts/SincPunch.gd" id="4_e68tk"]
-[ext_resource type="Script" path="res://Prefabs/Right_Hand.gd" id="4_kdgyj"]
 [ext_resource type="Script" path="res://Scripts/RightPunch.gd" id="5_5c452"]
 [ext_resource type="Animation" uid="uid://51e6u8co5oqe" path="res://RightPunch.res" id="5_opkhw"]
 [ext_resource type="Script" path="res://Scripts/LeftPunch.gd" id="6_g7id8"]
+[ext_resource type="Script" path="res://Prefabs/Hitbox2.gd" id="6_htb6m"]
 [ext_resource type="Script" path="res://Scripts/RightPush.gd" id="7_ocs27"]
 [ext_resource type="Script" path="res://Scripts/LeftPush.gd" id="8_wvy8a"]
 [ext_resource type="Script" path="res://Scripts/PressAttack.gd" id="9_4btxr"]
+
+[sub_resource type="GDScript" id="GDScript_q8m8p"]
+script/source = "extends RigidBody2D
+
+func hurt(body, damage):
+	print(\"boss tomou dano\")
+
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sel5h"]
 size = Vector2(102, 94)
@@ -23,6 +30,13 @@ size = Vector2(100, 528)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eh0n2"]
 size = Vector2(112, 103)
+
+[sub_resource type="GDScript" id="GDScript_jxrsv"]
+script/source = "extends RigidBody2D
+
+func hurt(body, damage):
+	print(\"boss tomou dano\")
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bdu55"]
 size = Vector2(100, 92)
@@ -296,7 +310,7 @@ position = Vector2(-270, 70)
 gravity_scale = 0.0
 lock_rotation = true
 freeze = true
-script = ExtResource("2_iox5h")
+script = SubResource("GDScript_q8m8p")
 
 [node name="Body" type="CollisionShape2D" parent="Left_Hand"]
 visible = false
@@ -336,7 +350,7 @@ position = Vector2(270, 70)
 gravity_scale = 0.0
 lock_rotation = true
 freeze = true
-script = ExtResource("4_kdgyj")
+script = SubResource("GDScript_jxrsv")
 
 [node name="Body" type="CollisionShape2D" parent="Right_Hand"]
 position = Vector2(2, -1)
@@ -355,6 +369,7 @@ shape = SubResource("RectangleShape2D_o8p7p")
 visible = false
 collision_layer = 4
 collision_mask = 3
+script = ExtResource("6_htb6m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right_Hand/Hitbox2"]
 shape = SubResource("RectangleShape2D_eh0n2")
@@ -406,8 +421,10 @@ libraries = {
 [connection signal="area_entered" from="Left_Hand/LeftDetector" to="." method="_on_left_detector_area_entered"]
 [connection signal="area_entered" from="Left_Hand/Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Left_Hand/Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="hitted" from="Left_Hand/Hitbox" to="." method="_on_hitbox_hitted"]
 [connection signal="area_entered" from="Right_Hand/RightDetector" to="." method="_on_right_detector_area_entered"]
 [connection signal="body_entered" from="Right_Hand/Hitbox2" to="." method="_on_hitbox_2_body_entered"]
+[connection signal="hitted" from="Right_Hand/Hitbox2" to="." method="_on_hitbox_2_hitted"]
 [connection signal="timeout" from="AttackTimer" to="FiniteStateMachine/Idle" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="AttackTimer" method="_on_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/SincPunch" method="_on_animation_player_animation_finished"]

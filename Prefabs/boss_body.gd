@@ -4,4 +4,4 @@ extends AnimatedSprite2D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	global_position += global_position.direction_to(hands.global_position)
+	global_position = lerp(global_position,hands.global_position,delta * 3)

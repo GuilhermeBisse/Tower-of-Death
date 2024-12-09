@@ -17,7 +17,7 @@ func enter():
 	super.enter()
 	owner.set_physics_process(false)
 	animation_player.play("SincPunch")
-	print("sinc punch!")
+	#print("sinc punch!")
 	
 	
 func exit():
@@ -29,12 +29,12 @@ func transition():
 	if attack_finished:
 		attack_finished = false
 		get_parent().change_state("Idle")
-		print("Now its idling")
+		#print("Now its idling")
 	if is_touching_floor.is_colliding() and not throw_wave:
 		throw_wave = true
-		print("is touching floor")
+		#print("is touching floor")
 	if throw_wave and not already_waved:
-		print("throwing a wave")
+		#print("throwing a wave")
 		already_waved = true
 		var new_wave_right = WAVE.instantiate()
 		var new_wave_left = WAVE.instantiate()

@@ -4,6 +4,7 @@ var speed = 1000
 @onready var left_hand = $Left_Hand
 @onready var right_hand = $Right_Hand
 var current_position
+signal damaged
 
 func _ready():
 	#set_physics_process(false)
@@ -42,11 +43,15 @@ func _on_hitbox_2_body_entered(body):
 
 
 func _on_hitbox_area_entered(area):
-	hurt(Global.global_player,10)
+	#hurt(Global.global_player,10)
 	current_position = global_position
 	
-func hurt(body, damage):
-	var impact:= get_tree().create_tween()
-	impact.tween_property(self,"current_position",position.direction_to(body.global_position)  *10,0.1)
-	print("aiaiaia")
 
+
+
+func _on_hitbox_2_hitted():
+	damaged.emit()
+
+
+func _on_hitbox_hitted():
+	damaged.emit()

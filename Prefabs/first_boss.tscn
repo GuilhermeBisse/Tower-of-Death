@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://b15ao87wkybpx"]
+[gd_scene load_steps=13 format=3 uid="uid://b15ao87wkybpx"]
 
+[ext_resource type="Script" path="res://Scripts/first_boss.gd" id="1_21v6b"]
 [ext_resource type="Texture2D" uid="uid://lijbavn8s3mi" path="res://Sprites/Boss/Boss1.png" id="1_wj1q4"]
 [ext_resource type="Texture2D" uid="uid://crspjryfdho3i" path="res://Sprites/Boss/Boss2.png" id="2_lmuce"]
 [ext_resource type="Texture2D" uid="uid://orda6o4vaa8c" path="res://Sprites/Boss/Boss3.png" id="3_dn0gb"]
@@ -44,6 +45,8 @@ animations = [{
 }]
 
 [node name="FirstBoss" type="Node2D"]
+script = ExtResource("1_21v6b")
+lower_health_color = Color(0.969115, 0, 0.45412, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -6)
@@ -54,3 +57,5 @@ frame_progress = 0.390366
 script = ExtResource("5_ic5w6")
 
 [node name="Hands" parent="." instance=ExtResource("5_pwilx")]
+
+[connection signal="damaged" from="Hands" to="." method="_on_hands_damaged"]
