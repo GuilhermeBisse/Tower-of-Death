@@ -34,8 +34,8 @@ func _on_sight_area_body_entered(body):
 	if body == player:
 		chasing = true
 
-func hurt():
-	knockback_vector = global_position - player.global_position
+func hurt(body, damage):
+	knockback_vector = global_position - body.global_position
 	var soul_instance = soul_particle.instantiate()
 	soul_instance.global_position = global_position
 	soul_instance.emitting = true
