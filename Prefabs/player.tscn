@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bgsoxr6nsjbrr"]
+[gd_scene load_steps=53 format=3 uid="uid://bgsoxr6nsjbrr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_glbys"]
 [ext_resource type="Texture2D" uid="uid://nr2565fatmm4" path="res://Sprites/Atlas/Run/Atlas-Run1.png" id="1_tvake"]
@@ -198,6 +198,43 @@ size = Vector2(77, 42)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1qvv"]
 size = Vector2(40, 64)
 
+[sub_resource type="Animation" id="Animation_b2kt7"]
+resource_name = "hurt_animation"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(50, 47.794, 49.265, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dnk2n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_162de"]
+_data = {
+"RESET": SubResource("Animation_dnk2n"),
+"hurt_animation": SubResource("Animation_b2kt7")
+}
+
 [node name="player" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_glbys")
@@ -242,6 +279,14 @@ position = Vector2(0, -62)
 shape = SubResource("RectangleShape2D_q1qvv")
 disabled = true
 debug_color = Color(0.934515, 0.238558, 0.245729, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_162de")
+}
+
+[node name="HeartPoint" type="Marker2D" parent="."]
+position = Vector2(7, -9)
 
 [connection signal="area_entered" from="SwordSideArea" to="." method="_on_sword_side_area_area_entered"]
 [connection signal="body_entered" from="SwordSideArea" to="." method="_on_area_2d_body_entered"]

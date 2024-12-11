@@ -1,12 +1,17 @@
 extends CharacterBody2D
 
+@onready var lobby = $".."
 @onready var animation = $animation
 @onready var sword_area_side = $SwordSideArea
 @onready var sword_area_up = $SwordUpArea
 @onready var LifeBar = $ProgressBar
+@onready var heart_point = $HeartPoint
+@onready var animation_player = $AnimationPlayer
+
 
 const SPEED = 250.0
 const JUMP_VELOCITY = -450.0
+const CROSS_HIT = preload("res://Prefabs/particles/cross_hit.tscn")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -79,6 +84,12 @@ func hurt(body,damage):
 	if(life > damage):
 			life -= damage
 			LifeBar.visible = true
+			var hurt_particle_instance = CROSS_HIT.instantiate()
+			hurt_particle_instance.global_position = heart_point.global_position
+			owner.add_child(hurt_particle_instance)
+			animation_player.play("hurt_animation")
+			Global.freeze_time(0.0,0.3)
+			
 	else:
 			#queue_free()
 			print("Você morreu seu animal!")

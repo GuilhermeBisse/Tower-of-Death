@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://s2eb0658mlth"]
+[gd_scene load_steps=9 format=3 uid="uid://s2eb0658mlth"]
 
+[ext_resource type="Script" path="res://Scenes/GameManager.gd" id="1_f4nht"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://Prefabs/player.tscn" id="1_jsjsy"]
 [ext_resource type="Texture2D" uid="uid://qmsohnvdnmax" path="res://Sprites/TileSet/main.png" id="2_5xgrh"]
 [ext_resource type="PackedScene" uid="uid://c2hcqohgaw0t5" path="res://Prefabs/flying_enemy.tscn" id="3_bqtq6"]
@@ -144,7 +145,15 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_084tw")
 
+[sub_resource type="Environment" id="Environment_nqegp"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 4.86
+glow_strength = 1.17
+glow_blend_mode = 0
+
 [node name="Lobby" type="Node2D"]
+script = ExtResource("1_f4nht")
 
 [node name="player" parent="." instance=ExtResource("1_jsjsy")]
 position = Vector2(45, 494)
@@ -169,3 +178,6 @@ position = Vector2(444, 460)
 
 [node name="Enemy2" parent="." instance=ExtResource("3_bqtq6")]
 position = Vector2(463, 280)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nqegp")

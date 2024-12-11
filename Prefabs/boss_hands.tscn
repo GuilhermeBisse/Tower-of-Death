@@ -1,15 +1,15 @@
 [gd_scene load_steps=29 format=3 uid="uid://c1cm4q3gijxok"]
 
 [ext_resource type="Script" path="res://Scripts/boss_hands.gd" id="1_4jfak"]
+[ext_resource type="Script" path="res://Scripts/Hitbox.gd" id="2_0c5qw"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="2_1c10y"]
 [ext_resource type="Texture2D" uid="uid://jv77um3a3h1i" path="res://Sprites/Boss/Boss1-hand.png" id="2_exirc"]
 [ext_resource type="Script" path="res://Scripts/Idle.gd" id="3_q53aw"]
-[ext_resource type="Script" path="res://Prefabs/Hitbox.gd" id="3_qhugr"]
+[ext_resource type="Script" path="res://Scripts/Hitbox2.gd" id="4_2kddg"]
 [ext_resource type="Script" path="res://Scripts/SincPunch.gd" id="4_e68tk"]
 [ext_resource type="Script" path="res://Scripts/RightPunch.gd" id="5_5c452"]
 [ext_resource type="Animation" uid="uid://51e6u8co5oqe" path="res://RightPunch.res" id="5_opkhw"]
 [ext_resource type="Script" path="res://Scripts/LeftPunch.gd" id="6_g7id8"]
-[ext_resource type="Script" path="res://Prefabs/Hitbox2.gd" id="6_htb6m"]
 [ext_resource type="Script" path="res://Scripts/RightPush.gd" id="7_ocs27"]
 [ext_resource type="Script" path="res://Scripts/LeftPush.gd" id="8_wvy8a"]
 [ext_resource type="Script" path="res://Scripts/PressAttack.gd" id="9_4btxr"]
@@ -329,7 +329,7 @@ shape = SubResource("RectangleShape2D_o8p7p")
 
 [node name="Hitbox" type="Area2D" parent="Left_Hand"]
 collision_layer = 4
-script = ExtResource("3_qhugr")
+script = ExtResource("2_0c5qw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left_Hand/Hitbox"]
 shape = SubResource("RectangleShape2D_eh0n2")
@@ -369,7 +369,7 @@ shape = SubResource("RectangleShape2D_o8p7p")
 visible = false
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("6_htb6m")
+script = ExtResource("4_2kddg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right_Hand/Hitbox2"]
 shape = SubResource("RectangleShape2D_eh0n2")

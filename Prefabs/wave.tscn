@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bb1h7k4kk1f4o"]
 
-[ext_resource type="Script" path="res://Prefabs/wave.gd" id="1_pr5th"]
+[ext_resource type="Script" path="res://Scripts/wave.gd" id="1_p7gvv"]
 
 [node name="Wave" type="Area2D"]
-script = ExtResource("1_pr5th")
+script = ExtResource("1_p7gvv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-1, 1, -115, 1, -113, -121, -98, -37, -87, -22)
