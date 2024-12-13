@@ -1,7 +1,7 @@
 extends Node
 
 var global_player: CharacterBody2D
-var camera: Camera2D
+
 
 func freeze_time(timeScale, duration):
 	Engine.time_scale = timeScale

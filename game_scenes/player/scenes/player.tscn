@@ -1,112 +1,110 @@
-[gd_scene load_steps=55 format=3 uid="uid://bgsoxr6nsjbrr"]
+[gd_scene load_steps=53 format=3 uid="uid://bgsoxr6nsjbrr"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_glbys"]
-[ext_resource type="Texture2D" uid="uid://nr2565fatmm4" path="res://Sprites/Atlas/Run/Atlas-Run1.png" id="1_tvake"]
-[ext_resource type="Texture2D" uid="uid://byhevtpoysbgj" path="res://Sprites/Atlas/Idle/Atlas-Idle1.png" id="2_a2ng3"]
-[ext_resource type="Texture2D" uid="uid://dckut58a6u3gq" path="res://Sprites/Atlas/Run/Atlas-Run2.png" id="2_nag1t"]
-[ext_resource type="Texture2D" uid="uid://uakl1vbo55og" path="res://Sprites/Atlas/Idle/Atlas-Idle2.png" id="3_15f3l"]
-[ext_resource type="Texture2D" uid="uid://74n2o73o0d6m" path="res://Sprites/Atlas/Run/Atlas-Run3.png" id="3_tt1jk"]
-[ext_resource type="Texture2D" uid="uid://d2v3s0xlmdv6w" path="res://Sprites/Atlas/Idle/Atlas-Idle3.png" id="4_8ry48"]
-[ext_resource type="Texture2D" uid="uid://g1qkp0g1j2qy" path="res://Sprites/Atlas/Run/Atlas-Run4.png" id="4_k4wk5"]
-[ext_resource type="Texture2D" uid="uid://dc5juao4lmqxi" path="res://Sprites/Atlas/Idle/Atlas-Idle4.png" id="5_orvlu"]
-[ext_resource type="Texture2D" uid="uid://botiosojn12gm" path="res://Sprites/Atlas/Run/Atlas-Run5.png" id="5_uyowk"]
-[ext_resource type="Texture2D" uid="uid://jjhak8w7iwq" path="res://Sprites/Atlas/Run/Atlas-Run6.png" id="6_djx28"]
-[ext_resource type="Texture2D" uid="uid://cpaw6dlwpkci3" path="res://Sprites/Atlas/Idle/Atlas-Idle5.png" id="6_y2xsc"]
-[ext_resource type="Texture2D" uid="uid://j366s8fdsovp" path="res://Sprites/Atlas/Idle/Atlas-Idle6.png" id="7_71t5s"]
-[ext_resource type="Texture2D" uid="uid://hpfo3hqc75ec" path="res://Sprites/Atlas/Run/Atlas-Run7.png" id="7_f8b4c"]
-[ext_resource type="Texture2D" uid="uid://dur22hwdjgjew" path="res://Sprites/Atlas/Run/Atlas-Run8.png" id="8_2qxus"]
-[ext_resource type="Texture2D" uid="uid://ctr4k0euoqivu" path="res://Sprites/Atlas/Idle/Atlas-Idle7.png" id="8_oo4t3"]
-[ext_resource type="Texture2D" uid="uid://cbc35rx3kxquk" path="res://Sprites/Atlas/Idle/Atlas-Idle8.png" id="9_1yvro"]
-[ext_resource type="Texture2D" uid="uid://cttminl5y4t0x" path="res://Sprites/Atlas/Idle/Atlas-Idle9.png" id="10_kublt"]
-[ext_resource type="Texture2D" uid="uid://onwv3sgbx7nl" path="res://Sprites/Atlas/Idle/Atlas-Idle10.png" id="11_58ay1"]
-[ext_resource type="Texture2D" uid="uid://bhjc7b1j7kyf6" path="res://Sprites/Atlas/Idle/Atlas-Idle11.png" id="12_cgg0g"]
-[ext_resource type="Texture2D" uid="uid://c5lu0qmmtvppk" path="res://Sprites/Atlas/Idle/Atlas-Idle12.png" id="13_bygh6"]
-[ext_resource type="Texture2D" uid="uid://dvrcrayjvxltd" path="res://Sprites/Atlas/Idle/Atlas-Idle13.png" id="14_k171j"]
-[ext_resource type="PackedScene" uid="uid://dipty5nr5neb5" path="res://Prefabs/ghost_fabric.tscn" id="23_r6kdl"]
-[ext_resource type="PackedScene" uid="uid://cyowcj0gkgh8m" path="res://Prefabs/ghost.tscn" id="24_twyni"]
+[ext_resource type="Script" path="res://game_scenes/player/scripts/player.gd" id="1_rfq50"]
+[ext_resource type="Texture2D" uid="uid://byhevtpoysbgj" path="res://game_scenes/player/sprites/Idle/Atlas-Idle1.png" id="2_bff7h"]
+[ext_resource type="Texture2D" uid="uid://uakl1vbo55og" path="res://game_scenes/player/sprites/Idle/Atlas-Idle2.png" id="3_nweed"]
+[ext_resource type="Texture2D" uid="uid://d2v3s0xlmdv6w" path="res://game_scenes/player/sprites/Idle/Atlas-Idle3.png" id="4_ks7sb"]
+[ext_resource type="Texture2D" uid="uid://dc5juao4lmqxi" path="res://game_scenes/player/sprites/Idle/Atlas-Idle4.png" id="5_ukl4a"]
+[ext_resource type="Texture2D" uid="uid://cpaw6dlwpkci3" path="res://game_scenes/player/sprites/Idle/Atlas-Idle5.png" id="6_4f5mc"]
+[ext_resource type="Texture2D" uid="uid://j366s8fdsovp" path="res://game_scenes/player/sprites/Idle/Atlas-Idle6.png" id="7_1uopv"]
+[ext_resource type="Texture2D" uid="uid://ctr4k0euoqivu" path="res://game_scenes/player/sprites/Idle/Atlas-Idle7.png" id="8_7qtl8"]
+[ext_resource type="Texture2D" uid="uid://cbc35rx3kxquk" path="res://game_scenes/player/sprites/Idle/Atlas-Idle8.png" id="9_ik8jt"]
+[ext_resource type="Texture2D" uid="uid://cttminl5y4t0x" path="res://game_scenes/player/sprites/Idle/Atlas-Idle9.png" id="10_p8pxf"]
+[ext_resource type="Texture2D" uid="uid://onwv3sgbx7nl" path="res://game_scenes/player/sprites/Idle/Atlas-Idle10.png" id="11_jghhu"]
+[ext_resource type="Texture2D" uid="uid://bhjc7b1j7kyf6" path="res://game_scenes/player/sprites/Idle/Atlas-Idle11.png" id="12_7ywb2"]
+[ext_resource type="Texture2D" uid="uid://c5lu0qmmtvppk" path="res://game_scenes/player/sprites/Idle/Atlas-Idle12.png" id="13_53u76"]
+[ext_resource type="Texture2D" uid="uid://dvrcrayjvxltd" path="res://game_scenes/player/sprites/Idle/Atlas-Idle13.png" id="14_yim3i"]
+[ext_resource type="Texture2D" uid="uid://nr2565fatmm4" path="res://game_scenes/player/sprites/Run/Atlas-Run1.png" id="15_8oq4t"]
+[ext_resource type="Texture2D" uid="uid://dckut58a6u3gq" path="res://game_scenes/player/sprites/Run/Atlas-Run2.png" id="16_lgir3"]
+[ext_resource type="Texture2D" uid="uid://74n2o73o0d6m" path="res://game_scenes/player/sprites/Run/Atlas-Run3.png" id="17_lgki3"]
+[ext_resource type="Texture2D" uid="uid://g1qkp0g1j2qy" path="res://game_scenes/player/sprites/Run/Atlas-Run4.png" id="18_s8gva"]
+[ext_resource type="Texture2D" uid="uid://botiosojn12gm" path="res://game_scenes/player/sprites/Run/Atlas-Run5.png" id="19_1wmlb"]
+[ext_resource type="Texture2D" uid="uid://jjhak8w7iwq" path="res://game_scenes/player/sprites/Run/Atlas-Run6.png" id="20_qjule"]
+[ext_resource type="Texture2D" uid="uid://hpfo3hqc75ec" path="res://game_scenes/player/sprites/Run/Atlas-Run7.png" id="21_b5c18"]
+[ext_resource type="Texture2D" uid="uid://dur22hwdjgjew" path="res://game_scenes/player/sprites/Run/Atlas-Run8.png" id="22_hfyc5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4q5tp"]
-atlas = ExtResource("2_a2ng3")
+atlas = ExtResource("2_bff7h")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0x1q2"]
-atlas = ExtResource("3_15f3l")
+atlas = ExtResource("3_nweed")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r372x"]
-atlas = ExtResource("4_8ry48")
+atlas = ExtResource("4_ks7sb")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wcd7n"]
-atlas = ExtResource("5_orvlu")
+atlas = ExtResource("5_ukl4a")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6fux"]
-atlas = ExtResource("6_y2xsc")
+atlas = ExtResource("6_4f5mc")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10ywb"]
-atlas = ExtResource("7_71t5s")
+atlas = ExtResource("7_1uopv")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ek1y3"]
-atlas = ExtResource("8_oo4t3")
+atlas = ExtResource("8_7qtl8")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgrgx"]
-atlas = ExtResource("9_1yvro")
+atlas = ExtResource("9_ik8jt")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s54fr"]
-atlas = ExtResource("10_kublt")
+atlas = ExtResource("10_p8pxf")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jp31r"]
-atlas = ExtResource("11_58ay1")
+atlas = ExtResource("11_jghhu")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ibn4y"]
-atlas = ExtResource("12_cgg0g")
+atlas = ExtResource("12_7ywb2")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qf3xl"]
-atlas = ExtResource("13_bygh6")
+atlas = ExtResource("13_53u76")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pjp5m"]
-atlas = ExtResource("14_k171j")
+atlas = ExtResource("14_yim3i")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ax36w"]
-atlas = ExtResource("1_tvake")
+atlas = ExtResource("15_8oq4t")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f177x"]
-atlas = ExtResource("2_nag1t")
+atlas = ExtResource("16_lgir3")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ejv0t"]
-atlas = ExtResource("3_tt1jk")
+atlas = ExtResource("17_lgki3")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ph5d"]
-atlas = ExtResource("4_k4wk5")
+atlas = ExtResource("18_s8gva")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_40qtj"]
-atlas = ExtResource("5_uyowk")
+atlas = ExtResource("19_1wmlb")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hem8g"]
-atlas = ExtResource("6_djx28")
+atlas = ExtResource("20_qjule")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u30eu"]
-atlas = ExtResource("7_f8b4c")
+atlas = ExtResource("21_b5c18")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kwtkw"]
-atlas = ExtResource("8_2qxus")
+atlas = ExtResource("22_hfyc5")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xettt"]
@@ -239,14 +237,14 @@ _data = {
 
 [node name="player" type="CharacterBody2D"]
 collision_mask = 14
-script = ExtResource("1_glbys")
+script = ExtResource("1_rfq50")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xettt")
 animation = &"Atlas_idle"
 autoplay = "Atlas_idle"
-frame = 1
+frame_progress = 0.485127
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 1)
@@ -289,17 +287,6 @@ libraries = {
 
 [node name="HeartPoint" type="Marker2D" parent="."]
 position = Vector2(7, -9)
-
-[node name="GhostFabric" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("23_r6kdl")]
-ghost_scene = ExtResource("24_twyni")
-sprite = NodePath("../animation")
-color = Color(38.235, 36.764, 36.765, 0.684)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(63, 27)
-texture = ExtResource("7_f8b4c")
-hframes = 3
-vframes = 3
 
 [connection signal="area_entered" from="SwordSideArea" to="." method="_on_sword_side_area_area_entered"]
 [connection signal="body_entered" from="SwordSideArea" to="." method="_on_area_2d_body_entered"]

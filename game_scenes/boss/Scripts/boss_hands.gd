@@ -55,4 +55,3 @@ func _on_hitbox_2_hitted():
 
 func _on_hitbox_hitted():
 	damaged.emit()
-

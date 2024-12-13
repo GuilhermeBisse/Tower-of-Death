@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://d4coijn8kr066"]
+[gd_scene load_steps=6 format=3 uid="uid://d4coijn8kr066"]
 
-[ext_resource type="PackedScene" uid="uid://b15ao87wkybpx" path="res://Prefabs/first_boss.tscn" id="1_aymlm"]
-[ext_resource type="Script" path="res://Scenes/boss_room.gd" id="1_y015e"]
-[ext_resource type="Script" path="res://Scenes/CameraBoss.gd" id="2_i0hxf"]
-[ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://Prefabs/player.tscn" id="2_q5s4j"]
+[ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game_scenes/player/scenes/player.tscn" id="1_py7x6"]
+[ext_resource type="PackedScene" uid="uid://b15ao87wkybpx" path="res://game_scenes/boss/Scenes/first_boss.tscn" id="2_6m8w2"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l3tre"]
 distance = -634.0
@@ -23,7 +21,6 @@ glow_hdr_scale = 2.82
 
 [node name="BossRoom" type="Node2D"]
 position = Vector2(0, 3)
-script = ExtResource("1_y015e")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -551.0
@@ -57,15 +54,14 @@ collision_mask = 3
 position = Vector2(-27, 339)
 shape = SubResource("RectangleShape2D_voi4g")
 
-[node name="player" parent="." instance=ExtResource("2_q5s4j")]
+[node name="player" parent="." instance=ExtResource("1_py7x6")]
 position = Vector2(439, 350)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(619, 68)
 zoom = Vector2(0.5, 0.5)
-script = ExtResource("2_i0hxf")
 
-[node name="FirstBoss" parent="." instance=ExtResource("1_aymlm")]
+[node name="FirstBoss" parent="." instance=ExtResource("2_6m8w2")]
 position = Vector2(517, 13)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
