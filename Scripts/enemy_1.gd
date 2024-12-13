@@ -7,13 +7,12 @@ var chasing = false
 var is_dashing = false
 var knockback_vector = Vector2.ZERO
 var dash_vector = Vector2.ZERO
-var soul_particle = preload("res://Prefabs/particles/hit_particle.tscn")
+var soul_particle = preload("res://Prefabs/hit_particle.tscn")
 @onready var sight_area = $SightArea
 @onready var animated_sprite = $AnimatedSprite2D
 
 func _ready():
 	player = Global.global_player
-	anim.play("RESET")
 
 func _physics_process(delta):
 	
@@ -42,8 +41,7 @@ func hurt(body, damage):
 	soul_instance.emitting = true
 	soul_instance.rotation = (knockback_vector).angle()
 	anim.play("hurt")
-	self.add_child(soul_instance)
-	Global.freeze_time(0,0.2)
+	get_parent().add_child(soul_instance)
 	var knockback_tween:= get_tree().create_tween()
 	knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
 

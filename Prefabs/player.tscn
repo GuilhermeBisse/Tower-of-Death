@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bgsoxr6nsjbrr"]
+[gd_scene load_steps=53 format=3 uid="uid://bgsoxr6nsjbrr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_glbys"]
 [ext_resource type="Texture2D" uid="uid://nr2565fatmm4" path="res://Sprites/Atlas/Run/Atlas-Run1.png" id="1_tvake"]
@@ -22,8 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://bhjc7b1j7kyf6" path="res://Sprites/Atlas/Idle/Atlas-Idle11.png" id="12_cgg0g"]
 [ext_resource type="Texture2D" uid="uid://c5lu0qmmtvppk" path="res://Sprites/Atlas/Idle/Atlas-Idle12.png" id="13_bygh6"]
 [ext_resource type="Texture2D" uid="uid://dvrcrayjvxltd" path="res://Sprites/Atlas/Idle/Atlas-Idle13.png" id="14_k171j"]
-[ext_resource type="PackedScene" uid="uid://dipty5nr5neb5" path="res://Prefabs/ghost_fabric.tscn" id="23_r6kdl"]
-[ext_resource type="PackedScene" uid="uid://cyowcj0gkgh8m" path="res://Prefabs/ghost.tscn" id="24_twyni"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4q5tp"]
 atlas = ExtResource("2_a2ng3")
@@ -246,7 +244,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xettt")
 animation = &"Atlas_idle"
 autoplay = "Atlas_idle"
-frame = 1
+frame_progress = 0.485127
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 1)
@@ -289,17 +287,6 @@ libraries = {
 
 [node name="HeartPoint" type="Marker2D" parent="."]
 position = Vector2(7, -9)
-
-[node name="GhostFabric" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("23_r6kdl")]
-ghost_scene = ExtResource("24_twyni")
-sprite = NodePath("../animation")
-color = Color(38.235, 36.764, 36.765, 0.684)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(63, 27)
-texture = ExtResource("7_f8b4c")
-hframes = 3
-vframes = 3
 
 [connection signal="area_entered" from="SwordSideArea" to="." method="_on_sword_side_area_area_entered"]
 [connection signal="body_entered" from="SwordSideArea" to="." method="_on_area_2d_body_entered"]

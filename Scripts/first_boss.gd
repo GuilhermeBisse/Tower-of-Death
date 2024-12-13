@@ -20,4 +20,3 @@ func color_based_on_health():
 
 func _on_hands_damaged():
 	health-=10
-
