@@ -7,7 +7,8 @@ extends CharacterBody2D
 @onready var LifeBar = $ProgressBar
 @onready var heart_point = $HeartPoint
 @onready var animation_player = $AnimationPlayer
-
+@onready var label: Label = $"../HUD/Moedas"
+@onready var knockback_vector:= Vector2.ZERO
 
 const SPEED = 250.0
 const JUMP_VELOCITY = -450.0
@@ -16,7 +17,8 @@ const CROSS_HIT = preload("res://Prefabs/particles/cross_hit.tscn")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var life = 100
-@onready var knockback_vector:= Vector2.ZERO
+var cont_moedas = 0
+
 func _ready():
 	Global.global_player = self
 	LifeBar.visible = false
@@ -89,16 +91,25 @@ func hurt(body,damage):
 			owner.add_child(hurt_particle_instance)
 			animation_player.play("hurt_animation")
 			Global.freeze_time(0.0,0.3)
+			knockback_vector = (global_position - body.global_position)
+			var knockback_tween:= get_tree().create_tween()
+			knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
 			
 	else:
-			#queue_free()
-			print("Você morreu seu animal!")
-	knockback_vector = (global_position - body.global_position)
-	var knockback_tween:= get_tree().create_tween()
-	knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
+		queue_free()
+		#gameOver()
+
 
 
 func _on_sword_side_area_area_entered(area):
 	if area.has_method("hurt"):
 		print("achei")
 		area.hurt(self,10)
+
+func collect_coin():
+	cont_moedas += 1
+	label.text = "Moedas: %d" % cont_moedas
+
+func gameOver():
+	queue_free()
+	get_tree().change_scene_to_file("res://Prefabs/GameOver.tscn")
