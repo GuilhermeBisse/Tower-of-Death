@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlgo1exiwsoba"]
+
+[ext_resource type="Script" path="res://game/particles/script/ghost.gd" id="1_yuxsj"]
+
+[node name="Ghost" type="Sprite2D"]
+script = ExtResource("1_yuxsj")

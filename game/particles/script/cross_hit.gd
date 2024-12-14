@@ -10,4 +10,4 @@ func _ready():
 	queue_free()
 
 func _process(delta):
-	position = Global.global_player.global_position+Vector2(0,-25)
+	position = Global.global_player.global_position+Vector2(0,-20)

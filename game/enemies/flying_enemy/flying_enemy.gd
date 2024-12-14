@@ -13,6 +13,7 @@ var soul_particle = preload("res://game/particles/scene/hit_particle.tscn")
 
 func _ready():
 	player = Global.global_player
+	anim.play("RESET")
 
 func _physics_process(delta):
 	
@@ -38,10 +39,11 @@ func hurt(body, damage):
 	knockback_vector = global_position - body.global_position
 	var soul_instance = soul_particle.instantiate()
 	soul_instance.global_position = global_position
-	soul_instance.emitting = true
 	soul_instance.rotation = (knockback_vector).angle()
+	soul_instance.emitting = true
 	anim.play("hurt")
-	get_parent().add_child(soul_instance)
+	add_child(soul_instance)
+	Global.freeze_time(0.0,0.1)
 	var knockback_tween:= get_tree().create_tween()
 	knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
 

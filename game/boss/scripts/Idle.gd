@@ -43,7 +43,7 @@ func transition():
 			if attacks[i] != attack:
 				print(attacks[i]," : ", attack_chance[i])
 				attack_chance[i]+=chance_removed/attack_chance.size()
-		get_parent().change_state("RightPunch")
+		get_parent().change_state(attack)
 		print("current attack is : " + attack)
 		
 
