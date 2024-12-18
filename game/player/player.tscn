@@ -290,7 +290,7 @@ libraries = {
 [node name="GhostSpawner" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("23_foyyw")]
 ghost_scene = ExtResource("24_sj6qy")
 sprite = NodePath("../animation")
-color = Color(50, 50, 50, 0.412)
+color = Color(50, 50, 50, 0.662745)
 
 [connection signal="area_entered" from="SwordSideArea" to="." method="_on_sword_side_area_area_entered"]
 [connection signal="body_entered" from="SwordSideArea" to="." method="_on_area_2d_body_entered"]

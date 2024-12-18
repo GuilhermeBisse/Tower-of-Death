@@ -19,4 +19,4 @@ func _on_timer_timeout():
 	ghost_instance.scale = sprite.scale
 	ghost_instance.flip_h = sprite.flip_h
 	ghost_instance.z_index = -1
-	
+	#print("ghost spawned!")

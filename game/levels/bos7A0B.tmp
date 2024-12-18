@@ -25,12 +25,11 @@ position = Vector2(0, 3)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2
-offset_left = -540.0
-offset_top = -572.0
-offset_right = 1767.0
-offset_bottom = 729.0
-color = Color(0.121732, 0.0610386, 0.279086, 1)
-metadata/_edit_use_anchors_ = true
+offset_left = -551.0
+offset_top = -602.0
+offset_right = 1786.0
+offset_bottom = 759.0
+color = Color(0.116127, 0.116127, 0.116127, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 3

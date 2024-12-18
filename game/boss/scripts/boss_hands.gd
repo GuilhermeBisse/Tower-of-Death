@@ -5,8 +5,11 @@ extends Node2D
 @onready var sprite_left_hand = $Left_Hand/Sprite_Left_Hand
 @onready var sprite_right_hand = $Right_Hand/Sprite_Right_Hand
 @onready var juice_anim = $JuiceAnimations
+@onready var attacks_anim = $AnimationPlayer
+@onready var boss_body = $".."
 
-const HIT_PARTICLE = preload("res://game/particles/scene/hit_particle.tscn")
+const HIT_PARTICLE = preload("res://game/particles/scene/hit_particle_boss.tscn")
+const BOSS_DEATH_EXPLOSION = preload("res://game/particles/scene/boss_death_explosion.tscn")
 
 var hand_scale
 var direction : Vector2
@@ -82,8 +85,9 @@ func _on_hitbox_2_hitted():
 	## Now i will spawn particles:
 	
 	var soul_instance = HIT_PARTICLE.instantiate()
-	soul_instance.global_position = sprite_right_hand.global_position
-	soul_instance.rotation = (Global.global_player.global_position - right_hand.global_position).angle()
+	soul_instance.set_body(right_hand)
+	soul_instance.global_position = right_hand.global_position + Vector2(-600,0)
+	soul_instance.rotation = (right_hand.global_position - Global.global_player.global_position).angle()
 	soul_instance.emitting = true
 	print(sprite_right_hand.position)
 	print(sprite_right_hand.global_position)
@@ -104,3 +108,24 @@ func _on_hitbox_hitted():
 				.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 	bounce_tween.parallel().tween_property(sprite_left_hand,"rotation_degrees",0,0.2) \
 				.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	
+	## Now i will spawn particles:
+	
+	var soul_instance = HIT_PARTICLE.instantiate()
+	soul_instance.set_body(left_hand)
+	soul_instance.rotation = (left_hand.global_position - Global.global_player.global_position).angle()
+	soul_instance.emitting = true
+	juice_anim.play("left_hurt")
+	add_child(soul_instance)
+	Global.freeze_time(0.0,0.1)
+
+
+
+func _on_first_boss_dead():
+	attacks_anim.pause()
+	await get_tree().create_timer(10).timeout
+	var explosion_instance = BOSS_DEATH_EXPLOSION.instantiate()
+	explosion_instance.global_position = boss_body.global_position + Vector2(10,0)
+	get_parent().get_parent().add_child(explosion_instance)
+	Global.current_camera.shake(5,20,20)
+	boss_body.queue_free()
