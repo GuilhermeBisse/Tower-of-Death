@@ -77,7 +77,7 @@ func _on_hitbox_2_hitted():
 				.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	bounce_tween.parallel().tween_property(sprite_right_hand,"rotation_degrees",randf_range(-10.0,10.0),0.2) \
 				.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	bounce_tween.tween_property(sprite_right_hand,"scale", Vector2.ONE,0.2) \
+	bounce_tween.tween_property(sprite_right_hand,"scale", Vector2(2.267,2.267),0.2) \
 				.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 	bounce_tween.parallel().tween_property(sprite_right_hand,"rotation_degrees",0,0.2) \
 				.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
@@ -104,7 +104,7 @@ func _on_hitbox_hitted():
 				.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	bounce_tween.parallel().tween_property(sprite_left_hand,"rotation_degrees",randf_range(-10.0,10.0),0.2) \
 				.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	bounce_tween.tween_property(sprite_left_hand,"scale", Vector2.ONE,0.2) \
+	bounce_tween.tween_property(sprite_left_hand,"scale", Vector2(2.267,2.267),0.2) \
 				.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 	bounce_tween.parallel().tween_property(sprite_left_hand,"rotation_degrees",0,0.2) \
 				.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
@@ -118,6 +118,8 @@ func _on_hitbox_hitted():
 	juice_anim.play("left_hurt")
 	add_child(soul_instance)
 	Global.freeze_time(0.0,0.1)
+	await bounce_tween.finished
+	#juice_anim.play("RESET")
 
 
 

@@ -135,7 +135,7 @@ func handle_dash():
 		knockback_vector = Vector2(direction,0) * 100
 		var knockback_tween = get_tree().create_tween()
 		knockback_tween.tween_property(self,"knockback_vector",Vector2.ZERO,0.2)
-		self.set_collision_mask_value(3,false)
+		self.set_collision_layer_value(1,false)
 		await get_tree().create_timer(0.2).timeout
 		ghost_spawner.stop_spawn()
-		self.set_collision_mask_value(3,true)
+		self.set_collision_layer_value(1,true)

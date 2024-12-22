@@ -45,7 +45,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_qtwvj"]
 resource_name = "LeftPunchTest"
-length = 5.0
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -53,7 +53,7 @@ tracks/0/path = NodePath("Left_Hand:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.1, 1.2, 1.3, 1.4, 1.5, 2.5, 5),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5, 0.6, 0.7, 0.8, 1.3, 2),
 "transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-270, 70), Vector2(-275, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 597), Vector2(-290, 597), Vector2(-270, 70)]
@@ -65,7 +65,7 @@ tracks/1/path = NodePath("Left_Hand/Sprite_Left_Hand:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6, 1, 1.3),
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
 "transitions": PackedFloat32Array(25709.2, 1, 220436, 1),
 "update": 0,
 "values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.26667, 2.26667)]
@@ -432,9 +432,9 @@ script = ExtResource("2_0c5qw")
 shape = SubResource("RectangleShape2D_eh0n2")
 debug_color = Color(0.998734, 0, 0.134077, 0.42)
 
-[node name="isTouchingFloor" type="RayCast2D" parent="Left_Hand"]
-position = Vector2(1, 51)
-target_position = Vector2(0, 38)
+[node name="isLeftTouchingFloor" type="RayCast2D" parent="Left_Hand"]
+position = Vector2(0, 40)
+target_position = Vector2(0, 20)
 collision_mask = 3
 
 [node name="Sprite_Left_Hand" type="Sprite2D" parent="Left_Hand"]
@@ -476,6 +476,11 @@ position = Vector2(-2, -9)
 scale = Vector2(2.26667, 2.26667)
 texture = ExtResource("2_exirc")
 flip_h = true
+
+[node name="isRightTouchingFloor" type="RayCast2D" parent="Right_Hand"]
+position = Vector2(3, 35)
+target_position = Vector2(0, 20)
+collision_mask = 3
 
 [node name="FiniteStateMachine" type="Node2D" parent="."]
 visible = false
