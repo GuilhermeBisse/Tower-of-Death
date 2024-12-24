@@ -3,8 +3,8 @@ extends State
 @onready var attack_timer = $"../../AttackTimer"
 var rng
 var is_attacking = false
-var attacks = ["SincPunch", "RightPunch", "LeftPunch", "LeftPush", "RightPush", "PressAttack"];
-var attack_chance = [(100.0 / attacks.size()),(100.0 / attacks.size()),(100.0 / attacks.size()),(100.0 / attacks.size()),(100.0 / attacks.size()),(100.0 / attacks.size())]
+var attacks = ["SincPunch", "RightPunch", "LeftPunch", "LeftPush", "RightPush", "PressAttack", "RightUga", "LeftUga"];
+var attack_chance = [(100.0 / attacks.size()),(100.0 / attacks.size()),(100.0 / attacks.size()),(100.0 / attacks.size()),(100.0 / attacks.size()),(100.0 / attacks.size()),(100.0 / attacks.size()),(100.0 / attacks.size())]
 
 func enter():
 	randomize()
