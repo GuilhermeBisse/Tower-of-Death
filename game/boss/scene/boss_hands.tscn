@@ -101,6 +101,54 @@ tracks/1/keys = {
 "values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.26667, 2.26667), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667)]
 }
 
+[sub_resource type="Animation" id="Animation_qv7ie"]
+resource_name = "LeftUga"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Left_Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.3, 1.5, 1.7, 1.8, 1.9, 2, 2.1, 2.3, 2.5, 2.7, 2.8, 2.9, 3, 3.1, 3.3, 3.5, 3.7, 3.8, 3.9, 4, 4.1, 4.5, 5),
+"transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1, 12.996, 1, 1, 1, 1, 1, 1, 12.996, 1, 1, 1, 1, 1, 1, 12.996, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-270, 70), Vector2(-275, -130), Vector2(-275, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 597), Vector2(-270, 70), Vector2(-275, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 597), Vector2(-270, 70), Vector2(-275, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 597), Vector2(-270, 70), Vector2(-275, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 597), Vector2(-290, 597), Vector2(-270, 70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Left_Hand/Sprite_Left_Hand:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 0.8, 0.9, 1.5, 1.7, 1.8, 1.9, 2.5, 2.7, 2.8, 2.9, 3.5, 3.7, 3.8, 3.9),
+"transitions": PackedFloat32Array(25709.2, 1, 220436, 1, 1, 1, 220436, 1, 1, 1, 220436, 1, 1, 1, 220436, 1, 1),
+"update": 0,
+"values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FiniteStateMachine/LeftUga")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.4, 2.5, 3.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"reset_wave"
+}, {
+"args": [],
+"method": &"reset_wave"
+}, {
+"args": [],
+"method": &"reset_wave"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_8ukyw"]
 resource_name = "PressAttack"
 length = 2.6
@@ -220,6 +268,54 @@ tracks/1/keys = {
 "values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.26667, 2.26667), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667)]
 }
 
+[sub_resource type="Animation" id="Animation_ipewp"]
+resource_name = "RightUga"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Right_Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.7, 0.8, 0.9, 1, 1.3, 1.5, 1.7, 1.8, 1.9, 2, 2.1, 2.3, 2.5, 2.7, 2.8, 2.9, 3, 3.1, 3.3, 3.5, 3.7, 3.8, 3.9, 4, 4.1, 5),
+"transitions": PackedFloat32Array(0.901249, 12.996, 1, 1, 1, 1, 1, 0.901249, 12.996, 1, 1, 1, 1, 1, 0.901249, 12.996, 1, 1, 1, 1, 1, 0.901249, 12.996, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(270, 70), Vector2(275, -130), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(270, 70), Vector2(275, -130), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(270, 70), Vector2(275, -130), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(270, 70), Vector2(275, -130), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(270, 70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Right_Hand/Sprite_Right_Hand:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 0.9, 1.3, 1.7, 2, 2.2, 2.3, 2.7, 3, 3.2, 3.3, 3.7, 4, 4.2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FiniteStateMachine/RightUga")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.3, 2.2, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"reset_wave"
+}, {
+"args": [],
+"method": &"reset_wave"
+}, {
+"args": [],
+"method": &"reset_wave"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_30bt2"]
 resource_name = "SincPunch"
 length = 5.0
@@ -270,102 +366,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(5220.6, 1, 14766.1, 1),
 "update": 0,
 "values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.26667, 2.26667)]
-}
-
-[sub_resource type="Animation" id="Animation_ipewp"]
-resource_name = "RightUga"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Right_Hand:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 0.7, 0.8, 0.9, 1, 1.3, 1.5, 1.7, 1.8, 1.9, 2, 2.1, 2.3, 2.5, 2.7, 2.8, 2.9, 3, 3.1, 3.3, 3.5, 3.7, 3.8, 3.9, 4, 4.1, 5),
-"transitions": PackedFloat32Array(0.901249, 12.996, 1, 1, 1, 1, 1, 0.901249, 12.996, 1, 1, 1, 1, 1, 0.901249, 12.996, 1, 1, 1, 1, 1, 0.901249, 12.996, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(270, 70), Vector2(275, -130), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(270, 70), Vector2(275, -130), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(270, 70), Vector2(275, -130), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(270, 70), Vector2(275, -130), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(270, 70)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Right_Hand/Sprite_Right_Hand:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 0.9, 1.3, 1.7, 2, 2.2, 2.3, 2.7, 3, 3.2, 3.3, 3.7, 4, 4.2),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2),
-"update": 0,
-"values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("FiniteStateMachine/RightUga")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1.3, 2.2, 3.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"values": [{
-"args": [],
-"method": &"reset_wave"
-}, {
-"args": [],
-"method": &"reset_wave"
-}, {
-"args": [],
-"method": &"reset_wave"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_qv7ie"]
-resource_name = "LeftUga"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Left_Hand:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.3, 1.5, 1.7, 1.8, 1.9, 2, 2.1, 2.3, 2.5, 2.7, 2.8, 2.9, 3, 3.1, 3.3, 3.5, 3.7, 3.8, 3.9, 4, 4.1, 4.5, 5),
-"transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1, 12.996, 1, 1, 1, 1, 1, 1, 12.996, 1, 1, 1, 1, 1, 1, 12.996, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-270, 70), Vector2(-275, -130), Vector2(-275, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 597), Vector2(-270, 70), Vector2(-275, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 597), Vector2(-270, 70), Vector2(-275, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 597), Vector2(-270, 70), Vector2(-275, -130), Vector2(-320, 70), Vector2(-340, 237), Vector2(-290, 587), Vector2(-290, 567), Vector2(-290, 597), Vector2(-290, 597), Vector2(-270, 70)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Left_Hand/Sprite_Left_Hand:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.7, 0.8, 0.9, 1.5, 1.7, 1.8, 1.9, 2.5, 2.7, 2.8, 2.9, 3.5, 3.7, 3.8, 3.9),
-"transitions": PackedFloat32Array(25709.2, 1, 220436, 1, 1, 1, 220436, 1, 1, 1, 220436, 1, 1, 1, 220436, 1, 1),
-"update": 0,
-"values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("FiniteStateMachine/LeftUga")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1.4, 2.5, 3.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"values": [{
-"args": [],
-"method": &"reset_wave"
-}, {
-"args": [],
-"method": &"reset_wave"
-}, {
-"args": [],
-"method": &"reset_wave"
-}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0eui"]
