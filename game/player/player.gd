@@ -9,9 +9,13 @@ extends CharacterBody2D
 #@onready var label: Label = $"../HUD/Moedas"
 @onready var knockback_vector:= Vector2.ZERO
 @onready var ghost_spawner = $GhostSpawner
+@onready var max_height_stairs = $MaxHeightStairs
+@onready var is_there_stairs = $IsThereStairs
+@onready var is_touching_floor = $IsTouchingFloor
+
 
 const SPEED = 250.0
-const JUMP_VELOCITY = -450.0
+const JUMP_VELOCITY = -470.0
 const CROSS_HIT = preload("res://game/particles/scene/cross_hit.tscn")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -49,6 +53,7 @@ func _physics_process(delta):
 	handle_animation()
 	handle_attack()
 	handle_dash()
+	handle_stairs_up()
 	move_and_slide()
 
 func handle_animation():
@@ -59,9 +64,13 @@ func handle_animation():
 	if velocity.x > 0:
 		animation.flip_h = false
 		sword_area_side.scale.x = 1
+		is_there_stairs.scale.x = 1
+		max_height_stairs.position.x = 14
 	elif velocity.x < 0:
 		animation.flip_h = true
 		sword_area_side.scale.x = -1
+		is_there_stairs.scale.x = -1
+		max_height_stairs.position.x = -11
 
 
 func _on_area_2d_body_entered(body):
@@ -139,3 +148,7 @@ func handle_dash():
 		await get_tree().create_timer(0.2).timeout
 		ghost_spawner.stop_spawn()
 		self.set_collision_layer_value(1,true)
+
+func handle_stairs_up():
+	if velocity.x != 0 and is_touching_floor.is_colliding() and is_there_stairs.is_colliding() and not max_height_stairs.is_colliding():
+		position.y -=18
