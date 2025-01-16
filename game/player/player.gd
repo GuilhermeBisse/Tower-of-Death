@@ -12,6 +12,8 @@ extends CharacterBody2D
 @onready var max_height_stairs = $MaxHeightStairs
 @onready var is_there_stairs = $IsThereStairs
 @onready var is_touching_floor = $IsTouchingFloor
+@onready var allow_jump: RayCast2D = $AllowJump
+@onready var allow_jump_2: RayCast2D = $AllowJump2
 
 
 const SPEED = 250.0
@@ -41,7 +43,7 @@ func _physics_process(delta):
 		
 
 	# Handle jump.
-	elif Input.is_action_just_pressed("jump") and is_on_floor():
+	elif Input.is_action_just_pressed("jump") and (allow_jump.is_colliding() or allow_jump_2.is_colliding()):
 		velocity.y = JUMP_VELOCITY
 
 	direction = Input.get_axis("left", "right")
