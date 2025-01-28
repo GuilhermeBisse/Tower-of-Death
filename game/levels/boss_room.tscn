@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d4coijn8kr066"]
+[gd_scene load_steps=8 format=3 uid="uid://d4coijn8kr066"]
 
 [ext_resource type="PackedScene" uid="uid://b15ao87wkybpx" path="res://game/boss/scene/first_boss.tscn" id="1_aymlm"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="2_q5s4j"]
 [ext_resource type="Script" path="res://game/UI/Camera.gd" id="2_sliuw"]
+[ext_resource type="AudioStream" uid="uid://ddc0hbsf2jwoe" path="res://game/levels/music/03-Heartless.wav" id="4_1gxiv"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l3tre"]
 distance = -634.0
@@ -71,3 +72,8 @@ position = Vector2(517, 13)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hfpf1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1gxiv")
+volume_db = -10.254
+autoplay = true
