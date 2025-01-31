@@ -2,20 +2,27 @@ extends CharacterBody2D
 
 @onready var anim = $anim
 const SPEED = 10000.0
+var health = 30
+var gravity = 0.0
 var player
+var dead = false
 var chasing = false
 var is_dashing = false
 var knockback_vector = Vector2.ZERO
 var dash_vector = Vector2.ZERO
 var soul_particle = preload("res://game/particles/scene/hit_particle.tscn")
+var death_particle = preload("res://game/particles/scene/death_enemy_explosion_particle.tscn")
 @onready var sight_area = $SightArea
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var dash_area: Area2D = $DashArea
 
 func _ready():
 	player = Global.global_player
 	anim.play("RESET")
 
 func _physics_process(delta):
+	
+	velocity.y += gravity
 	
 	if knockback_vector != Vector2.ZERO: #(0,0)
 		velocity = knockback_vector * 25
@@ -26,9 +33,10 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func chase(delta):
-	var dir = global_position.direction_to(player.global_position)
-	velocity = dir * SPEED * delta
-	handle_animation(dir)
+	if not dead:
+		var dir = global_position.direction_to(player.global_position)
+		velocity = dir * SPEED * delta
+		handle_animation(dir)
 
 
 func _on_sight_area_body_entered(body):
@@ -41,15 +49,23 @@ func hurt(body, damage):
 	soul_instance.global_position = global_position
 	soul_instance.rotation = (knockback_vector).angle()
 	soul_instance.emitting = true
-	anim.play("hurt")
-	add_child(soul_instance)
-	Global.freeze_time(0.0,0.1)
-	var knockback_tween:= get_tree().create_tween()
-	knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
+	if health - damage > 0:
+		health-=damage
+		anim.play("hurt")
+		add_child(soul_instance)
+		Global.freeze_time(0.0,0.1)
+		var knockback_tween:= get_tree().create_tween()
+		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)	
+	else:
+		velocity
+		anim.play("death")
+		var knockback_tween:= get_tree().create_tween()
+		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.1)	
+		chasing = false
 
 
 func _on_dash_area_body_entered(body):
-	if body == player and not is_dashing:
+	if body == player and not is_dashing and not dead:
 		chasing = false
 		is_dashing = true
 		dash()
@@ -81,3 +97,21 @@ func handle_animation(dir):
 		animated_sprite.flip_h = true
 	if dir.x < 0:
 		animated_sprite.flip_h = false
+
+func death_properties():
+	dead = true
+	gravity = 10
+	animated_sprite.stop()
+	sight_area.monitoring = false
+	dash_area.monitoring = false
+	chasing = false
+
+func get_invisible():
+	animated_sprite.visible = false
+
+func summon_death_particle():
+	var soul_instance = death_particle.instantiate()
+	soul_instance.global_position = global_position
+	soul_instance.emitting = true
+	get_parent().add_child(soul_instance)
+	
