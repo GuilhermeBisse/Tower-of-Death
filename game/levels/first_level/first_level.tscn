@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://owgvu4xqpji4"]
+[gd_scene load_steps=44 format=3 uid="uid://owgvu4xqpji4"]
 
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://game/map/tileset.png" id="1_nx72r"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="2_j0sdp"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/hide_underground.gd" id="8_jsls1"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/turn_on_off_set.gd" id="10_2h4w3"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/turn_off_off_set.gd" id="11_nbbgk"]
-[ext_resource type="AudioStream" uid="uid://ck7evfgfa7fcf" path="res://game/levels/music/04.2-Running_Through_Darkness.wav" id="12_geltc"]
 [ext_resource type="Script" path="res://game/levels/first_level/door_boss.gd" id="13_hrjfl"]
 [ext_resource type="Script" path="res://game/levels/first_level/key.gd" id="14_0155j"]
 [ext_resource type="Script" path="res://game/levels/first_level/arena_1.gd" id="15_l7dfb"]
@@ -590,7 +589,6 @@ shape = SubResource("RectangleShape2D_s2v2k")
 debug_color = Color(0.794651, 0.42043, 0.174784, 0.42)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_geltc")
 volume_db = -0.15
 autoplay = true
 
