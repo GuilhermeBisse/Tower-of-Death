@@ -2,7 +2,7 @@ extends Marker2D
 
 @onready var player: CharacterBody2D = $".."
 
-@export var offset_active = true
+@export var offset_active = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,5 +19,5 @@ func _process(delta: float) -> void:
 		
 	else:
 		global_position = player.global_position
-		Global.current_camera.position_smoothing_speed = 2.5
+		Global.current_camera.position_smoothing_speed = 5
 	
