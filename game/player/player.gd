@@ -83,7 +83,7 @@ func _on_area_2d_body_entered(body):
 
 func _on_sword_up_area_body_entered(body):
 	if body.has_method("hurt"):
-		print("achei")
+		#print("achei")
 		body.hurt(self,10)
 
 func handle_attack():

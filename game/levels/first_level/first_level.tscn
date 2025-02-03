@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://owgvu4xqpji4"]
+[gd_scene load_steps=52 format=3 uid="uid://owgvu4xqpji4"]
 
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://game/map/tileset.png" id="1_nx72r"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="2_j0sdp"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://game/levels/first_level/arenas.gd" id="14_mb0hh"]
 [ext_resource type="Script" path="res://game/levels/first_level/arena_1.gd" id="15_l7dfb"]
 [ext_resource type="PackedScene" uid="uid://c2hcqohgaw0t5" path="res://game/enemies/flying_enemy/flying_enemy.tscn" id="16_cdp6x"]
+[ext_resource type="Script" path="res://game/levels/first_level/arena_2.gd" id="16_lgjcv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5ibj"]
 texture = ExtResource("3_3n3w6")
@@ -379,14 +380,23 @@ size = Vector2(90, 69)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oji2h"]
 size = Vector2(1407, 642)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scpvs"]
+size = Vector2(1421, 512)
+
 [sub_resource type="Curve2D" id="Curve2D_2lxul"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1358, 1177, 0, 0, 0, 0, -1357, 561, 0, 0, 0, 0, -1352, -445, 0, 0, 0, 0, -1365, -1397, 0, 0, 0, 0, -1356, -2426)
+"points": PackedVector2Array(0, 0, 0, 0, -1358, 1177, 0, 0, 0, 0, -1357, 561, 0, 0, 0, 0, -1352, -445, 0, 0, 0, 0, -1354, -1398, 0, 0, 0, 0, -1356, -2450)
 }
 point_count = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oetkv"]
 size = Vector2(1431, 12.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jl2wp"]
+size = Vector2(1410, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovws3"]
+size = Vector2(1425, 16)
 
 [node name="FirstLevel" type="Node2D"]
 
@@ -648,16 +658,16 @@ offset_right = 66.0
 offset_bottom = 12.0
 color = Color(0.143, 0.65, 0.33735, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ARENAS/platform"]
+[node name="collision" type="CollisionShape2D" parent="ARENAS/platform"]
 position = Vector2(-2.5, 2.5)
 shape = SubResource("RectangleShape2D_ysvpu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ARENAS/platform"]
 
-[node name="Area2D" type="Area2D" parent="ARENAS/platform"]
+[node name="player_seeker" type="Area2D" parent="ARENAS/platform"]
 position = Vector2(-1, -20)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ARENAS/platform/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ARENAS/platform/player_seeker"]
 position = Vector2(0, -24.5)
 shape = SubResource("RectangleShape2D_necgq")
 
@@ -666,24 +676,22 @@ position = Vector2(-1356, 216)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("15_l7dfb")
+enemies = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ARENAS/Arena1"]
 position = Vector2(-0.5, 16)
 shape = SubResource("RectangleShape2D_oji2h")
 
+[node name="Arena2" type="Area2D" parent="ARENAS"]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("16_lgjcv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ARENAS/Arena2"]
+position = Vector2(-1359.5, -725)
+shape = SubResource("RectangleShape2D_scpvs")
+
 [node name="Arena1_enemies" type="Node" parent="ARENAS"]
-
-[node name="FlyingEnemy" parent="ARENAS/Arena1_enemies" instance=ExtResource("16_cdp6x")]
-position = Vector2(-1749, 55)
-
-[node name="FlyingEnemy2" parent="ARENAS/Arena1_enemies" instance=ExtResource("16_cdp6x")]
-position = Vector2(-1283, 92)
-
-[node name="FlyingEnemy3" parent="ARENAS/Arena1_enemies" instance=ExtResource("16_cdp6x")]
-position = Vector2(-947, 47)
-
-[node name="FlyingEnemy4" parent="ARENAS/Arena1_enemies" instance=ExtResource("16_cdp6x")]
-position = Vector2(-1830, 292)
 
 [node name="FlyingEnemy5" parent="ARENAS/Arena1_enemies" instance=ExtResource("16_cdp6x")]
 position = Vector2(-965, 192)
@@ -702,6 +710,23 @@ position = Vector2(-1356, 564)
 shape = SubResource("RectangleShape2D_oetkv")
 debug_color = Color(0.41, 0.334833, 0, 0.419608)
 
+[node name="Floor2" type="CollisionShape2D" parent="ARENAS/Floor"]
+position = Vector2(-1359, -457)
+shape = SubResource("RectangleShape2D_jl2wp")
+debug_color = Color(0.733316, 0.469104, 0.114028, 0.42)
+
+[node name="Floor3" type="CollisionShape2D" parent="ARENAS/Floor"]
+position = Vector2(-1352.5, -1420)
+shape = SubResource("RectangleShape2D_ovws3")
+debug_color = Color(0.765392, 0.447993, 0.0347065, 0.42)
+
+[node name="FlyingEnemy" parent="ARENAS" instance=ExtResource("16_cdp6x")]
+position = Vector2(-1350, -819)
+
+[node name="Arena3_Timer" type="Timer" parent="ARENAS"]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="body_entered" from="CameraChangeArea/ShowUnderground" to="CameraChangeArea/ShowUnderground" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/HideUnderground" to="CameraChangeArea/HideUnderground" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/HideUnderground2" to="CameraChangeArea/HideUnderground2" method="_on_body_entered"]
@@ -709,6 +734,10 @@ debug_color = Color(0.41, 0.334833, 0, 0.419608)
 [connection signal="body_entered" from="CameraChangeArea/TurnOffOffSet" to="CameraChangeArea/TurnOffOffSet" method="_on_body_entered"]
 [connection signal="body_entered" from="DoorBoss" to="DoorBoss" method="_on_body_entered"]
 [connection signal="body_entered" from="Key" to="Key" method="_on_body_entered"]
-[connection signal="body_entered" from="ARENAS/platform/Area2D" to="ARENAS" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="ARENAS/platform/Area2D" to="ARENAS" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="ARENAS/platform/player_seeker" to="ARENAS" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="ARENAS/platform/player_seeker" to="ARENAS" method="_on_area_2d_body_exited"]
+[connection signal="arena_1_cleared" from="ARENAS/Arena1" to="ARENAS" method="_on_arena_1_arena_1_cleared"]
 [connection signal="body_exited" from="ARENAS/Arena1" to="ARENAS/Arena1" method="_on_body_exited"]
+[connection signal="arena_2_cleared" from="ARENAS/Arena2" to="ARENAS" method="_on_arena_2_arena_2_cleared"]
+[connection signal="body_exited" from="ARENAS/Arena2" to="ARENAS/Arena2" method="_on_body_exited"]
+[connection signal="timeout" from="ARENAS/Arena3_Timer" to="ARENAS" method="_on_arena_3_timer_timeout"]
