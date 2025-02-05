@@ -2,7 +2,7 @@ extends Marker2D
 
 @onready var player: CharacterBody2D = $".."
 
-@export var offset_active = false
+@export var offset_active = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
