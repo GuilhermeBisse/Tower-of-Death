@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://owgvu4xqpji4"]
+[gd_scene load_steps=77 format=3 uid="uid://owgvu4xqpji4"]
 
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://game/map/tileset.png" id="1_nx72r"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="2_j0sdp"]
@@ -21,6 +21,8 @@
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/finishing_arenas.gd" id="15_m16xd"]
 [ext_resource type="PackedScene" uid="uid://c2hcqohgaw0t5" path="res://game/enemies/flying_enemy/flying_enemy.tscn" id="16_cdp6x"]
 [ext_resource type="Script" path="res://game/levels/first_level/arena_2.gd" id="16_lgjcv"]
+[ext_resource type="Script" path="res://game/UI/CameraChangingAreas/platform_parkour_up_enter.gd" id="16_ypj6l"]
+[ext_resource type="Script" path="res://game/UI/CameraChangingAreas/plataform_parkour_up_exit.gd" id="17_yw2pv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5ibj"]
 texture = ExtResource("3_3n3w6")
@@ -442,6 +444,21 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lc0og"]
 size = Vector2(103, 34)
 
+[sub_resource type="Animation" id="Animation_0udbh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2971, -1386)]
+}
+
 [sub_resource type="Animation" id="Animation_xlb0d"]
 resource_name = "moving"
 length = 20.0
@@ -459,7 +476,16 @@ tracks/0/keys = {
 "values": [Vector2(2971, -1386), Vector2(3274, -1185), Vector2(3583, -1338), Vector2(3376, -1353), Vector2(3366, -1400), Vector2(3694, -1348)]
 }
 
-[sub_resource type="Animation" id="Animation_0udbh"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xmq71"]
+_data = {
+"RESET": SubResource("Animation_0udbh"),
+"moving": SubResource("Animation_xlb0d")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6tpcq"]
+size = Vector2(119, 36)
+
+[sub_resource type="Animation" id="Animation_eqjd7"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -471,17 +497,8 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2971, -1386)]
+"values": [Vector2(6728, -1502)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xmq71"]
-_data = {
-"RESET": SubResource("Animation_0udbh"),
-"moving": SubResource("Animation_xlb0d")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6tpcq"]
-size = Vector2(119, 36)
 
 [sub_resource type="Animation" id="Animation_p0xse"]
 resource_name = "moving"
@@ -498,21 +515,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(6728, -1502), Vector2(6819, -1605), Vector2(6956, -1714), Vector2(7473, -1737), Vector2(7465, -2159)]
-}
-
-[sub_resource type="Animation" id="Animation_eqjd7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(6728, -1502)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j5gof"]
@@ -535,6 +537,12 @@ size = Vector2(18.1851, 14.1442)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6gtnd"]
 size = Vector2(134, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3vf2"]
+size = Vector2(682, 152)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb5g0"]
+size = Vector2(198, 154)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8cnla"]
 size = Vector2(245, 383)
@@ -591,7 +599,7 @@ layer_3/z_index = 16
 layer_3/tile_data = PackedInt32Array(458793, 786433, 6, 524329, 786433, 7, 589865, 786433, 8, 524330, 851969, 7, 589866, 851969, 8, 524331, 917505, 7, 589867, 917505, 8, 524332, 983041, 7, 589868, 983041, 8, 393261, 1048577, 5, 458797, 1048577, 6, 524333, 1048577, 7, 589869, 1048577, 8, 458786, 786433, 6, 524322, 786433, 7, 589858, 786433, 8, 524323, 851969, 7, 589859, 851969, 8, 524324, 917505, 7, 589860, 917505, 8, 524325, 983041, 7, 589861, 983041, 8, 393254, 1048577, 5, 458790, 1048577, 6, 524326, 1048577, 7, 589862, 1048577, 8, 458773, 786433, 6, 524309, 786433, 7, 589845, 786433, 8, 524310, 851969, 7, 589846, 851969, 8, 524311, 917505, 7, 589847, 917505, 8, 524312, 983041, 7, 589848, 983041, 8, 393241, 1048577, 5, 458777, 1048577, 6, 524313, 1048577, 7, 589849, 1048577, 8, -1048568, 786433, 6, -983032, 786433, 7, -917496, 786433, 8, -983031, 851969, 7, -917495, 851969, 8, -983030, 917505, 7, -917494, 917505, 8, -983029, 983041, 7, -917493, 983041, 8, -1114100, 1048577, 5, -1048564, 1048577, 6, -983028, 1048577, 7, -917492, 1048577, 8, -1048560, 786433, 6, -983024, 786433, 7, -917488, 786433, 8, -983023, 851969, 7, -917487, 851969, 8, -983022, 917505, 7, -917486, 917505, 8, -983021, 983041, 7, -917485, 983041, 8, -1114092, 1048577, 5, -1048556, 1048577, 6, -983020, 1048577, 7, -917484, 1048577, 8)
 
 [node name="player" parent="." instance=ExtResource("2_j0sdp")]
-position = Vector2(2999, -1133)
+position = Vector2(1198, -1185)
 
 [node name="CameraGuide" type="Marker2D" parent="player"]
 script = ExtResource("4_1u4nr")
@@ -614,9 +622,9 @@ motion_scale = Vector2(0.7, 0.7)
 [node name="ColorRect" type="ColorRect" parent="BackGround/Walls"]
 z_index = -1000
 offset_left = -4949.0
-offset_top = -4270.0
+offset_top = -4210.0
 offset_right = 11757.0
-offset_bottom = 3304.0
+offset_bottom = 3364.0
 color = Color(0.152941, 0.14902, 0.219608, 1)
 
 [node name="TileMap" type="TileMap" parent="BackGround/Walls"]
@@ -925,6 +933,51 @@ position = Vector2(10, -135)
 shape = SubResource("RectangleShape2D_6gtnd")
 debug_color = Color(0.835333, 0.00128259, 0.933611, 0.42)
 
+[node name="PlatformParkourUpEnter" type="Area2D" parent="CameraChangeArea"]
+position = Vector2(1697, -1075)
+script = ExtResource("16_ypj6l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraChangeArea/PlatformParkourUpEnter"]
+position = Vector2(284, -40)
+shape = SubResource("RectangleShape2D_r3vf2")
+debug_color = Color(0.908136, 0.000116284, 0.737729, 0.42)
+
+[node name="PlatformParkourUpEnter3" type="Area2D" parent="CameraChangeArea"]
+position = Vector2(2327, -2430)
+script = ExtResource("16_ypj6l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraChangeArea/PlatformParkourUpEnter3"]
+position = Vector2(-301, -38)
+shape = SubResource("RectangleShape2D_r3vf2")
+debug_color = Color(0.908136, 0.000116284, 0.737729, 0.42)
+
+[node name="PlataformParkourUpExit" type="Area2D" parent="CameraChangeArea"]
+position = Vector2(1531, -1108)
+script = ExtResource("17_yw2pv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraChangeArea/PlataformParkourUpExit"]
+position = Vector2(-58, -8)
+shape = SubResource("RectangleShape2D_pb5g0")
+debug_color = Color(0.899376, 0.000175581, 0.765986, 0.42)
+
+[node name="PlataformParkourUpExit2" type="Area2D" parent="CameraChangeArea"]
+position = Vector2(2424, -1120)
+script = ExtResource("17_yw2pv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraChangeArea/PlataformParkourUpExit2"]
+position = Vector2(99, 5)
+shape = SubResource("RectangleShape2D_pb5g0")
+debug_color = Color(0.899376, 0.000175581, 0.765986, 0.42)
+
+[node name="PlataformParkourUpExit3" type="Area2D" parent="CameraChangeArea"]
+position = Vector2(2424, -2486)
+script = ExtResource("17_yw2pv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraChangeArea/PlataformParkourUpExit3"]
+position = Vector2(104, 19)
+shape = SubResource("RectangleShape2D_pb5g0")
+debug_color = Color(0.899376, 0.000175581, 0.765986, 0.42)
+
 [node name="DoorBoss" type="Area2D" parent="."]
 position = Vector2(3944, 84)
 script = ExtResource("13_hrjfl")
@@ -1047,6 +1100,11 @@ one_shot = true
 [connection signal="body_entered" from="CameraChangeArea/EnteringArena2" to="CameraChangeArea/EnteringArena2" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/EnteringArena3" to="CameraChangeArea/EnteringArena3" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/FinishingArenas" to="CameraChangeArea/FinishingArenas" method="_on_body_entered"]
+[connection signal="body_entered" from="CameraChangeArea/PlatformParkourUpEnter" to="CameraChangeArea/PlatformParkourUpEnter" method="_on_body_entered"]
+[connection signal="body_entered" from="CameraChangeArea/PlatformParkourUpEnter3" to="CameraChangeArea/PlatformParkourUpEnter3" method="_on_body_entered"]
+[connection signal="body_entered" from="CameraChangeArea/PlataformParkourUpExit" to="CameraChangeArea/PlataformParkourUpExit" method="_on_body_entered"]
+[connection signal="body_entered" from="CameraChangeArea/PlataformParkourUpExit2" to="CameraChangeArea/PlataformParkourUpExit2" method="_on_body_entered"]
+[connection signal="body_entered" from="CameraChangeArea/PlataformParkourUpExit3" to="CameraChangeArea/PlataformParkourUpExit3" method="_on_body_entered"]
 [connection signal="body_entered" from="DoorBoss" to="DoorBoss" method="_on_body_entered"]
 [connection signal="body_entered" from="Key" to="Key" method="_on_body_entered"]
 [connection signal="body_entered" from="ARENAS/platform/player_seeker" to="ARENAS" method="_on_area_2d_body_entered"]
