@@ -8,6 +8,7 @@ extends Node
 @onready var floor_3: CollisionShape2D = $Floor/Floor3
 @onready var platform_seeking_player: CollisionShape2D = $platform/player_seeker/CollisionShape2D
 @onready var arena_3_timer: Timer = $Arena3_Timer
+@onready var camera: Camera2D = $"../player/CameraGuide/Camera2D"
 
 enum PlatformStatus {WAITING,STOP, UP, DOWN}
 var arenas_cleared = 0;
@@ -56,6 +57,18 @@ func _physics_process(delta: float) -> void:
 				platform_path_follower.progress_ratio += 0.001
 			else:
 				current_platform_status = PlatformStatus.STOP
+	
+	if current_platform_status == PlatformStatus.DOWN:
+		floor_1.disabled = true
+		floor_2.disabled = true
+		floor_3.disabled = true
+		camera.limit_bottom = 100000000
+		camera.limit_right = 100000000
+		camera.limit_left = -100000000
+		if platform_path_follower.progress_ratio > 0.001:
+			platform_path_follower.progress_ratio -=0.001
+		else:
+			current_platform_status = PlatformStatus.WAITING
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body == Global.global_player and current_platform_status == PlatformStatus.WAITING:

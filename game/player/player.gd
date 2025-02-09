@@ -43,7 +43,7 @@ func _physics_process(delta):
 		
 
 	# Handle jump.
-	elif Input.is_action_just_pressed("jump") and (allow_jump.is_colliding() or allow_jump_2.is_colliding()):
+	elif Input.is_action_just_pressed("jump") and ((allow_jump.is_colliding() or allow_jump_2.is_colliding()) or is_on_floor()):
 		velocity.y = JUMP_VELOCITY
 
 	direction = Input.get_axis("left", "right")
@@ -154,3 +154,7 @@ func handle_dash():
 func handle_stairs_up():
 	if velocity.x != 0 and is_touching_floor.is_colliding() and is_there_stairs.is_colliding() and not max_height_stairs.is_colliding():
 		position.y -=18
+
+
+func _on_entering_arena_3_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
