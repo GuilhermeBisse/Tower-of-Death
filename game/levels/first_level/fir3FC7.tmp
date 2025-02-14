@@ -1,11 +1,11 @@
-[gd_scene load_steps=88 format=3 uid="uid://owgvu4xqpji4"]
+[gd_scene load_steps=77 format=3 uid="uid://owgvu4xqpji4"]
 
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://game/map/tileset.png" id="1_nx72r"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="2_j0sdp"]
 [ext_resource type="Texture2D" uid="uid://b5ffpxs4egn0a" path="res://game/map/backgrounds.png" id="3_3n3w6"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/camera_guide.gd" id="4_1u4nr"]
 [ext_resource type="Texture2D" uid="uid://bp557nlgxlpgp" path="res://game/map/column.png" id="4_ko5b3"]
-[ext_resource type="Script" path="res://game/UI/Camera.gd" id="5_aufkj"]
+[ext_resource type="Script" path="res://game/map/first_level/first_level_camera.gd" id="4_ynt7u"]
 [ext_resource type="Shader" path="res://game/map/shader/wave.gdshader" id="5_m3n8e"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/show_underground.gd" id="7_20i7n"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/hide_underground.gd" id="8_jsls1"]
@@ -23,8 +23,6 @@
 [ext_resource type="Script" path="res://game/levels/first_level/arena_2.gd" id="16_lgjcv"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/platform_parkour_up_enter.gd" id="16_ypj6l"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/plataform_parkour_up_exit.gd" id="17_yw2pv"]
-[ext_resource type="Script" path="res://game/levels/first_level/UpgradeMovementPath.gd" id="24_02rkj"]
-[ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="24_tyfui"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5ibj"]
 texture = ExtResource("3_3n3w6")
@@ -579,53 +577,6 @@ size = Vector2(1410, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovws3"]
 size = Vector2(1438.5, 11.5)
 
-[sub_resource type="Curve2D" id="Curve2D_4decj"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 6414, -2306, 0, 0, 0, 0, 6407, -2268, 0, 0, 0, 0, 6436, -2241, 0, 0, 0, 0, 6465, -2245, 0, 0, 0, 0, 6486, -2262, 0, 0, 0, 0, 6496, -2285, 0, 0, 0, 0, 6522, -2305, 0, 0, 0, 0, 6558, -2297, 0, 0, 0, 0, 6577, -2264, 0, 0, 0, 0, 6571, -2243, 0, 0, 0, 0, 6538, -2235, 0, 0, 0, 0, 6517, -2245, 0, 0, 0, 0, 6473, -2292, 0, 0, 0, 0, 6449, -2307, 0, 0, 0, 0, 6414, -2306)
-}
-point_count = 15
-
-[sub_resource type="Gradient" id="Gradient_jjat2"]
-offsets = PackedFloat32Array(0, 0.367647)
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_xsch3"]
-gradient = SubResource("Gradient_jjat2")
-
-[sub_resource type="Gradient" id="Gradient_mfmi5"]
-colors = PackedColorArray(2, 2, 2, 1, 0.42, 0.42, 0.42, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_exc3b"]
-gradient = SubResource("Gradient_mfmi5")
-
-[sub_resource type="Curve" id="Curve_baluc"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.154717), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_iyiso"]
-curve = SubResource("Curve_baluc")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_co5rv"]
-particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-spread = 31.909
-initial_velocity_max = 129.32
-gravity = Vector3(0, -50, 0)
-scale_min = 0.1
-scale_max = 0.3
-scale_curve = SubResource("CurveTexture_iyiso")
-color_ramp = SubResource("GradientTexture1D_exc3b")
-color_initial_ramp = SubResource("GradientTexture1D_xsch3")
-turbulence_enabled = true
-turbulence_noise_strength = 2.01
-turbulence_noise_scale = 10.0
-turbulence_influence_min = 0.0
-turbulence_influence_max = 0.08
-turbulence_initial_displacement_min = -32.8
-turbulence_initial_displacement_max = 14.4
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_un7py"]
-
 [node name="FirstLevel" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -648,7 +599,7 @@ layer_3/z_index = 16
 layer_3/tile_data = PackedInt32Array(458793, 786433, 6, 524329, 786433, 7, 589865, 786433, 8, 524330, 851969, 7, 589866, 851969, 8, 524331, 917505, 7, 589867, 917505, 8, 524332, 983041, 7, 589868, 983041, 8, 393261, 1048577, 5, 458797, 1048577, 6, 524333, 1048577, 7, 589869, 1048577, 8, 458786, 786433, 6, 524322, 786433, 7, 589858, 786433, 8, 524323, 851969, 7, 589859, 851969, 8, 524324, 917505, 7, 589860, 917505, 8, 524325, 983041, 7, 589861, 983041, 8, 393254, 1048577, 5, 458790, 1048577, 6, 524326, 1048577, 7, 589862, 1048577, 8, 458773, 786433, 6, 524309, 786433, 7, 589845, 786433, 8, 524310, 851969, 7, 589846, 851969, 8, 524311, 917505, 7, 589847, 917505, 8, 524312, 983041, 7, 589848, 983041, 8, 393241, 1048577, 5, 458777, 1048577, 6, 524313, 1048577, 7, 589849, 1048577, 8, -1048568, 786433, 6, -983032, 786433, 7, -917496, 786433, 8, -983031, 851969, 7, -917495, 851969, 8, -983030, 917505, 7, -917494, 917505, 8, -983029, 983041, 7, -917493, 983041, 8, -1114100, 1048577, 5, -1048564, 1048577, 6, -983028, 1048577, 7, -917492, 1048577, 8, -1048560, 786433, 6, -983024, 786433, 7, -917488, 786433, 8, -983023, 851969, 7, -917487, 851969, 8, -983022, 917505, 7, -917486, 917505, 8, -983021, 983041, 7, -917485, 983041, 8, -1114092, 1048577, 5, -1048556, 1048577, 6, -983020, 1048577, 7, -917484, 1048577, 8)
 
 [node name="player" parent="." instance=ExtResource("2_j0sdp")]
-position = Vector2(7262, -2289)
+position = Vector2(-1616, -1460)
 
 [node name="CameraGuide" type="Marker2D" parent="player"]
 script = ExtResource("4_1u4nr")
@@ -659,7 +610,7 @@ limit_top = -2692
 limit_bottom = 590
 limit_smoothed = true
 position_smoothing_enabled = true
-script = ExtResource("5_aufkj")
+script = ExtResource("4_ynt7u")
 
 [node name="BackGround" type="ParallaxBackground" parent="."]
 layer = -1
@@ -1167,27 +1118,6 @@ position = Vector2(-1350, -819)
 wait_time = 3.0
 one_shot = true
 
-[node name="DashUpgrade" type="Path2D" parent="."]
-position = Vector2(79, 4)
-curve = SubResource("Curve2D_4decj")
-script = ExtResource("24_02rkj")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="DashUpgrade"]
-position = Vector2(6414, -2306)
-rotation = 1.75296
-
-[node name="DashUpgradeParticle" type="GPUParticles2D" parent="DashUpgrade/PathFollow2D"]
-position = Vector2(-1.9438, -1.10499)
-rotation = -1.5708
-amount = 40
-process_material = SubResource("ParticleProcessMaterial_co5rv")
-texture = ExtResource("24_tyfui")
-
-[node name="DashUpgradeArea" type="Area2D" parent="DashUpgrade/PathFollow2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DashUpgrade/PathFollow2D/DashUpgradeArea"]
-shape = SubResource("CircleShape2D_un7py")
-
 [connection signal="body_entered" from="CameraChangeArea/ShowUnderground" to="CameraChangeArea/ShowUnderground" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/HideUnderground" to="CameraChangeArea/HideUnderground" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/HideUnderground2" to="CameraChangeArea/HideUnderground2" method="_on_body_entered"]
@@ -1211,5 +1141,3 @@ shape = SubResource("CircleShape2D_un7py")
 [connection signal="arena_2_cleared" from="ARENAS/Arena2" to="ARENAS" method="_on_arena_2_arena_2_cleared"]
 [connection signal="body_exited" from="ARENAS/Arena2" to="ARENAS/Arena2" method="_on_body_exited"]
 [connection signal="timeout" from="ARENAS/Arena3_Timer" to="ARENAS" method="_on_arena_3_timer_timeout"]
-[connection signal="dash_picked" from="DashUpgrade" to="player" method="_on_dash_upgrade_dash_picked"]
-[connection signal="body_entered" from="DashUpgrade/PathFollow2D/DashUpgradeArea" to="DashUpgrade" method="_on_dash_upgrade_area_body_entered"]

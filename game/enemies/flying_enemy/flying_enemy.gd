@@ -15,6 +15,11 @@ var death_particle = preload("res://game/particles/scene/death_enemy_explosion_p
 @onready var sight_area = $SightArea
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var dash_area: Area2D = $DashArea
+@onready var sprites: AnimatedSprite2D = $AnimatedSprite2D
+
+var bounce_tween: Tween
+
+
 
 func _ready():
 	player = Global.global_player
@@ -44,6 +49,17 @@ func _on_sight_area_body_entered(body):
 		chasing = true
 
 func hurt(body, damage):
+	
+	create_bounce()
+	bounce_tween.tween_property(sprites,"scale", Vector2(0.56 * 1.35,0.56 * 1.35),0.2) \
+				.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	bounce_tween.parallel().tween_property(sprites,"rotation_degrees",randf_range(-10.0,10.0),0.2) \
+				.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	bounce_tween.tween_property(sprites,"scale", Vector2(0.56,0.56),0.2) \
+				.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	bounce_tween.parallel().tween_property(sprites,"rotation_degrees",0,0.2) \
+				.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	
 	knockback_vector = global_position - body.global_position
 	var soul_instance = soul_particle.instantiate()
 	soul_instance.global_position = global_position
@@ -57,7 +73,7 @@ func hurt(body, damage):
 		var knockback_tween:= get_tree().create_tween()
 		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)	
 	else:
-		velocity
+		add_child(soul_instance)
 		anim.play("death")
 		var knockback_tween:= get_tree().create_tween()
 		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.1)	
@@ -115,3 +131,7 @@ func summon_death_particle():
 	soul_instance.emitting = true
 	get_parent().add_child(soul_instance)
 	
+func create_bounce():
+	if bounce_tween and bounce_tween.is_running():
+		bounce_tween.kill()
+	bounce_tween = create_tween()

@@ -81,3 +81,8 @@ func _on_attack_delay_timeout():
 		await get_tree().create_timer(.1).timeout
 		collision_shape.disabled = true
 		attack_delay.start()
+
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	if body.has_method("hurt"):
+		body.hurt(self,10)

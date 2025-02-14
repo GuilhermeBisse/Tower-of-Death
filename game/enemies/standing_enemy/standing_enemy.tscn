@@ -57,5 +57,6 @@ wait_time = 0.37
 
 [connection signal="body_entered" from="SpearRange" to="." method="_on_spear_range_body_entered"]
 [connection signal="body_exited" from="SpearRange" to="." method="_on_spear_range_body_exited"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="timeout" from="WalkTime" to="." method="_on_walk_time_timeout"]
 [connection signal="timeout" from="AttackDelay" to="." method="_on_attack_delay_timeout"]

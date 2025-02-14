@@ -16,6 +16,8 @@ extends CharacterBody2D
 @onready var allow_jump_2: RayCast2D = $AllowJump2
 
 
+
+
 const SPEED = 250.0
 const JUMP_VELOCITY = -470.0
 const CROSS_HIT = preload("res://game/particles/scene/cross_hit.tscn")
@@ -26,37 +28,39 @@ var life = 100
 var cont_moedas = 0
 var direction
 var can_dash = false
+var move_allowed = true
 
 func _ready():
 	Global.global_player = self
 	LifeBar.visible = false
 
 func _physics_process(delta):
-	if is_on_floor():
-		can_dash = true
-	LifeBar.value = life
-	if knockback_vector != Vector2.ZERO:
-		velocity = knockback_vector * 20
-	
-	elif not is_on_floor():
-		velocity.y += gravity * delta
+	if move_allowed:
+		if is_on_floor():
+			can_dash = true
+		LifeBar.value = life
+		if knockback_vector != Vector2.ZERO:
+			velocity = knockback_vector * 20
 		
+		elif not is_on_floor():
+			velocity.y += gravity * delta
+			
 
-	# Handle jump.
-	elif Input.is_action_just_pressed("jump") and ((allow_jump.is_colliding() or allow_jump_2.is_colliding()) or is_on_floor()):
-		velocity.y = JUMP_VELOCITY
+		# Handle jump.
+		elif Input.is_action_just_pressed("jump") and ((allow_jump.is_colliding() or allow_jump_2.is_colliding()) or is_on_floor()):
+			velocity.y = JUMP_VELOCITY
 
-	direction = Input.get_axis("left", "right")
-	if knockback_vector == Vector2.ZERO:
-		if direction:
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-	handle_animation()
-	handle_attack()
-	handle_dash()
-	handle_stairs_up()
-	move_and_slide()
+		direction = Input.get_axis("left", "right")
+		if knockback_vector == Vector2.ZERO:
+			if direction:
+				velocity.x = direction * SPEED
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED)
+		handle_animation()
+		handle_attack()
+		handle_dash()
+		handle_stairs_up()
+		move_and_slide()
 
 func handle_animation():
 	if velocity.x == 0:
@@ -140,7 +144,7 @@ func choose(array):
 	return array[0]
 
 func handle_dash():
-	if Input.is_action_just_pressed("dash") and can_dash:
+	if Input.is_action_just_pressed("dash") and can_dash and Global.dash_picked:
 		ghost_spawner.start_spawn()
 		can_dash = false
 		knockback_vector = Vector2(direction,0) * 100
@@ -156,5 +160,8 @@ func handle_stairs_up():
 		position.y -=18
 
 
-func _on_entering_arena_3_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+func _on_dash_upgrade_dash_picked() -> void:
+	move_allowed = false
+	animation_player.play("receiving_dash")
+	await animation_player.animation_finished
+	move_allowed= true

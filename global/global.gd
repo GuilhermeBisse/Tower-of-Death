@@ -3,6 +3,7 @@ extends Node
 var global_player: CharacterBody2D
 var current_camera: Camera2D
 var key_picked: bool = false
+var dash_picked: bool = false
 
 
 func freeze_time(timeScale, duration):

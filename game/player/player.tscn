@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bgsoxr6nsjbrr"]
+[gd_scene load_steps=61 format=3 uid="uid://bgsoxr6nsjbrr"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_glbys"]
 [ext_resource type="Texture2D" uid="uid://nr2565fatmm4" path="res://game/player/sprites/Run/Atlas-Run1.png" id="1_tvake"]
@@ -24,6 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://dvrcrayjvxltd" path="res://game/player/sprites/Idle/Atlas-Idle13.png" id="14_k171j"]
 [ext_resource type="PackedScene" uid="uid://51sw4yq2f4ql" path="res://game/particles/scene/ghost_spawner.tscn" id="23_foyyw"]
 [ext_resource type="PackedScene" uid="uid://dlgo1exiwsoba" path="res://game/particles/scene/ghost.tscn" id="24_sj6qy"]
+[ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="25_pjbwp"]
+[ext_resource type="PackedScene" uid="uid://cumvpgfebedbj" path="res://game/particles/scene/receiving_power_particle.tscn" id="26_rwgup"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4q5tp"]
 atlas = ExtResource("2_a2ng3")
@@ -214,6 +216,42 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("receiving_power_particle:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("exploding_after_receiving:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("animation:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_b2kt7"]
 resource_name = "hurt_animation"
@@ -231,11 +269,73 @@ tracks/0/keys = {
 "values": [Color(50, 47.794, 49.265, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_81u81"]
+resource_name = "receiving_dash"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("receiving_power_particle:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("exploding_after_receiving:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.56667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("animation:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.4, 2.63333, 3.83333),
+"transitions": PackedFloat32Array(1, 2.82842, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(15, 15, 15, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_162de"]
 _data = {
 "RESET": SubResource("Animation_dnk2n"),
-"hurt_animation": SubResource("Animation_b2kt7")
+"hurt_animation": SubResource("Animation_b2kt7"),
+"receiving_dash": SubResource("Animation_81u81")
 }
+
+[sub_resource type="Curve" id="Curve_vonai"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.465517, 1), 0.0525285, 0.0525285, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ivrhr"]
+curve = SubResource("Curve_vonai")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wlrbf"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 198.28
+initial_velocity_max = 232.76
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -400.0
+radial_accel_max = -300.0
+tangential_accel_min = 100.0
+tangential_accel_max = 100.0
+scale_min = 0.1
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_ivrhr")
 
 [node name="player" type="CharacterBody2D"]
 collision_mask = 15
@@ -316,6 +416,17 @@ collision_mask = 2
 position = Vector2(-5, 27)
 target_position = Vector2(0, 11)
 collision_mask = 2
+
+[node name="exploding_after_receiving" type="GPUParticles2D" parent="."]
+position = Vector2(2, -6)
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_wlrbf")
+texture = ExtResource("25_pjbwp")
+one_shot = true
+explosiveness = 0.85
+
+[node name="receiving_power_particle" parent="." instance=ExtResource("26_rwgup")]
 
 [connection signal="area_entered" from="SwordSideArea" to="." method="_on_sword_side_area_area_entered"]
 [connection signal="body_entered" from="SwordSideArea" to="." method="_on_area_2d_body_entered"]
