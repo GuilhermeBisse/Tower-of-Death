@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://owgvu4xqpji4"]
+[gd_scene load_steps=89 format=3 uid="uid://owgvu4xqpji4"]
 
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://game/map/tileset.png" id="1_nx72r"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="2_j0sdp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://game/UI/Camera.gd" id="5_aufkj"]
 [ext_resource type="Shader" path="res://game/map/shader/wave.gdshader" id="5_m3n8e"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/show_underground.gd" id="7_20i7n"]
+[ext_resource type="Script" path="res://game/levels/first_level/acid_lake.gd" id="7_whji1"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/hide_underground.gd" id="8_jsls1"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/turn_on_off_set.gd" id="10_2h4w3"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/turn_off_off_set.gd" id="11_nbbgk"]
@@ -270,7 +271,7 @@ sources/0 = SubResource("TileSetAtlasSource_eccly")
 sources/1 = SubResource("TileSetAtlasSource_midon")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_veqn7"]
-size = Vector2(731.5, 176.5)
+size = Vector2(2737.5, 176.5)
 
 [sub_resource type="Gradient" id="Gradient_y5s6y"]
 colors = PackedColorArray(0, 1, 0.109804, 1, 0, 0, 0, 1)
@@ -648,7 +649,7 @@ layer_3/z_index = 16
 layer_3/tile_data = PackedInt32Array(458793, 786433, 6, 524329, 786433, 7, 589865, 786433, 8, 524330, 851969, 7, 589866, 851969, 8, 524331, 917505, 7, 589867, 917505, 8, 524332, 983041, 7, 589868, 983041, 8, 393261, 1048577, 5, 458797, 1048577, 6, 524333, 1048577, 7, 589869, 1048577, 8, 458786, 786433, 6, 524322, 786433, 7, 589858, 786433, 8, 524323, 851969, 7, 589859, 851969, 8, 524324, 917505, 7, 589860, 917505, 8, 524325, 983041, 7, 589861, 983041, 8, 393254, 1048577, 5, 458790, 1048577, 6, 524326, 1048577, 7, 589862, 1048577, 8, 458773, 786433, 6, 524309, 786433, 7, 589845, 786433, 8, 524310, 851969, 7, 589846, 851969, 8, 524311, 917505, 7, 589847, 917505, 8, 524312, 983041, 7, 589848, 983041, 8, 393241, 1048577, 5, 458777, 1048577, 6, 524313, 1048577, 7, 589849, 1048577, 8, -1048568, 786433, 6, -983032, 786433, 7, -917496, 786433, 8, -983031, 851969, 7, -917495, 851969, 8, -983030, 917505, 7, -917494, 917505, 8, -983029, 983041, 7, -917493, 983041, 8, -1114100, 1048577, 5, -1048564, 1048577, 6, -983028, 1048577, 7, -917492, 1048577, 8, -1048560, 786433, 6, -983024, 786433, 7, -917488, 786433, 8, -983023, 851969, 7, -917487, 851969, 8, -983022, 917505, 7, -917486, 917505, 8, -983021, 983041, 7, -917485, 983041, 8, -1114092, 1048577, 5, -1048556, 1048577, 6, -983020, 1048577, 7, -917484, 1048577, 8)
 
 [node name="player" parent="." instance=ExtResource("2_j0sdp")]
-position = Vector2(7262, -2289)
+position = Vector2(2672, 209)
 
 [node name="CameraGuide" type="Marker2D" parent="player"]
 script = ExtResource("4_1u4nr")
@@ -777,9 +778,10 @@ texture = ExtResource("4_ko5b3")
 
 [node name="AcidLake" type="Area2D" parent="."]
 position = Vector2(1659, 2494)
+script = ExtResource("7_whji1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AcidLake"]
-position = Vector2(341.25, 158.25)
+position = Vector2(1344.25, 158.25)
 shape = SubResource("RectangleShape2D_veqn7")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="AcidLake"]
@@ -793,6 +795,9 @@ material = SubResource("ShaderMaterial_din62")
 position = Vector2(-155, -63)
 texture = SubResource("GradientTexture1D_fgqie")
 polygon = PackedVector2Array(-525, 418, 3105, 422, 3086, 118, 2962.25, 119.063, 2819.64, 120.288, 2619.87, 122.005, 2401.07, 123.885, 2225.04, 125.397, 2020.51, 127.154, 1815.9, 128.912, 1606.62, 130.711, 1383.06, 132.631, 1164.43, 134.51, 991, 136, 898, 137, 793, 134, 666, 137, 560.661, 132.531, 435.576, 131.107, 320.11, 129.792, 241.696, 128.9, 166.508, 128.044, 71.1562, 126.958, -82.0104, 124.828, -281.759, 122.049, -501, 119)
+
+[node name="Marker2D" type="Marker2D" parent="AcidLake"]
+position = Vector2(267, -140)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rcg7n")
@@ -1188,6 +1193,7 @@ texture = ExtResource("24_tyfui")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DashUpgrade/PathFollow2D/DashUpgradeArea"]
 shape = SubResource("CircleShape2D_un7py")
 
+[connection signal="body_entered" from="AcidLake" to="AcidLake" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/ShowUnderground" to="CameraChangeArea/ShowUnderground" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/HideUnderground" to="CameraChangeArea/HideUnderground" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/HideUnderground2" to="CameraChangeArea/HideUnderground2" method="_on_body_entered"]
