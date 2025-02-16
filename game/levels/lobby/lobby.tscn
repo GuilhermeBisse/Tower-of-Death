@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://s2eb0658mlth"]
+[gd_scene load_steps=55 format=3 uid="uid://s2eb0658mlth"]
 
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="1_i44mo"]
 [ext_resource type="Texture2D" uid="uid://qmsohnvdnmax" path="res://game/map/main.png" id="2_bmvu8"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cojf3q1dsnqd8" path="res://game/levels/lobby/DeathSprites/Morte-Idle12.png" id="19_2qlwr"]
 [ext_resource type="Texture2D" uid="uid://3dwclntwir8f" path="res://game/levels/lobby/DeathSprites/Morte-Idle13.png" id="20_dgynv"]
 [ext_resource type="Texture2D" uid="uid://5dpdmgqoytqn" path="res://game/levels/lobby/DeathSprites/Morte-Idle14.png" id="21_gsh5p"]
+[ext_resource type="Script" path="res://game/levels/lobby/portal.gd" id="22_m7nqg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00xam"]
 atlas = ExtResource("8_fhjmi")
@@ -127,6 +128,15 @@ animations = [{
 "name": &"default",
 "speed": 10.0
 }]
+
+[sub_resource type="Gradient" id="Gradient_i37d0"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3svs5"]
+gradient = SubResource("Gradient_i37d0")
+fill = 1
+fill_from = Vector2(0.478571, 0.503571)
+fill_to = Vector2(0.171429, 0.896429)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_084tw"]
 texture = ExtResource("2_bmvu8")
@@ -373,6 +383,52 @@ font_size = 32
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Gradient" id="Gradient_53ikt"]
+colors = PackedColorArray(0.413348, 0.445536, 0.991114, 1, 0.854176, 0.000442803, 0.825419, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mx318"]
+gradient = SubResource("Gradient_53ikt")
+
+[sub_resource type="Gradient" id="Gradient_ydhyn"]
+colors = PackedColorArray(1, 1, 1, 1, 0.585606, 0.000210331, 0.572457, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6t0cb"]
+gradient = SubResource("Gradient_ydhyn")
+
+[sub_resource type="Curve" id="Curve_dtcst"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.169811), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1cvvx"]
+curve = SubResource("Curve_dtcst")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f6p3u"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 85, 1)
+direction = Vector3(-1, 0, 0)
+spread = 36.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_1cvvx")
+color_ramp = SubResource("GradientTexture1D_6t0cb")
+color_initial_ramp = SubResource("GradientTexture1D_mx318")
+
+[sub_resource type="Gradient" id="Gradient_g87b0"]
+offsets = PackedFloat32Array(0.402174, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mtyhc"]
+gradient = SubResource("Gradient_g87b0")
+fill = 2
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0.3, 0.339286)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bookl"]
+size = Vector2(20, 161)
+
 [node name="Lobby" type="Node2D"]
 position = Vector2(1, 0)
 
@@ -385,19 +441,27 @@ offset_bottom = 560.0
 color = Color(0, 0, 0, 1)
 
 [node name="Death" type="AnimatedSprite2D" parent="."]
+z_index = -2
 position = Vector2(591, -85)
 scale = Vector2(0.43769, 0.43769)
 sprite_frames = SubResource("SpriteFrames_vfrgx")
 autoplay = "default"
 frame_progress = 0.852952
 
+[node name="PointLight2D" type="PointLight2D" parent="Death"]
+position = Vector2(-418.104, 212.479)
+scale = Vector2(25.9492, 25.9492)
+color = Color(0, 0.86, 0.444333, 1)
+energy = 1.72
+texture = SubResource("GradientTexture2D_3svs5")
+
 [node name="player" parent="." instance=ExtResource("1_i44mo")]
-position = Vector2(111, -20)
+position = Vector2(96, 35)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(1.5, 1.5)
 limit_left = -70
-limit_right = 1550
+limit_right = 733
 position_smoothing_enabled = true
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -439,3 +503,39 @@ offset_bottom = 746.0
 text = "  Moedas: 0"
 label_settings = SubResource("LabelSettings_paq7m")
 metadata/_edit_use_anchors_ = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(724, 44)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_f6p3u")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(342, -302)
+energy = 0.28
+blend_mode = 1
+
+[node name="PortalLight" type="PointLight2D" parent="."]
+position = Vector2(635.5, 48.21)
+scale = Vector2(2.26563, 3.00656)
+color = Color(0.6615, 0, 0.81, 1)
+energy = 2.19
+texture = SubResource("GradientTexture2D_mtyhc")
+
+[node name="PortalLight2" type="PointLight2D" parent="PortalLight"]
+position = Vector2(-40.8276, -38.6521)
+scale = Vector2(2.26563, 2.23086)
+color = Color(0.6615, 0, 0.81, 1)
+energy = 2.19
+texture = SubResource("GradientTexture2D_mtyhc")
+
+[node name="Portal" type="Area2D" parent="."]
+position = Vector2(740, 60)
+script = ExtResource("22_m7nqg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal"]
+position = Vector2(0, -13.5)
+shape = SubResource("RectangleShape2D_bookl")
+debug_color = Color(0.795657, 0.0616312, 1, 0.42)
+
+[connection signal="body_entered" from="Portal" to="Portal" method="_on_body_entered"]
