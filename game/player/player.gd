@@ -12,8 +12,6 @@ extends CharacterBody2D
 @onready var max_height_stairs = $MaxHeightStairs
 @onready var is_there_stairs = $IsThereStairs
 @onready var is_touching_floor = $IsTouchingFloor
-@onready var allow_jump: RayCast2D = $AllowJump
-@onready var allow_jump_2: RayCast2D = $AllowJump2
 
 
 
@@ -29,6 +27,7 @@ var cont_moedas = 0
 var direction
 var can_dash = false
 var move_allowed = true
+var sword_pushback_force = 30
 
 func _ready():
 	Global.global_player = self
@@ -47,7 +46,7 @@ func _physics_process(delta):
 			
 
 		# Handle jump.
-		elif Input.is_action_just_pressed("jump") and ((allow_jump.is_colliding() or allow_jump_2.is_colliding()) or is_on_floor()):
+		elif Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
 
 		direction = Input.get_axis("left", "right")
@@ -67,12 +66,12 @@ func handle_animation():
 		animation.play("Atlas_idle")
 	elif velocity.x != 0:
 		animation.play("Atlas_run")
-	if velocity.x > 0:
+	if velocity.x != 0 and Input.is_action_pressed("right"):
 		animation.flip_h = false
 		sword_area_side.scale.x = 1
 		is_there_stairs.scale.x = 1
 		max_height_stairs.position.x = 14
-	elif velocity.x < 0:
+	elif velocity.x != 0 and Input.is_action_pressed("left"):
 		animation.flip_h = true
 		sword_area_side.scale.x = -1
 		is_there_stairs.scale.x = -1
@@ -83,13 +82,16 @@ func _on_area_2d_body_entered(body):
 	if body.has_method("hurt"):
 		print("achei")
 		body.hurt(self,10)
-
-
+		knockback_vector = global_position.direction_to(body.global_position) * sword_pushback_force * (-1)
+		var knockback_tween:= get_tree().create_tween()
+		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
 func _on_sword_up_area_body_entered(body):
 	if body.has_method("hurt"):
 		#print("achei")
 		body.hurt(self,10)
-
+		knockback_vector = global_position.direction_to(body.global_position) * sword_pushback_force * (-1)
+		var knockback_tween:= get_tree().create_tween()
+		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
 func handle_attack():
 	var damage_zone_side = sword_area_side.get_node("CollisionShape2D")
 	var damage_zone_up = sword_area_up.get_node("CollisionShape2D")
@@ -130,6 +132,17 @@ func _on_sword_side_area_area_entered(area):
 	if area.has_method("hurt"):
 		print("achei")
 		area.hurt(self,10)
+		knockback_vector = global_position.direction_to(area.global_position) * sword_pushback_force * (-1)
+		var knockback_tween:= get_tree().create_tween()
+		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
+
+func _on_sword_up_area_area_entered(area: Area2D) -> void:
+	if area.has_method("hurt"):
+		print("achei")
+		area.hurt(self,10)
+		knockback_vector = global_position.direction_to(area.global_position) * sword_pushback_force * (-1)
+		var knockback_tween:= get_tree().create_tween()
+		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
 
 func collect_coin():
 	cont_moedas += 1

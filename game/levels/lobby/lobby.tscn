@@ -456,9 +456,10 @@ energy = 1.72
 texture = SubResource("GradientTexture2D_3svs5")
 
 [node name="player" parent="." instance=ExtResource("1_i44mo")]
-position = Vector2(96, 35)
+position = Vector2(117, 1156)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
+offset = Vector2(0, -140)
 zoom = Vector2(1.5, 1.5)
 limit_left = -70
 limit_right = 733

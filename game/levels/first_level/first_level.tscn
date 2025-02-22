@@ -842,6 +842,7 @@ shape = SubResource("RectangleShape2D_ormi8")
 libraries = {
 "": SubResource("AnimationLibrary_ob8bs")
 }
+autoplay = "moving"
 
 [node name="plat_3" type="AnimatableBody2D" parent="mov_platforms"]
 position = Vector2(3179, -989)
