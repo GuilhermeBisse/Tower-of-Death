@@ -40,7 +40,7 @@ func transition():
 		#add to the other attack the chance that was removed, and remove the integer error.
 		for i in range(attack_chance.size()):
 			attack_chance[i] -= (current_chance-100)/attack_chance.size()
-			if attacks[i] != attack:
+			if attacks[i] != attack and chance_removed:
 				print(attacks[i]," : ", attack_chance[i])
 				attack_chance[i]+=chance_removed/attack_chance.size()
 		get_parent().change_state(attack)

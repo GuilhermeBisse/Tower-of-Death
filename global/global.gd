@@ -5,6 +5,14 @@ var current_camera: Camera2D
 var key_picked: bool = false
 var dash_picked: bool = false
 
+# ------------------------ #
+# DEATH DIALOGUE VARIABLES #
+# ------------------------ #
+
+var death_encounters = 0;
+var dead_count = 0;
+var is_talking = false
+
 
 func freeze_time(timeScale, duration):
 	Engine.time_scale = timeScale

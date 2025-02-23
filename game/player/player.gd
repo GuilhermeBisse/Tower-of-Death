@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var max_height_stairs = $MaxHeightStairs
 @onready var is_there_stairs = $IsThereStairs
 @onready var is_touching_floor = $IsTouchingFloor
+@onready var actionable_seeker = $ActionableSeeker
 
 
 
@@ -34,7 +35,7 @@ func _ready():
 	LifeBar.visible = false
 
 func _physics_process(delta):
-	if move_allowed:
+		
 		if is_on_floor():
 			can_dash = true
 		LifeBar.value = life
@@ -45,11 +46,8 @@ func _physics_process(delta):
 			velocity.y += gravity * delta
 			
 
-		# Handle jump.
-		elif Input.is_action_just_pressed("jump") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
 
-		direction = Input.get_axis("left", "right")
+		handle_input()
 		if knockback_vector == Vector2.ZERO:
 			if direction:
 				velocity.x = direction * SPEED
@@ -70,11 +68,13 @@ func handle_animation():
 		animation.flip_h = false
 		sword_area_side.scale.x = 1
 		is_there_stairs.scale.x = 1
+		actionable_seeker.position.x = 30
 		max_height_stairs.position.x = 14
 	elif velocity.x != 0 and Input.is_action_pressed("left"):
 		animation.flip_h = true
 		sword_area_side.scale.x = -1
 		is_there_stairs.scale.x = -1
+		actionable_seeker.position.x = -19
 		max_height_stairs.position.x = -11
 
 
@@ -85,6 +85,7 @@ func _on_area_2d_body_entered(body):
 		knockback_vector = global_position.direction_to(body.global_position) * sword_pushback_force * (-1)
 		var knockback_tween:= get_tree().create_tween()
 		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
+
 func _on_sword_up_area_body_entered(body):
 	if body.has_method("hurt"):
 		#print("achei")
@@ -92,6 +93,7 @@ func _on_sword_up_area_body_entered(body):
 		knockback_vector = global_position.direction_to(body.global_position) * sword_pushback_force * (-1)
 		var knockback_tween:= get_tree().create_tween()
 		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
+
 func handle_attack():
 	var damage_zone_side = sword_area_side.get_node("CollisionShape2D")
 	var damage_zone_up = sword_area_up.get_node("CollisionShape2D")
@@ -178,3 +180,14 @@ func _on_dash_upgrade_dash_picked() -> void:
 	animation_player.play("receiving_dash")
 	await animation_player.animation_finished
 	move_allowed= true
+
+func handle_input():
+	if move_allowed:
+		direction = Input.get_axis("left", "right")
+		var actionables = actionable_seeker.get_overlapping_areas()
+		if Input.is_action_just_pressed("interact") and actionables.size() > 0 and not Global.is_talking:
+			actionables[0].action()
+		# Handle jump.
+		elif Input.is_action_just_pressed("jump") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://bgsoxr6nsjbrr"]
+[gd_scene load_steps=62 format=3 uid="uid://bgsoxr6nsjbrr"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_glbys"]
 [ext_resource type="Texture2D" uid="uid://nr2565fatmm4" path="res://game/player/sprites/Run/Atlas-Run1.png" id="1_tvake"]
@@ -337,12 +337,16 @@ scale_min = 0.1
 scale_max = 0.3
 scale_curve = SubResource("CurveTexture_ivrhr")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02nui"]
+size = Vector2(37, 38)
+
 [node name="player" type="CharacterBody2D"]
 collision_mask = 15
 script = ExtResource("1_glbys")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_xettt")
 animation = &"Atlas_idle"
 autoplay = "Atlas_idle"
@@ -407,16 +411,6 @@ position = Vector2(1, 27)
 target_position = Vector2(0, 6)
 collision_mask = 2
 
-[node name="AllowJump" type="RayCast2D" parent="."]
-position = Vector2(8, 27)
-target_position = Vector2(0, 11)
-collision_mask = 2
-
-[node name="AllowJump2" type="RayCast2D" parent="."]
-position = Vector2(-5, 27)
-target_position = Vector2(0, 11)
-collision_mask = 2
-
 [node name="exploding_after_receiving" type="GPUParticles2D" parent="."]
 position = Vector2(2, -6)
 emitting = false
@@ -427,6 +421,16 @@ one_shot = true
 explosiveness = 0.85
 
 [node name="receiving_power_particle" parent="." instance=ExtResource("26_rwgup")]
+
+[node name="ActionableSeeker" type="Area2D" parent="."]
+position = Vector2(30, -10)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionableSeeker"]
+position = Vector2(-6.5, -1)
+shape = SubResource("RectangleShape2D_02nui")
+debug_color = Color(0.702388, 0.490781, 1.92523e-07, 0.42)
 
 [connection signal="area_entered" from="SwordSideArea" to="." method="_on_sword_side_area_area_entered"]
 [connection signal="body_entered" from="SwordSideArea" to="." method="_on_area_2d_body_entered"]
