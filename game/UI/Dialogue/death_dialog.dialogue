@@ -2,23 +2,23 @@
 ~ start
 set Global.is_talking = true
 if Global.death_encounters == 0:
-	Death : Olá Atlas!
-	Death : Bem... fico muito honrado quando um jovem decide me desafiar de forma tão estúpida.
-	Death : Tudo bem, use essa sua espadinha pra tentar atravessar meu castelo.
-	Death : Mas ja aviso desde já que não será simples.
+	Dona Morte : Olá Atlas!
+	Dona Morte : Bem... fico muito honrado quando um jovem decide me desafiar de forma tão estúpida.
+	Dona Morte : Tudo bem, use essa sua espadinha pra tentar atravessar meu castelo.
+	Dona Morte : Mas ja aviso desde já que não será simples.
 	set Global.death_encounters +=1
 elif Global.death_encounters == 1 and Global.dead_count == 0:
-	Death : Certo, ja pode ir já
+	Dona Morte : Certo, ja pode ir já
 	set Global.death_encounters +=1
 elif Global.death_encounters == 2 and Global.dead_count == 0:
-	Death : Sério mesmo...
+	Dona Morte : Sério mesmo...
 	set Global.death_encounters +=1
 elif Global.death_encounters > 2 and Global.dead_count == 0:
-	Death : ...
+	Dona Morte : ...
 	- Ei, diga alguma coisa
-		Death: Só entre no portal por favor...
+		Dona Morte: Só entre no portal por favor...
 	- Nossa, tu é feio pa burro aaaaaaa
-		Death: Obrigada.
+		Dona Morte: Obrigada.
 	set Global.death_encounters +=1
 set Global.is_talking = false
 => END

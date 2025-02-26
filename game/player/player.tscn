@@ -364,6 +364,7 @@ offset_bottom = -35.0
 theme_override_styles/background = SubResource("StyleBoxFlat_ksw4m")
 theme_override_styles/fill = SubResource("StyleBoxFlat_x8iou")
 value = 70.0
+rounded = true
 show_percentage = false
 
 [node name="SwordSideArea" type="Area2D" parent="."]

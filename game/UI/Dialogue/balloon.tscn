@@ -78,15 +78,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_qq3yp")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Balloon"]
-layout_mode = 1
-offset_left = 173.0
-offset_top = 70.0
-offset_right = 174.0
-offset_bottom = 70.0
-scale = Vector2(5.94122, 9.07841)
-theme_override_font_sizes/normal_font_size = 26
-
 [node name="MarginContainer" type="MarginContainer" parent="Balloon"]
 layout_mode = 0
 offset_right = 60.0
@@ -98,41 +89,38 @@ position = Vector2(433, 222)
 scale = Vector2(2.88667, 1.67333)
 texture = ExtResource("2_sb1f5")
 
-[node name="Dialogue" type="MarginContainer" parent="Balloon/BalloonTexture"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/BalloonTexture/Dialogue"]
-layout_mode = 2
-
-[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/BalloonTexture/Dialogue/VBoxContainer"]
+[node name="CharacterLabel" type="RichTextLabel" parent="Balloon"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
+offset_left = 176.0
+offset_top = 107.0
+offset_right = 1328.0
+offset_bottom = 135.0
 mouse_filter = 1
+theme_override_colors/table_border = Color(0, 0, 0, 1)
+theme_override_colors/table_even_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "Character"
 fit_content = true
 scroll_active = false
-
-[node name="DialogueLabel" parent="Balloon/BalloonTexture/Dialogue/VBoxContainer" instance=ExtResource("2_a8ve6")]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Dialogue..."
 
 [node name="DialogueLabel" parent="Balloon" instance=ExtResource("2_a8ve6")]
 unique_name_in_owner = true
 layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
-offset_left = 177.0
-offset_top = 117.0
-offset_right = 680.0
-offset_bottom = 245.0
+offset_left = 222.0
+offset_top = 142.0
+offset_right = 725.0
+offset_bottom = 270.0
+scale = Vector2(0.68, 0.68)
 size_flags_vertical = 3
 theme_override_colors/table_border = Color(0, 0, 0, 1)
 theme_override_colors/table_even_row_bg = Color(0, 0, 0, 1)

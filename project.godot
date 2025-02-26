@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 Global="*res://global/global.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+SceneTransition="*res://game/UI/scene_transition.tscn"
 
 [dialogue_manager]
 

@@ -123,11 +123,9 @@ func hurt(body,damage):
 			knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
 			
 	else:
+		LifeBar.value = 0
 		## TODO: GAME OVER
-		#queue_free()
-		#gameOver()
-		pass
-
+		gameOver()
 
 
 func _on_sword_side_area_area_entered(area):
@@ -151,8 +149,9 @@ func collect_coin():
 	#label.text = "Moedas: %d" % cont_moedas
 
 func gameOver():
-	queue_free()
-	get_tree().change_scene_to_file("res://game/UI/GameOver/GameOver.tscn")
+	set_physics_process(false)
+	
+	SceneTransition.change_scene("res://game/levels/lobby/lobby.tscn")
 
 func choose(array):
 	array.shuffle()
