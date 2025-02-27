@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bgsoxr6nsjbrr"]
+[gd_scene load_steps=68 format=3 uid="uid://bgsoxr6nsjbrr"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_glbys"]
 [ext_resource type="Texture2D" uid="uid://nr2565fatmm4" path="res://game/player/sprites/Run/Atlas-Run1.png" id="1_tvake"]
@@ -23,8 +23,11 @@
 [ext_resource type="Texture2D" uid="uid://c5lu0qmmtvppk" path="res://game/player/sprites/Idle/Atlas-Idle12.png" id="13_bygh6"]
 [ext_resource type="Texture2D" uid="uid://dvrcrayjvxltd" path="res://game/player/sprites/Idle/Atlas-Idle13.png" id="14_k171j"]
 [ext_resource type="PackedScene" uid="uid://51sw4yq2f4ql" path="res://game/particles/scene/ghost_spawner.tscn" id="23_foyyw"]
+[ext_resource type="Texture2D" uid="uid://dcfomfi0l6wmq" path="res://game/player/sprites/Attack/Atlas-atk1.png" id="23_hjelp"]
+[ext_resource type="Texture2D" uid="uid://dxxtud63olvpy" path="res://game/player/sprites/Attack/Atlas-atk2.png" id="24_5rp8b"]
 [ext_resource type="PackedScene" uid="uid://dlgo1exiwsoba" path="res://game/particles/scene/ghost.tscn" id="24_sj6qy"]
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="25_pjbwp"]
+[ext_resource type="Texture2D" uid="uid://cn3jbekf6a8yk" path="res://game/player/sprites/Attack/Atlas-atk3.png" id="25_sxipt"]
 [ext_resource type="PackedScene" uid="uid://cumvpgfebedbj" path="res://game/particles/scene/receiving_power_particle.tscn" id="26_rwgup"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4q5tp"]
@@ -111,6 +114,18 @@ region = Rect2(0, 0, 64, 64)
 atlas = ExtResource("8_2qxus")
 region = Rect2(0, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_db2ua"]
+atlas = ExtResource("23_hjelp")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_warr6"]
+atlas = ExtResource("24_5rp8b")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gskpa"]
+atlas = ExtResource("25_sxipt")
+region = Rect2(0, 0, 100, 100)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_xettt"]
 animations = [{
 "frames": [{
@@ -185,6 +200,20 @@ animations = [{
 "loop": true,
 "name": &"Atlas_run",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_db2ua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_warr6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gskpa")
+}],
+"loop": false,
+"name": &"Attack1",
+"speed": 9.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30y0u"]
@@ -197,7 +226,7 @@ bg_color = Color(0.624696, 0, 0.167078, 1)
 bg_color = Color(0, 0.361545, 0.202743, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hnlc7"]
-size = Vector2(77, 42)
+size = Vector2(25, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1qvv"]
 size = Vector2(40, 64)
@@ -348,9 +377,10 @@ script = ExtResource("1_glbys")
 texture_filter = 1
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_xettt")
-animation = &"Atlas_idle"
+animation = &"Attack1"
 autoplay = "Atlas_idle"
-frame_progress = 0.485127
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 1)
@@ -372,7 +402,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordSideArea"]
-position = Vector2(52.5, -11)
+position = Vector2(26.5, -3)
 shape = SubResource("RectangleShape2D_hnlc7")
 disabled = true
 debug_color = Color(0.945721, 0.213935, 0.248147, 0.42)

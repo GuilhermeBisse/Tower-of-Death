@@ -29,6 +29,7 @@ var direction
 var can_dash = false
 var move_allowed = true
 var sword_pushback_force = 30
+var is_attacking
 
 func _ready():
 	Global.global_player = self
@@ -60,9 +61,9 @@ func _physics_process(delta):
 		move_and_slide()
 
 func handle_animation():
-	if velocity.x == 0:
+	if velocity.x == 0 and not is_attacking:
 		animation.play("Atlas_idle")
-	elif velocity.x != 0:
+	elif velocity.x != 0 and not is_attacking:
 		animation.play("Atlas_run")
 	if velocity.x != 0 and Input.is_action_pressed("right"):
 		animation.flip_h = false
@@ -97,15 +98,22 @@ func _on_sword_up_area_body_entered(body):
 func handle_attack():
 	var damage_zone_side = sword_area_side.get_node("CollisionShape2D")
 	var damage_zone_up = sword_area_up.get_node("CollisionShape2D")
-	if Input.is_action_just_pressed("attack"):
+	
+	if Input.is_action_just_pressed("attack") and not is_attacking:
+		is_attacking = true
 		if Input.is_action_pressed("up"):
 			damage_zone_up.disabled = false
 			await get_tree().create_timer(0.3).timeout
 			damage_zone_up.disabled = true
 		else:
+			animation.play("Attack1")
 			damage_zone_side.disabled = false
-			await get_tree().create_timer(0.3).timeout
+			await animation.animation_finished
 			damage_zone_side.disabled = true
+			is_attacking = false
+			
+			
+			
 
 func hurt(body,damage):
 	if(life > damage):
@@ -150,7 +158,6 @@ func collect_coin():
 
 func gameOver():
 	set_physics_process(false)
-	
 	SceneTransition.change_scene("res://game/levels/lobby/lobby.tscn")
 
 func choose(array):
