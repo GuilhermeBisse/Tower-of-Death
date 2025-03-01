@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bgsoxr6nsjbrr"]
+[gd_scene load_steps=72 format=3 uid="uid://bgsoxr6nsjbrr"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_glbys"]
 [ext_resource type="Texture2D" uid="uid://nr2565fatmm4" path="res://game/player/sprites/Run/Atlas-Run1.png" id="1_tvake"]
@@ -29,6 +29,9 @@
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="25_pjbwp"]
 [ext_resource type="Texture2D" uid="uid://cn3jbekf6a8yk" path="res://game/player/sprites/Attack/Atlas-atk3.png" id="25_sxipt"]
 [ext_resource type="PackedScene" uid="uid://cumvpgfebedbj" path="res://game/particles/scene/receiving_power_particle.tscn" id="26_rwgup"]
+[ext_resource type="AudioStream" uid="uid://dq78exguh4010" path="res://game/sound/explosion3.sfxr" id="30_hop0w"]
+[ext_resource type="AudioStream" uid="uid://b41a4nx8qg2io" path="res://game/sound/rapid_slash.mp3" id="31_yasg0"]
+[ext_resource type="AudioStream" uid="uid://cpyc6ffi16lv5" path="res://game/sound/dashSound.mp3" id="32_0p8ua"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4q5tp"]
 atlas = ExtResource("2_a2ng3")
@@ -282,6 +285,36 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_7hidi"]
+resource_name = "death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.16667, 1.3),
+"transitions": PackedFloat32Array(1, 1, 0.000333507),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(100, 100, 100, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_death_particle"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_b2kt7"]
 resource_name = "hurt_animation"
 length = 0.3
@@ -341,6 +374,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_162de"]
 _data = {
 "RESET": SubResource("Animation_dnk2n"),
+"death": SubResource("Animation_7hidi"),
 "hurt_animation": SubResource("Animation_b2kt7"),
 "receiving_dash": SubResource("Animation_81u81")
 }
@@ -370,7 +404,7 @@ scale_curve = SubResource("CurveTexture_ivrhr")
 size = Vector2(37, 38)
 
 [node name="player" type="CharacterBody2D"]
-collision_mask = 15
+collision_mask = 11
 script = ExtResource("1_glbys")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
@@ -463,7 +497,36 @@ position = Vector2(-6.5, -1)
 shape = SubResource("RectangleShape2D_02nui")
 debug_color = Color(0.702388, 0.490781, 1.92523e-07, 0.42)
 
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("30_hop0w")
+
+[node name="SlashSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("31_yasg0")
+volume_db = -4.588
+pitch_scale = 1.41
+
+[node name="SlashSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("31_yasg0")
+volume_db = -4.588
+pitch_scale = 1.12
+
+[node name="DashSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("32_0p8ua")
+volume_db = 3.059
+pitch_scale = 1.06
+max_polyphony = 5
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="InvencibleTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
 [connection signal="area_entered" from="SwordSideArea" to="." method="_on_sword_side_area_area_entered"]
 [connection signal="body_entered" from="SwordSideArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="area_entered" from="SwordUpArea" to="." method="_on_sword_up_area_area_entered"]
 [connection signal="body_entered" from="SwordUpArea" to="." method="_on_sword_up_area_body_entered"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="InvencibleTimer" to="." method="_on_invencible_timer_timeout"]

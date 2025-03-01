@@ -38,7 +38,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func chase(delta):
-	if not dead:
+	if not dead and not Global.is_player_dead:
 		var dir = global_position.direction_to(player.global_position)
 		velocity = dir * SPEED * delta
 		handle_animation(dir)
@@ -60,6 +60,7 @@ func hurt(body, damage):
 	bounce_tween.parallel().tween_property(sprites,"rotation_degrees",0,0.2) \
 				.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 	
+	$HurtSound.play()
 	knockback_vector = global_position - body.global_position
 	var soul_instance = soul_particle.instantiate()
 	soul_instance.global_position = global_position
@@ -104,7 +105,7 @@ func dash():
 func _on_collision_area_body_entered(body):
 	if body==player:
 		body.hurt(self,10)
-		knockback_vector = (global_position - player.global_position) * 0.5
+		knockback_vector = player.global_position.direction_to(global_position) * 30
 		var knockback_tween:= get_tree().create_tween()
 		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
 
@@ -135,3 +136,6 @@ func create_bounce():
 	if bounce_tween and bounce_tween.is_running():
 		bounce_tween.kill()
 	bounce_tween = create_tween()
+
+func play_death_sound():
+	$DeathSound.play()

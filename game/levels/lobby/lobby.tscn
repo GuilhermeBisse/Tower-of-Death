@@ -618,13 +618,13 @@ tile_map_data = PackedByteArray("AAAsANr/AQAEAAoAAAAsANv/AQAEAAsAAAAsANz/AQAEAAw
 tile_set = SubResource("TileSet_d5g0m")
 
 [node name="Enemy1" parent="." instance=ExtResource("4_h380x")]
-position = Vector2(671, 1061)
+position = Vector2(-9, 644)
 
 [node name="StandingEnemy" parent="." instance=ExtResource("5_esq0l")]
-position = Vector2(343, 37.0001)
+position = Vector2(297, 14)
 
 [node name="Enemy2" parent="." instance=ExtResource("4_h380x")]
-position = Vector2(812, 1103)
+position = Vector2(61, 646)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nqegp")

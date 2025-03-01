@@ -5,15 +5,20 @@ const speed = 900.0
 const JUMP_VELOCITY = -400.0
 var is_chasing = false
 var is_attacking = false
+var is_player_dead = false
 var player
+var health = 60
 var player_on_spear_range = false
+var knockback_vector: Vector2 = Vector2.ZERO
+
+const HIT_PARTICLE = preload("res://game/particles/scene/hit_particle_2.tscn")
+
 @onready var walk_time = $WalkTime
 @onready var sight_ray_1 = $SightRay1
 @onready var spear_range = $SpearRange
 @onready var hit_box = $HitBox
 @onready var attack_delay = $AttackDelay
 @onready var animated_sprite_2d = $AnimatedSprite2D
-
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -29,8 +34,10 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	# Handle jump.
-	
-	velocity.x = dir * speed * delta
+	if knockback_vector != Vector2.ZERO:
+		velocity = knockback_vector
+	else:
+		velocity.x = dir * speed * delta
 	#print(velocity.x)
 	handle_movement()
 	handle_animation()
@@ -40,7 +47,7 @@ func _physics_process(delta):
 func _on_walk_time_timeout():
 	if !is_chasing and !is_attacking:
 		dir = 0
-		print("walked a little from idle")
+#		print("walked a little from idle")
 		walk_time.wait_time = choose([1,1.5,2])
 		dir = choose([-1,1,0.5,-0.5,0.25,-0.25,0,0,0])
 	
@@ -49,7 +56,7 @@ func choose(array):
 	return array.front()
 	
 func handle_animation():
-	print(velocity.x)
+#	print(velocity.x)
 	if velocity.x < -1:
 		sight_ray_1.scale.x = -1
 		hit_box.scale.x = -1
@@ -103,12 +110,14 @@ func _on_spear_range_body_exited(body):
 
 func _on_attack_delay_timeout():
 	if is_attacking:
-		print("attack delay finished")
+#		print("attack delay finished")
 		walk_time.stop()
 		var collision_shape = hit_box.get_node("CollisionShape2D")
 		animated_sprite_2d.play("attack")
 		await get_tree().create_timer(.2).timeout
 		collision_shape.disabled = false
+		if Global.is_player_dead:
+			return
 		await get_tree().create_timer(.1).timeout
 		collision_shape.disabled = true
 		if !player_on_spear_range:
@@ -121,11 +130,31 @@ func _on_attack_delay_timeout():
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("hurt"):
 		body.hurt(self,70)
-		
+
+func hurt(body,damage):
+	health-=damage
+	knockback_vector = body.global_position.direction_to(global_position) * 1000 + Vector2(0,-100)
+	var knockback_tween:= get_tree().create_tween()
+	knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
+	summon_hurt_particle()
+	
+	var sound = choose([$HurtSound1, $HurtSound2])
+	sound.playing = true
+	
+	if health<=0:
+		queue_free()
+	
 
 
 func _on_animation_changed():
 	#print("animation changed to:" + animated_sprite_2d.animation)
 	pass
 	
-	
+
+func summon_hurt_particle() -> void:
+	var instance = HIT_PARTICLE.instantiate()
+	instance.position = Vector2.ZERO
+	instance.emitting = true
+	var direction_player = global_position.direction_to(player.global_position)
+	instance.rotation = Vector2(direction_player.x, 0).angle() * (-1)
+	add_child(instance)

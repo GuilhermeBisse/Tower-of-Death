@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/show_underground.gd" id="7_20i7n"]
 [ext_resource type="Script" path="res://game/levels/first_level/acid_lake.gd" id="7_whji1"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/hide_underground.gd" id="8_jsls1"]
-[ext_resource type="Texture2D" uid="uid://dtifrla8i7604" path="res://game/map/plat_ghost.png" id="9_yo05n"]
+[ext_resource type="Texture2D" uid="uid://djr5wdvbi0ulh" path="res://game/map/ghost_down_cool.png" id="9_ub4ll"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/turn_on_off_set.gd" id="10_2h4w3"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/turn_off_off_set.gd" id="11_nbbgk"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/entering_arenas.gd" id="12_srut6"]
@@ -650,7 +650,7 @@ layer_3/z_index = 16
 layer_3/tile_data = PackedInt32Array(458793, 786433, 6, 524329, 786433, 7, 589865, 786433, 8, 524330, 851969, 7, 589866, 851969, 8, 524331, 917505, 7, 589867, 917505, 8, 524332, 983041, 7, 589868, 983041, 8, 393261, 1048577, 5, 458797, 1048577, 6, 524333, 1048577, 7, 589869, 1048577, 8, 458786, 786433, 6, 524322, 786433, 7, 589858, 786433, 8, 524323, 851969, 7, 589859, 851969, 8, 524324, 917505, 7, 589860, 917505, 8, 524325, 983041, 7, 589861, 983041, 8, 393254, 1048577, 5, 458790, 1048577, 6, 524326, 1048577, 7, 589862, 1048577, 8, 458773, 786433, 6, 524309, 786433, 7, 589845, 786433, 8, 524310, 851969, 7, 589846, 851969, 8, 524311, 917505, 7, 589847, 917505, 8, 524312, 983041, 7, 589848, 983041, 8, 393241, 1048577, 5, 458777, 1048577, 6, 524313, 1048577, 7, 589849, 1048577, 8, -1048568, 786433, 6, -983032, 786433, 7, -917496, 786433, 8, -983031, 851969, 7, -917495, 851969, 8, -983030, 917505, 7, -917494, 917505, 8, -983029, 983041, 7, -917493, 983041, 8, -1114100, 1048577, 5, -1048564, 1048577, 6, -983028, 1048577, 7, -917492, 1048577, 8, -1048560, 786433, 6, -983024, 786433, 7, -917488, 786433, 8, -983023, 851969, 7, -917487, 851969, 8, -983022, 917505, 7, -917486, 917505, 8, -983021, 983041, 7, -917485, 983041, 8, -1114092, 1048577, 5, -1048556, 1048577, 6, -983020, 1048577, 7, -917484, 1048577, 8)
 
 [node name="player" parent="." instance=ExtResource("2_j0sdp")]
-position = Vector2(7046, -2265)
+position = Vector2(6766, -2556)
 
 [node name="CameraGuide" type="Marker2D" parent="player"]
 script = ExtResource("4_1u4nr")
@@ -826,8 +826,9 @@ libraries = {
 autoplay = "moving"
 
 [node name="Sprite2D" type="Sprite2D" parent="mov_platforms/plat_1"]
-position = Vector2(-190, -2197)
-texture = ExtResource("9_yo05n")
+position = Vector2(2, 35)
+scale = Vector2(1.08, 1.08)
+texture = ExtResource("9_ub4ll")
 
 [node name="plat_2" type="AnimatableBody2D" parent="mov_platforms"]
 position = Vector2(-268, -414)

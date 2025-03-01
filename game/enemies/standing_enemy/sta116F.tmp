@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://7wlia6j3uw4f"]
+[gd_scene load_steps=43 format=3 uid="uid://7wlia6j3uw4f"]
 
 [ext_resource type="Script" path="res://game/enemies/standing_enemy/StandingEnemy.gd" id="1_3uqiy"]
 [ext_resource type="Texture2D" uid="uid://iwv1w6rwaih6" path="res://game/enemies/standing_enemy/sprites/Attack/eisqueleto-ataque-centralizado6.png" id="2_eb7gi"]
@@ -19,8 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://n3jf3bn4ymsm" path="res://game/enemies/standing_enemy/sprites/Walking/Eisqueleto-walking5.png" id="17_w4syw"]
 [ext_resource type="Texture2D" uid="uid://xwtnq6ssy0oo" path="res://game/enemies/standing_enemy/sprites/Walking/Eisqueleto-walking6.png" id="18_lyxf0"]
 [ext_resource type="Texture2D" uid="uid://cjytgjnsjs81t" path="res://game/enemies/standing_enemy/sprites/Walking/Eisqueleto-walking8.png" id="19_gunvl"]
-[ext_resource type="AudioStream" uid="uid://q8tbxanokfuu" path="res://game/sound/hitting-enemy2.sfxr" id="20_a3aid"]
-[ext_resource type="AudioStream" uid="uid://bgda1pfpangi4" path="res://game/sound/hitting-enemy.sfxr" id="21_ekb5o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pingi"]
 atlas = ExtResource("2_eb7gi")
@@ -187,67 +185,6 @@ size = Vector2(142.932, 25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ywmt5"]
 size = Vector2(168.307, 32.0848)
 
-[sub_resource type="Animation" id="Animation_dah13"]
-resource_name = "hurt"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0666667, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.1896, 0.79, 0.509813, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.0666667, 0.3),
-"transitions": PackedFloat32Array(1e-05, 1.02837),
-"update": 0,
-"values": [Color(10, 10, 10, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_x6tt6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_uu4ys"]
-_data = {
-"RESET": SubResource("Animation_x6tt6"),
-"hurt": SubResource("Animation_dah13")
-}
-
 [node name="StandingEnemy" type="CharacterBody2D"]
 scale = Vector2(0.536931, 0.536931)
 collision_layer = 4
@@ -260,8 +197,8 @@ position = Vector2(0, 1.86244)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_cehwy")
 animation = &"attack"
-frame = 5
-frame_progress = 1.0
+frame = 2
+frame_progress = 0.997542
 
 [node name="SightRay1" type="RayCast2D" parent="."]
 position = Vector2(0, -36)
@@ -299,17 +236,6 @@ autostart = true
 [node name="AttackDelay" type="Timer" parent="."]
 wait_time = 0.37
 one_shot = true
-
-[node name="HurtSound1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("20_a3aid")
-
-[node name="HurtSound2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("21_ekb5o")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_uu4ys")
-}
 
 [connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animation_changed"]
 [connection signal="body_entered" from="SpearRange" to="." method="_on_spear_range_body_entered"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtifrla8i7604"
-path="res://.godot/imported/plat_ghost.png-1e00757e97bb35f9828ac5ea284a6998.ctex"
+uid="uid://djr5wdvbi0ulh"
+path="res://.godot/imported/ghost_down_cool.png-f1421591f8738e0669b555715dd683a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/map/plat_ghost.png"
-dest_files=["res://.godot/imported/plat_ghost.png-1e00757e97bb35f9828ac5ea284a6998.ctex"]
+source_file="res://game/map/ghost_down_cool.png"
+dest_files=["res://.godot/imported/ghost_down_cool.png-f1421591f8738e0669b555715dd683a3.ctex"]
 
 [params]
 
