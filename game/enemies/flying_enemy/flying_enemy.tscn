@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://cpquxniph78fw" path="res://game/sound/explosion2.sfxr" id="7_yglvq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eb0je"]
-radius = 17.0
+radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qncv4"]
 radius = 576.014

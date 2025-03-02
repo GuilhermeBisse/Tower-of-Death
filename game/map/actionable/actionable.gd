@@ -6,10 +6,9 @@ extends Area2D
 
 const BALLOON = preload("res://game/UI/Dialogue/balloon.tscn")
 
-var is_talking = false
-
 func action() -> void:
 	var balloon: Node = BALLOON.instantiate()
 	get_tree().current_scene.add_child(balloon)
 	balloon.start(dialogue_resource, dialogue_start)
+	balloon
 	

@@ -39,6 +39,7 @@ func _ready():
 	animation_player.play("RESET")
 	Global.is_player_dead = false
 	can_be_hitted = true
+	Global.death_encounters = 0
 
 func _physics_process(delta):
 	if move_allowed:
@@ -86,17 +87,15 @@ func _on_area_2d_body_entered(body):
 	if body.has_method("hurt"):
 		print("achei")
 		body.hurt(self,10)
-		knockback_vector = global_position.direction_to(body.global_position) * sword_pushback_force * (-1)
-		var knockback_tween:= get_tree().create_tween()
-		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
+		var direction_body = global_position.direction_to(body.global_position)
+		knockback_vector = (Vector2(direction_body.x, 0)*(-1)) * sword_pushback_force + Vector2(0,-5)
+		var knockback_tween = get_tree().create_tween()
+		knockback_tween.tween_property(self,"knockback_vector",Vector2.ZERO,0.2)
 
 func _on_sword_up_area_body_entered(body):
 	if body.has_method("hurt"):
 		#print("achei")
 		body.hurt(self,10)
-		knockback_vector = global_position.direction_to(body.global_position) * sword_pushback_force * (-1)
-		var knockback_tween:= get_tree().create_tween()
-		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
 
 func handle_attack():
 	var damage_zone_side = sword_area_side.get_node("CollisionShape2D")
@@ -123,7 +122,7 @@ func handle_attack():
 			
 
 func hurt(body,damage):
-	if can_be_hitted:
+	if can_be_hitted and not Global.is_player_dead:
 		if(Global.player_health > damage):
 			can_be_hitted = false
 			print("now player is invencible")
@@ -153,17 +152,16 @@ func _on_sword_side_area_area_entered(area):
 	if area.has_method("hurt"):
 		print("achei")
 		area.hurt(self,10)
-		knockback_vector = global_position.direction_to(area.global_position) * sword_pushback_force * (-1)
-		var knockback_tween:= get_tree().create_tween()
-		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
+		var direction_area = global_position.direction_to(area.global_position)
+		knockback_vector = (Vector2(direction_area.x, 0)*(-1)) * sword_pushback_force + Vector2(0,-100)
+		var knockback_tween = get_tree().create_tween()
+		knockback_tween.tween_property(self,"knockback_vector",Vector2.ZERO,0.2)
 
 func _on_sword_up_area_area_entered(area: Area2D) -> void:
 	if area.has_method("hurt"):
 		print("achei")
 		area.hurt(self,10)
-		knockback_vector = global_position.direction_to(area.global_position) * sword_pushback_force * (-1)
-		var knockback_tween:= get_tree().create_tween()
-		knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
+		#Sword up dont cause knockback ;D
 
 func collect_coin():
 	cont_moedas += 1
@@ -171,12 +169,15 @@ func collect_coin():
 
 func gameOver():
 	Global.is_player_dead = true
+	Global.dead_count+=1
+	print(Global.dead_count)
 	animation_player.play("death")
 	await get_tree().create_timer(0.2).timeout
 	set_physics_process(false)
 	await animation_player.animation_finished
 	SceneTransition.change_scene("res://game/levels/lobby/lobby.tscn")
 	Global.player_health = 100
+	
 
 func choose(array):
 	array.shuffle()
@@ -214,6 +215,7 @@ func handle_input():
 		var actionables = actionable_seeker.get_overlapping_areas()
 		if Input.is_action_just_pressed("interact") and actionables.size() > 0 and not Global.is_talking:
 			actionables[0].action()
+			print(Global.dead_count, ", ", Global.death_encounters)
 		# Handle jump.
 		elif Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY

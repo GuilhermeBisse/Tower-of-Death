@@ -14,6 +14,7 @@ var player_health: int = 100
 var death_encounters = 0;
 var dead_count = 0;
 var is_talking = false
+var talked_first_timer: bool = false
 
 
 func freeze_time(timeScale, duration):

@@ -84,6 +84,9 @@ func handle_movement():
 			walk_time.stop()
 			#current_state = state.CHASING
 	
+	if Global.is_player_dead:
+		is_chasing = false
+	
 	if is_chasing and !player_on_spear_range and !is_attacking and last_animation != "transition_to_attack":
 		
 		dir = position.direction_to(player.global_position).x * 5
@@ -137,7 +140,7 @@ func hurt(body,damage):
 	var knockback_tween:= get_tree().create_tween()
 	knockback_tween.tween_property(self,"knockback_vector", Vector2.ZERO,0.25)
 	summon_hurt_particle()
-	
+	$AnimationPlayer.play("hurt")
 	var sound = choose([$HurtSound1, $HurtSound2])
 	sound.playing = true
 	
@@ -156,5 +159,5 @@ func summon_hurt_particle() -> void:
 	instance.position = Vector2.ZERO
 	instance.emitting = true
 	var direction_player = global_position.direction_to(player.global_position)
-	instance.rotation = Vector2(direction_player.x, 0).angle() * (-1)
+	instance.rotation = (Vector2(direction_player.x, 0)*(-1)).angle()
 	add_child(instance)

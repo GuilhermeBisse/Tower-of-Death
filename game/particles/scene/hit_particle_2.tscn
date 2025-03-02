@@ -15,8 +15,8 @@ direction = Vector3(3, -1, 0)
 initial_velocity_min = 135.14
 initial_velocity_max = 216.22
 gravity = Vector3(0, 98, 0)
-scale_min = 0.01
-scale_max = 0.1
+scale_min = 0.07
+scale_max = 0.5
 color_initial_ramp = SubResource("GradientTexture1D_evl4p")
 
 [node name="HitParticle2" type="GPUParticles2D"]
