@@ -265,7 +265,7 @@ frame_progress = 1.0
 
 [node name="SightRay1" type="RayCast2D" parent="."]
 position = Vector2(0, -36)
-target_position = Vector2(357, -1)
+target_position = Vector2(1799.11, 62.0741)
 collision_mask = 3
 
 [node name="hurtbox" type="CollisionShape2D" parent="."]

@@ -759,7 +759,7 @@ tile_set = SubResource("TileSet_d5g0m")
 position = Vector2(191, 1064)
 
 [node name="StandingEnemy" parent="." instance=ExtResource("5_esq0l")]
-position = Vector2(193, -5.99997)
+position = Vector2(263, 939)
 
 [node name="Enemy2" parent="." instance=ExtResource("4_h380x")]
 position = Vector2(89, 1082)

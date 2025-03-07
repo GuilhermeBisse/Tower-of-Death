@@ -28,7 +28,7 @@ elif Global.death_encounters == 0 and Global.dead_count == 1:
 elif Global.death_encounters == 0 and Global.dead_count == 2 and Global.talked_first_time:
 	Dona Morte: O que foi? Eu te avisei, não avisei?
 	set Global.death_encounters +=1
-elif Global.death_encounters == 0 and Global.dead_count == 2:
+elif Global.death_encounters == 0 and Global.dead_count == 2 and not Global.talked_first_time:
 	Dona Morte: Vai lá mal educado. 
 	Dona Morte: Chegou, passou reto e perdeu dicas importantes que eu costumo passar...
 	set Global.death_encounters +=1

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var anim = $anim
 const SPEED = 10000.0
-var health = 30
+var health = 20
 var gravity = 0.0
 var player
 var dead = false
