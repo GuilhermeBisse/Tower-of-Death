@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://owgvu4xqpji4"]
+[gd_scene load_steps=115 format=3 uid="uid://owgvu4xqpji4"]
 
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://game/map/tileset.png" id="1_nx72r"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="2_j0sdp"]
@@ -24,13 +24,14 @@
 [ext_resource type="Script" path="res://game/levels/first_level/arenas.gd" id="14_mb0hh"]
 [ext_resource type="Script" path="res://game/levels/first_level/arena_1.gd" id="15_l7dfb"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/finishing_arenas.gd" id="15_m16xd"]
-[ext_resource type="PackedScene" uid="uid://c2hcqohgaw0t5" path="res://game/enemies/flying_enemy/flying_enemy.tscn" id="16_cdp6x"]
 [ext_resource type="Script" path="res://game/levels/first_level/arena_2.gd" id="16_lgjcv"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/platform_parkour_up_enter.gd" id="16_ypj6l"]
 [ext_resource type="Script" path="res://game/UI/CameraChangingAreas/plataform_parkour_up_exit.gd" id="17_yw2pv"]
 [ext_resource type="Script" path="res://game/levels/first_level/UpgradeMovementPath.gd" id="24_02rkj"]
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="24_tyfui"]
-[ext_resource type="PackedScene" uid="uid://7wlia6j3uw4f" path="res://game/enemies/standing_enemy/standing_enemy.tscn" id="28_kep0i"]
+[ext_resource type="PackedScene" uid="uid://d4c2d23qet6ui" path="res://game/enemies/enemy_summoner/enemy_summoner.tscn" id="27_rr4bo"]
+[ext_resource type="PackedScene" uid="uid://7wlia6j3uw4f" path="res://game/enemies/standing_enemy/standing_enemy.tscn" id="31_ql4wn"]
+[ext_resource type="PackedScene" uid="uid://c2hcqohgaw0t5" path="res://game/enemies/flying_enemy/flying_enemy.tscn" id="32_nepk0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5ibj"]
 texture = ExtResource("3_3n3w6")
@@ -828,6 +829,9 @@ size = Vector2(1410, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovws3"]
 size = Vector2(1438.5, 11.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yofho"]
+size = Vector2(128, 23)
+
 [sub_resource type="Curve2D" id="Curve2D_4decj"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 6414, -2306, 0, 0, 0, 0, 6407, -2268, 0, 0, 0, 0, 6436, -2241, 0, 0, 0, 0, 6465, -2245, 0, 0, 0, 0, 6486, -2262, 0, 0, 0, 0, 6496, -2285, 0, 0, 0, 0, 6522, -2305, 0, 0, 0, 0, 6558, -2297, 0, 0, 0, 0, 6577, -2264, 0, 0, 0, 0, 6571, -2243, 0, 0, 0, 0, 6538, -2235, 0, 0, 0, 0, 6517, -2245, 0, 0, 0, 0, 6473, -2292, 0, 0, 0, 0, 6449, -2307, 0, 0, 0, 0, 6414, -2306)
@@ -915,7 +919,7 @@ layer_3/z_index = 16
 layer_3/tile_data = PackedInt32Array(458793, 786433, 6, 524329, 786433, 7, 589865, 786433, 8, 524330, 851969, 7, 589866, 851969, 8, 524331, 917505, 7, 589867, 917505, 8, 524332, 983041, 7, 589868, 983041, 8, 393261, 1048577, 5, 458797, 1048577, 6, 524333, 1048577, 7, 589869, 1048577, 8, 458786, 786433, 6, 524322, 786433, 7, 589858, 786433, 8, 524323, 851969, 7, 589859, 851969, 8, 524324, 917505, 7, 589860, 917505, 8, 524325, 983041, 7, 589861, 983041, 8, 393254, 1048577, 5, 458790, 1048577, 6, 524326, 1048577, 7, 589862, 1048577, 8, 458773, 786433, 6, 524309, 786433, 7, 589845, 786433, 8, 524310, 851969, 7, 589846, 851969, 8, 524311, 917505, 7, 589847, 917505, 8, 524312, 983041, 7, 589848, 983041, 8, 393241, 1048577, 5, 458777, 1048577, 6, 524313, 1048577, 7, 589849, 1048577, 8, -1048568, 786433, 6, -983032, 786433, 7, -917496, 786433, 8, -983031, 851969, 7, -917495, 851969, 8, -983030, 917505, 7, -917494, 917505, 8, -983029, 983041, 7, -917493, 983041, 8, -1114100, 1048577, 5, -1048564, 1048577, 6, -983028, 1048577, 7, -917492, 1048577, 8, -1048560, 786433, 6, -983024, 786433, 7, -917488, 786433, 8, -983023, 851969, 7, -917487, 851969, 8, -983022, 917505, 7, -917486, 917505, 8, -983021, 983041, 7, -917485, 983041, 8, -1114092, 1048577, 5, -1048556, 1048577, 6, -983020, 1048577, 7, -917484, 1048577, 8)
 
 [node name="player" parent="." instance=ExtResource("2_j0sdp")]
-position = Vector2(361, 282)
+position = Vector2(-1224, 1007)
 
 [node name="CameraGuide" type="Marker2D" parent="player"]
 script = ExtResource("4_1u4nr")
@@ -923,7 +927,6 @@ script = ExtResource("4_1u4nr")
 [node name="Camera2D" type="Camera2D" parent="player/CameraGuide"]
 zoom = Vector2(1.5, 1.5)
 limit_top = -2692
-limit_bottom = 590
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("5_aufkj")
@@ -1440,11 +1443,39 @@ position = Vector2(-1356, 216)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("15_l7dfb")
-enemies = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ARENAS/Arena1"]
 position = Vector2(-3.5, 18.5)
 shape = SubResource("RectangleShape2D_oji2h")
+
+[node name="EnemySummoners" type="Node2D" parent="ARENAS/Arena1"]
+
+[node name="EnemySummoner" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(-233.045, 134)
+enemy_type = 2
+
+[node name="EnemySummoner2" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(333, 186)
+enemy_type = 1
+
+[node name="EnemySummoner3" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(220, -51)
+enemy_type = 2
+
+[node name="EnemySummoner4" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(-513, -34)
+enemy_type = 2
+
+[node name="EnemySummoner5" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(-449, 170)
+enemy_type = 1
+
+[node name="EnemySummoner6" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(424, 9)
+enemy_type = 2
+
+[node name="Enemies" type="Node2D" parent="ARENAS/Arena1"]
+position = Vector2(1360, -209)
 
 [node name="Arena2" type="Area2D" parent="ARENAS"]
 collision_layer = 5
@@ -1458,9 +1489,6 @@ shape = SubResource("RectangleShape2D_scpvs")
 
 [node name="Arena1_enemies" type="Node" parent="ARENAS"]
 
-[node name="FlyingEnemy5" parent="ARENAS/Arena1_enemies" instance=ExtResource("16_cdp6x")]
-position = Vector2(-965, 192)
-
 [node name="Path2D" type="Path2D" parent="ARENAS"]
 curve = SubResource("Curve2D_2lxul")
 
@@ -1469,7 +1497,8 @@ position = Vector2(-1368, 1167)
 rotation = -1.56085
 
 [node name="Floor" type="StaticBody2D" parent="ARENAS"]
-collision_layer = 5
+collision_layer = 7
+collision_mask = 7
 
 [node name="Floor1" type="CollisionShape2D" parent="ARENAS/Floor"]
 position = Vector2(-1356, 554.938)
@@ -1486,12 +1515,16 @@ position = Vector2(-1366, -1416)
 shape = SubResource("RectangleShape2D_ovws3")
 debug_color = Color(0.424142, 0.23854, 0.00859033, 0.42)
 
-[node name="FlyingEnemy" parent="ARENAS" instance=ExtResource("16_cdp6x")]
-position = Vector2(-1350, -819)
-
 [node name="Arena3_Timer" type="Timer" parent="ARENAS"]
 wait_time = 3.0
 one_shot = true
+
+[node name="enemy_spawn_trigger1" type="Area2D" parent="ARENAS"]
+position = Vector2(-1365, 827)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ARENAS/enemy_spawn_trigger1"]
+position = Vector2(-1, 1.5)
+shape = SubResource("RectangleShape2D_yofho")
 
 [node name="DashUpgrade" type="Path2D" parent="."]
 position = Vector2(79, 4)
@@ -1513,27 +1546,6 @@ texture = ExtResource("24_tyfui")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DashUpgrade/PathFollow2D/DashUpgradeArea"]
 shape = SubResource("CircleShape2D_un7py")
-
-[node name="StandingEnemy" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(7106, -2282)
-
-[node name="FlyingEnemy" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(3318, 2045)
-
-[node name="FlyingEnemy2" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(3621, 2627)
-
-[node name="FlyingEnemy3" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(3133, 2529)
-
-[node name="FlyingEnemy4" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(3876, 2116)
-
-[node name="FlyingEnemy5" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(3695, 2465)
-
-[node name="FlyingEnemy6" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(2833, 2139)
 
 [node name="Lights" type="Node2D" parent="."]
 
@@ -1867,89 +1879,17 @@ range_layer_max = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_qtiig")
 
-[node name="StandingEnemy2" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(-2000, 409)
+[node name="StandingEnemy" parent="." instance=ExtResource("31_ql4wn")]
+position = Vector2(4932, -1926)
 
-[node name="StandingEnemy3" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(-1889, 447)
+[node name="FlyingEnemy" parent="." instance=ExtResource("32_nepk0")]
+position = Vector2(1882, -2026)
 
-[node name="StandingEnemy4" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(-971, 437)
+[node name="FlyingEnemy2" parent="." instance=ExtResource("32_nepk0")]
+position = Vector2(2053, -1798)
 
-[node name="StandingEnemy5" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(-802, 428)
-
-[node name="FlyingEnemy7" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(-1879, 192)
-
-[node name="FlyingEnemy8" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(-1732, 76)
-
-[node name="FlyingEnemy9" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(-785, 145)
-
-[node name="StandingEnemy6" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(-1975, -625)
-
-[node name="StandingEnemy7" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(-1783, -761)
-
-[node name="StandingEnemy8" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(-2007, -837)
-
-[node name="StandingEnemy9" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(-943, -657)
-
-[node name="StandingEnemy10" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(-763, -621)
-
-[node name="StandingEnemy11" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(-1091, -669)
-
-[node name="FlyingEnemy10" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(-891, -861)
-
-[node name="FlyingEnemy11" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(-727, -845)
-
-[node name="FlyingEnemy12" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(-831, -929)
-
-[node name="FlyingEnemy13" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(-1847, -925)
-
-[node name="FlyingEnemy14" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(-1903, -741)
-
-[node name="FlyingEnemy15" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(1335, 259)
-
-[node name="StandingEnemy12" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(1867, 387)
-
-[node name="FlyingEnemy16" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(1833, -1658)
-
-[node name="FlyingEnemy17" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(2011, -1732)
-
-[node name="FlyingEnemy18" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(2192, -1330)
-
-[node name="FlyingEnemy19" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(2175, -2213)
-
-[node name="FlyingEnemy20" parent="." instance=ExtResource("16_cdp6x")]
-position = Vector2(1841, -2329)
-
-[node name="StandingEnemy13" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(1929, -1898)
-
-[node name="StandingEnemy14" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(2093, -2167)
-
-[node name="StandingEnemy15" parent="." instance=ExtResource("28_kep0i")]
-position = Vector2(1929, -1533)
+[node name="StandingEnemy2" parent="." instance=ExtResource("31_ql4wn")]
+position = Vector2(1996, -1139)
 
 [connection signal="body_entered" from="AcidLake" to="AcidLake" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/ShowUnderground" to="CameraChangeArea/ShowUnderground" method="_on_body_entered"]
@@ -1968,12 +1908,15 @@ position = Vector2(1929, -1533)
 [connection signal="body_entered" from="CameraChangeArea/PlataformParkourUpExit3" to="CameraChangeArea/PlataformParkourUpExit3" method="_on_body_entered"]
 [connection signal="body_entered" from="DoorBoss" to="DoorBoss" method="_on_body_entered"]
 [connection signal="body_entered" from="Key" to="Key" method="_on_body_entered"]
+[connection signal="arena1_start" from="ARENAS" to="ARENAS/Arena1" method="_on_arenas_arena_1_start"]
 [connection signal="body_entered" from="ARENAS/platform/player_seeker" to="ARENAS" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="ARENAS/platform/player_seeker" to="ARENAS" method="_on_area_2d_body_exited"]
 [connection signal="arena_1_cleared" from="ARENAS/Arena1" to="ARENAS" method="_on_arena_1_arena_1_cleared"]
+[connection signal="body_entered" from="ARENAS/Arena1" to="ARENAS/Arena1" method="_on_body_entered"]
 [connection signal="body_exited" from="ARENAS/Arena1" to="ARENAS/Arena1" method="_on_body_exited"]
 [connection signal="arena_2_cleared" from="ARENAS/Arena2" to="ARENAS" method="_on_arena_2_arena_2_cleared"]
 [connection signal="body_exited" from="ARENAS/Arena2" to="ARENAS/Arena2" method="_on_body_exited"]
 [connection signal="timeout" from="ARENAS/Arena3_Timer" to="ARENAS" method="_on_arena_3_timer_timeout"]
+[connection signal="body_entered" from="ARENAS/enemy_spawn_trigger1" to="ARENAS" method="_on_enemy_spawn_trigger_1_body_entered"]
 [connection signal="dash_picked" from="DashUpgrade" to="player" method="_on_dash_upgrade_dash_picked"]
 [connection signal="body_entered" from="DashUpgrade/PathFollow2D/DashUpgradeArea" to="DashUpgrade" method="_on_dash_upgrade_area_body_entered"]

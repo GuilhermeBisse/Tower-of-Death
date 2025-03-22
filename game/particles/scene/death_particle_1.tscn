@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsjkmdntn8p43"]
+[gd_scene load_steps=9 format=3 uid="uid://bsjkmdntn8p43"]
+
+[ext_resource type="Script" path="res://game/particles/script/death_particle_1.gd" id="1_niei5"]
 
 [sub_resource type="Gradient" id="Gradient_j0aoh"]
 offsets = PackedFloat32Array(0, 0.313726)
@@ -39,3 +41,4 @@ color_initial_ramp = SubResource("GradientTexture1D_ypn6i")
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_fx4ph")
 explosiveness = 0.87
+script = ExtResource("1_niei5")

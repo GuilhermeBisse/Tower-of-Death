@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6mddjrfwbpkr"]
+[gd_scene load_steps=10 format=3 uid="uid://c6mddjrfwbpkr"]
 
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="1_rfumb"]
+[ext_resource type="Script" path="res://game/particles/script/death_enemy_explosion_particle.gd" id="2_jbyb5"]
 
 [sub_resource type="Gradient" id="Gradient_rklww"]
 offsets = PackedFloat32Array(0.0147059, 0.176471)
@@ -47,3 +48,4 @@ texture = ExtResource("1_rfumb")
 lifetime = 2.0
 one_shot = true
 explosiveness = 0.85
+script = ExtResource("2_jbyb5")

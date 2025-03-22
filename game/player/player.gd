@@ -18,7 +18,7 @@ extends CharacterBody2D
 
 
 const SPEED = 250.0
-const JUMP_VELOCITY = -470.0
+const JUMP_VELOCITY = -900.0 #-470
 const CROSS_HIT = preload("res://game/particles/scene/cross_hit.tscn")
 const DEATH_PARTICLE_ATLAS = preload("res://game/particles/scene/death_particle_atlas.tscn")
 
@@ -31,7 +31,7 @@ var move_allowed = true
 var sword_pushback_force = 30
 var is_attacking
 var is_dash_timer_finished = true
-var can_be_hitted = true
+var can_be_hitted = false
 
 func _ready():
 	Global.global_player = self
@@ -233,4 +233,4 @@ func _on_dash_timer_timeout():
 
 func _on_invencible_timer_timeout():
 	print("now player can be hitted!")
-	can_be_hitted = true
+	#can_be_hitted = true

@@ -4,11 +4,16 @@ enum Enemies{NONE, STANDING, FLYING }
 
 @export var enemy_type: Enemies
 
+var already_spawned = false
+
 const FLYING_ENEMY = preload("res://game/enemies/flying_enemy/flying_enemy.tscn")
 const STANDING_ENEMY = preload("res://game/enemies/standing_enemy/standing_enemy.tscn")
 
 
 func spawn_enemy() -> void:
+	#print("enemy spawned")
+	if already_spawned:
+		return
 	var instance
 	if enemy_type == Enemies.NONE:
 		return
@@ -16,5 +21,7 @@ func spawn_enemy() -> void:
 		instance = STANDING_ENEMY.instantiate()
 	if enemy_type == Enemies.FLYING:
 		instance = FLYING_ENEMY.instantiate()
-	instance.position = Vector2.ZERO
-	get_parent().add_child(instance)
+	instance.global_position = global_position
+	print("enemy spawned")
+	already_spawned = true
+	get_parent().get_parent().get_node("Enemies").add_child(instance)

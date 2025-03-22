@@ -9,10 +9,14 @@ extends Node
 @onready var platform_seeking_player: CollisionShape2D = $platform/player_seeker/CollisionShape2D
 @onready var arena_3_timer: Timer = $Arena3_Timer
 @onready var camera: Camera2D = $"../player/CameraGuide/Camera2D"
+@onready var enemy_summoners: Node = $Arena1/EnemySummoners
+@onready var enemy_spawn_trigger_1: Area2D = $enemy_spawn_trigger1
 
 enum PlatformStatus {WAITING,STOP, UP, DOWN}
 var arenas_cleared = 0;
 var current_platform_status: PlatformStatus
+
+signal arena1_start
 
 func _ready() -> void:
 	floor_1.disabled = true
@@ -27,6 +31,7 @@ func _physics_process(delta: float) -> void:
 			if platform_path_follower.progress_ratio <= 0.168:
 				platform_path_follower.progress_ratio += 0.001
 			else:
+				
 				current_platform_status = PlatformStatus.STOP
 				floor_1.disabled = false
 				platform_seeking_player.disabled = true
@@ -101,3 +106,8 @@ func _on_arena_3_timer_timeout() -> void:
 	current_platform_status = PlatformStatus.WAITING
 	platform_seeking_player.disabled = false
 	print("arena 3 cleared")
+
+
+func _on_enemy_spawn_trigger_1_body_entered(body: Node2D) -> void:
+	enemy_spawn_trigger_1.get_node("CollisionShape2D").disabled = true
+	arena1_start.emit()
