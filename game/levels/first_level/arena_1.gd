@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 		arena_1_cleared.emit()
 
 
-func _on_arenas_arena_1_start() -> void:
+func _on_enemy_spawn_trigger_1_body_entered(body: Node2D) -> void:
 	for summoner in enemy_summoners.get_children(false):
 		summoner.spawn_enemy()
 	started = true

@@ -16,7 +16,6 @@ enum PlatformStatus {WAITING,STOP, UP, DOWN}
 var arenas_cleared = 0;
 var current_platform_status: PlatformStatus
 
-signal arena1_start
 
 func _ready() -> void:
 	floor_1.disabled = true
@@ -110,4 +109,3 @@ func _on_arena_3_timer_timeout() -> void:
 
 func _on_enemy_spawn_trigger_1_body_entered(body: Node2D) -> void:
 	enemy_spawn_trigger_1.get_node("CollisionShape2D").disabled = true
-	arena1_start.emit()

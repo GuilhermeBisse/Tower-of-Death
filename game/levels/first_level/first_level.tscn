@@ -1451,7 +1451,7 @@ shape = SubResource("RectangleShape2D_oji2h")
 [node name="EnemySummoners" type="Node2D" parent="ARENAS/Arena1"]
 
 [node name="EnemySummoner" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_rr4bo")]
-position = Vector2(-233.045, 134)
+position = Vector2(-223, 17)
 enemy_type = 2
 
 [node name="EnemySummoner2" parent="ARENAS/Arena1/EnemySummoners" instance=ExtResource("27_rr4bo")]
@@ -1481,11 +1481,54 @@ position = Vector2(1360, -209)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("16_lgjcv")
-enemies = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ARENAS/Arena2"]
 position = Vector2(-1374, -731)
 shape = SubResource("RectangleShape2D_scpvs")
+
+[node name="Summoners" type="Node2D" parent="ARENAS/Arena2"]
+
+[node name="EnemySummoner" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(-1036, -728)
+enemy_type = 2
+
+[node name="EnemySummoner2" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(-1656, -784)
+enemy_type = 2
+
+[node name="EnemySummoner3" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(-895, -857)
+enemy_type = 2
+
+[node name="EnemySummoner4" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(-1068, -610)
+enemy_type = 1
+
+[node name="EnemySummoner5" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(-1847, -602)
+enemy_type = 1
+
+[node name="EnemySummoner6" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(-1890, -847)
+enemy_type = 2
+
+[node name="EnemySummoner7" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(-801, -771)
+enemy_type = 2
+
+[node name="EnemySummoner8" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(-1625, -673)
+enemy_type = 1
+
+[node name="EnemySummoner9" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(-1913, -716)
+enemy_type = 2
+
+[node name="EnemySummoner10" parent="ARENAS/Arena2/Summoners" instance=ExtResource("27_rr4bo")]
+position = Vector2(-877, -585)
+enemy_type = 1
+
+[node name="Enemies" type="Node2D" parent="ARENAS/Arena2"]
 
 [node name="Arena1_enemies" type="Node" parent="ARENAS"]
 
@@ -1523,6 +1566,13 @@ one_shot = true
 position = Vector2(-1365, 827)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ARENAS/enemy_spawn_trigger1"]
+position = Vector2(-1, 1.5)
+shape = SubResource("RectangleShape2D_yofho")
+
+[node name="enemy_spawn_trigger2" type="Area2D" parent="ARENAS"]
+position = Vector2(-1368, -246)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ARENAS/enemy_spawn_trigger2"]
 position = Vector2(-1, 1.5)
 shape = SubResource("RectangleShape2D_yofho")
 
@@ -1908,15 +1958,14 @@ position = Vector2(1996, -1139)
 [connection signal="body_entered" from="CameraChangeArea/PlataformParkourUpExit3" to="CameraChangeArea/PlataformParkourUpExit3" method="_on_body_entered"]
 [connection signal="body_entered" from="DoorBoss" to="DoorBoss" method="_on_body_entered"]
 [connection signal="body_entered" from="Key" to="Key" method="_on_body_entered"]
-[connection signal="arena1_start" from="ARENAS" to="ARENAS/Arena1" method="_on_arenas_arena_1_start"]
 [connection signal="body_entered" from="ARENAS/platform/player_seeker" to="ARENAS" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="ARENAS/platform/player_seeker" to="ARENAS" method="_on_area_2d_body_exited"]
 [connection signal="arena_1_cleared" from="ARENAS/Arena1" to="ARENAS" method="_on_arena_1_arena_1_cleared"]
 [connection signal="body_entered" from="ARENAS/Arena1" to="ARENAS/Arena1" method="_on_body_entered"]
 [connection signal="body_exited" from="ARENAS/Arena1" to="ARENAS/Arena1" method="_on_body_exited"]
 [connection signal="arena_2_cleared" from="ARENAS/Arena2" to="ARENAS" method="_on_arena_2_arena_2_cleared"]
-[connection signal="body_exited" from="ARENAS/Arena2" to="ARENAS/Arena2" method="_on_body_exited"]
 [connection signal="timeout" from="ARENAS/Arena3_Timer" to="ARENAS" method="_on_arena_3_timer_timeout"]
-[connection signal="body_entered" from="ARENAS/enemy_spawn_trigger1" to="ARENAS" method="_on_enemy_spawn_trigger_1_body_entered"]
+[connection signal="body_entered" from="ARENAS/enemy_spawn_trigger1" to="ARENAS/Arena1" method="_on_enemy_spawn_trigger_1_body_entered"]
+[connection signal="body_entered" from="ARENAS/enemy_spawn_trigger2" to="ARENAS/Arena2" method="_on_enemy_spawn_trigger_2_body_entered"]
 [connection signal="dash_picked" from="DashUpgrade" to="player" method="_on_dash_upgrade_dash_picked"]
 [connection signal="body_entered" from="DashUpgrade/PathFollow2D/DashUpgradeArea" to="DashUpgrade" method="_on_dash_upgrade_area_body_entered"]
