@@ -11,10 +11,13 @@ extends Node
 @onready var camera: Camera2D = $"../player/CameraGuide/Camera2D"
 @onready var enemy_summoners: Node = $Arena1/EnemySummoners
 @onready var enemy_spawn_trigger_1: Area2D = $enemy_spawn_trigger1
+@onready var arena_3_enemies: Node2D = $Arena3/Enemies
+@onready var spawn_timer_arena3: Timer = $Arena3/SpawnTimer
 
 enum PlatformStatus {WAITING,STOP, UP, DOWN}
 var arenas_cleared = 0;
 var current_platform_status: PlatformStatus
+
 
 
 func _ready() -> void:
@@ -61,6 +64,11 @@ func _physics_process(delta: float) -> void:
 				platform_path_follower.progress_ratio += 0.001
 			else:
 				current_platform_status = PlatformStatus.STOP
+				spawn_timer_arena3.stop()
+				for enemy in arena_3_enemies.get_children(false):
+					enemy.hurt(enemy,200)
+				self.set_physics_process(false)
+				
 	
 	if current_platform_status == PlatformStatus.DOWN:
 		floor_1.disabled = true
