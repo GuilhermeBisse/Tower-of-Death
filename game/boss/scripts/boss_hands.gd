@@ -6,7 +6,7 @@ extends Node2D
 @onready var sprite_right_hand = $Right_Hand/Sprite_Right_Hand
 @onready var juice_anim = $JuiceAnimations
 @onready var attacks_anim = $AnimationPlayer
-@onready var boss_body = $".."
+@onready var boss_body = $"../AnimatedSprite2D"
 
 const HIT_PARTICLE = preload("res://game/particles/scene/hit_particle_boss.tscn")
 const BOSS_DEATH_EXPLOSION = preload("res://game/particles/scene/boss_death_explosion.tscn")
@@ -127,7 +127,8 @@ func _on_first_boss_dead():
 	attacks_anim.pause()
 	await get_tree().create_timer(10).timeout
 	var explosion_instance = BOSS_DEATH_EXPLOSION.instantiate()
-	explosion_instance.global_position = boss_body.global_position + Vector2(10,0)
+	explosion_instance.global_position = boss_body.global_position
+	explosion_instance.z_index = 10
 	get_parent().get_parent().add_child(explosion_instance)
 	Global.current_camera.shake(5,20,20)
-	boss_body.queue_free()
+	boss_body.get_parent().queue_free()

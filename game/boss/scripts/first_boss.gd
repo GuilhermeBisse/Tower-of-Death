@@ -10,6 +10,8 @@ var is_dead = false
 @onready var hands = $Hands
 @onready var sprite = $AnimatedSprite2D
 
+const BOSS_DEATH_EXPLOSION = preload("res://game/particles/scene/boss_death_explosion.tscn")
+
 signal dead
 
 
@@ -29,8 +31,9 @@ func color_based_on_health():
 
 
 func _on_hands_damaged():
-	health-=10
+	health-=Global.player_sword_damage
 
 
 func _on_tremble_timer_timeout():
 	tremble_vect = Vector2(randf_range(-100,100), randf_range(-100,100))
+	

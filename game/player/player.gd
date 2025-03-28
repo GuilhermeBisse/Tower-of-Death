@@ -86,7 +86,7 @@ func handle_animation():
 func _on_area_2d_body_entered(body):
 	if body.has_method("hurt"):
 		print("achei")
-		body.hurt(self,10)
+		body.hurt(self,Global.player_sword_damage)
 		var direction_body = global_position.direction_to(body.global_position)
 		knockback_vector = (Vector2(direction_body.x, 0)*(-1)) * sword_pushback_force + Vector2(0,-5)
 		var knockback_tween = get_tree().create_tween()
@@ -95,7 +95,7 @@ func _on_area_2d_body_entered(body):
 func _on_sword_up_area_body_entered(body):
 	if body.has_method("hurt"):
 		#print("achei")
-		body.hurt(self,10)
+		body.hurt(self,Global.player_sword_damage)
 
 func handle_attack():
 	var damage_zone_side = sword_area_side.get_node("CollisionShape2D")
@@ -151,7 +151,7 @@ func hurt(body,damage):
 func _on_sword_side_area_area_entered(area):
 	if area.has_method("hurt"):
 		print("achei")
-		area.hurt(self,10)
+		area.hurt(self,Global.player_sword_damage)
 		var direction_area = global_position.direction_to(area.global_position)
 		knockback_vector = (Vector2(direction_area.x, 0)*(-1)) * sword_pushback_force + Vector2(0,-100)
 		var knockback_tween = get_tree().create_tween()
@@ -160,7 +160,7 @@ func _on_sword_side_area_area_entered(area):
 func _on_sword_up_area_area_entered(area: Area2D) -> void:
 	if area.has_method("hurt"):
 		print("achei")
-		area.hurt(self,10)
+		area.hurt(self,Global.player_sword_damage)
 		#Sword up dont cause knockback ;D
 
 func collect_coin():
