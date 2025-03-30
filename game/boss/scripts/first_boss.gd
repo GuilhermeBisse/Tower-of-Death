@@ -4,13 +4,12 @@ var health = 100
 var max_health = 100
 var tremble_vect: Vector2 = Vector2.ZERO
 var is_dead = false
+@onready var hurt_sound: AudioStreamPlayer2D = $hurt_sound
 
 @export var lower_health_color: Color
 
 @onready var hands = $Hands
 @onready var sprite = $AnimatedSprite2D
-
-const BOSS_DEATH_EXPLOSION = preload("res://game/particles/scene/boss_death_explosion.tscn")
 
 signal dead
 
@@ -32,6 +31,7 @@ func color_based_on_health():
 
 func _on_hands_damaged():
 	health-=Global.player_sword_damage
+	hurt_sound.play()
 
 
 func _on_tremble_timer_timeout():

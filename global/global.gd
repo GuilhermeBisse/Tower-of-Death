@@ -6,7 +6,7 @@ var key_picked: bool = true
 var dash_picked: bool = false
 var is_player_dead: bool = false
 var player_health: int = 100
-var player_sword_damage = 100
+var player_sword_damage = 10
 
 # ------------------------ #
 # DEATH DIALOGUE VARIABLES #

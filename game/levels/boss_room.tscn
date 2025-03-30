@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=4 uid="uid://d4coijn8kr066"]
+[gd_scene load_steps=14 format=4 uid="uid://d4coijn8kr066"]
 
 [ext_resource type="PackedScene" uid="uid://b15ao87wkybpx" path="res://game/boss/scene/first_boss.tscn" id="1_aymlm"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="2_q5s4j"]
 [ext_resource type="Script" path="res://game/UI/Camera.gd" id="2_sliuw"]
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://game/map/tileset.png" id="4_yfa2j"]
 [ext_resource type="Texture2D" uid="uid://bp557nlgxlpgp" path="res://game/map/column.png" id="5_cbyc8"]
+[ext_resource type="AudioStream" uid="uid://dklfqm5gs1fwg" path="res://game/sound/music/03-Heartless.mp3" id="5_ytr42"]
 [ext_resource type="Texture2D" uid="uid://b5ffpxs4egn0a" path="res://game/map/backgrounds.png" id="5_yyhwo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefdw"]
@@ -260,13 +261,16 @@ script = ExtResource("2_sliuw")
 [node name="FirstBoss" parent="." instance=ExtResource("1_aymlm")]
 z_index = 4
 position = Vector2(517, 13)
+lower_health_color = Color(0.438221, 0.180545, 1, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hfpf1")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ytr42")
 volume_db = -10.254
 autoplay = true
+parameters/looping = true
 
 [node name="BackGround" type="ParallaxBackground" parent="."]
 layer = -1

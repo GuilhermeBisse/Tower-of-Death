@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c1cm4q3gijxok"]
+[gd_scene load_steps=39 format=3 uid="uid://c1cm4q3gijxok"]
 
 [ext_resource type="Script" path="res://game/boss/scripts/boss_hands.gd" id="1_4jfak"]
 [ext_resource type="Script" path="res://game/boss/scripts/Hitbox.gd" id="2_0c5qw"]
@@ -15,6 +15,10 @@
 [ext_resource type="Animation" uid="uid://51e6u8co5oqe" path="res://RightPunch.res" id="13_2mm8y"]
 [ext_resource type="Script" path="res://game/boss/scripts/state_machine/RightUga.gd" id="13_gubsa"]
 [ext_resource type="Script" path="res://game/boss/scripts/state_machine/LeftUga.gd" id="14_4b3et"]
+[ext_resource type="AudioStream" uid="uid://b1vqu78ob30uq" path="res://game/sound/boss/hit_ground_variant1.sfxr" id="16_7o6bd"]
+[ext_resource type="AudioStream" uid="uid://bl035nw4v6k2y" path="res://game/sound/boss/hit_ground_variant4.sfxr" id="16_s22na"]
+[ext_resource type="AudioStream" uid="uid://ch73774c1wrch" path="res://game/sound/boss/hit_ground_variant2.sfxr" id="18_2c8bg"]
+[ext_resource type="AudioStream" uid="uid://bwluce76p0fm8" path="res://game/sound/boss/hit_ground_variant3.sfxr" id="19_fwpva"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sel5h"]
 size = Vector2(102, 94)
@@ -72,6 +76,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.589768),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_hit_ground_single_wave_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_pe2rm"]
 resource_name = "LeftPush"
@@ -99,6 +117,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(5792.62, 1, 13777.2, 67847, 59064.1, 1),
 "update": 0,
 "values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.26667, 2.26667), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.28523),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_hit_ground_single_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_qv7ie"]
@@ -148,6 +180,29 @@ tracks/2/keys = {
 "method": &"reset_wave"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.890151, 1.88774, 2.87905, 3.88918),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_hit_ground_single_wave_sound"
+}, {
+"args": [],
+"method": &"play_hit_ground_single_wave_sound"
+}, {
+"args": [],
+"method": &"play_hit_ground_single_wave_sound"
+}, {
+"args": [],
+"method": &"play_hit_ground_single_wave_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_8ukyw"]
 resource_name = "PressAttack"
@@ -175,6 +230,26 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 12.996, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(270, 70), Vector2(310, -200), Vector2(320, 70), Vector2(340, 237), Vector2(290, 587), Vector2(290, 567), Vector2(290, 587), Vector2(290, 587), Vector2(310, 587), Vector2(30, 587), Vector2(270, 70)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.3, 2.09859, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_hit_ground_double_sound"
+}, {
+"args": [],
+"method": &"shake_cam"
+}, {
+"args": [],
+"method": &"play_hit_ground_double_wave_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_vd4in"]
@@ -267,6 +342,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.26667, 2.26667), Vector2(2.7, 1.9), Vector2(2.26667, 2.26667)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_hit_ground_single_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_ipewp"]
 resource_name = "RightUga"
@@ -313,6 +402,29 @@ tracks/2/keys = {
 }, {
 "args": [],
 "method": &"reset_wave"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.8, 1.9, 2.9, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_hit_ground_single_wave_sound"
+}, {
+"args": [],
+"method": &"play_hit_ground_single_wave_sound"
+}, {
+"args": [],
+"method": &"play_hit_ground_single_wave_sound"
+}, {
+"args": [],
+"method": &"play_hit_ground_single_wave_sound"
 }]
 }
 
@@ -366,6 +478,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(5220.6, 1, 14766.1, 1),
 "update": 0,
 "values": [Vector2(2.26667, 2.26667), Vector2(2.26667, 2.26667), Vector2(1.9, 2.7), Vector2(2.26667, 2.26667)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_hit_ground_double_wave_sound"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0eui"]
@@ -629,6 +755,24 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_3b6fq")
 }
+
+[node name="hit_ground_single_wave_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_s22na")
+pitch_scale = 0.76
+
+[node name="hit_ground_double_wave_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_7o6bd")
+volume_db = 15.68
+pitch_scale = 0.84
+
+[node name="hit_ground_single_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_2c8bg")
+pitch_scale = 0.92
+
+[node name="hit_ground_double_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_fwpva")
+pitch_scale = 0.76
+attenuation = 1.27456
 
 [connection signal="area_entered" from="Left_Hand/LeftDetector" to="." method="_on_left_detector_area_entered"]
 [connection signal="area_entered" from="Left_Hand/Hitbox" to="." method="_on_hitbox_area_entered"]

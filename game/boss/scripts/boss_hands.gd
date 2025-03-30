@@ -7,6 +7,10 @@ extends Node2D
 @onready var juice_anim = $JuiceAnimations
 @onready var attacks_anim = $AnimationPlayer
 @onready var boss_body = $"../AnimatedSprite2D"
+@onready var hit_ground_single_wave_sound: AudioStreamPlayer2D = $hit_ground_single_wave_sound
+@onready var hit_ground_double_wave_sound: AudioStreamPlayer2D = $hit_ground_double_wave_sound
+@onready var hit_ground_single_sound: AudioStreamPlayer2D = $hit_ground_single_sound
+@onready var hit_ground_double_sound: AudioStreamPlayer2D = $hit_ground_double_sound
 
 const HIT_PARTICLE = preload("res://game/particles/scene/hit_particle_boss.tscn")
 const BOSS_DEATH_EXPLOSION = preload("res://game/particles/scene/boss_death_explosion.tscn")
@@ -132,3 +136,20 @@ func _on_first_boss_dead():
 	get_parent().get_parent().add_child(explosion_instance)
 	Global.current_camera.shake(5,20,20)
 	boss_body.get_parent().queue_free()
+	
+# Funcs below to access through animation
+
+func play_hit_ground_single_wave_sound():
+	hit_ground_single_wave_sound.play()
+
+func play_hit_ground_double_wave_sound():
+	hit_ground_double_wave_sound.play()
+
+func play_hit_ground_single_sound():
+	hit_ground_double_sound.play()
+
+func play_hit_ground_double_sound():
+	hit_ground_double_sound.play()
+	
+func shake_cam():
+	Global.current_camera.shake(0.5,10,30)

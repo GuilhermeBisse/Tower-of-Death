@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://eog5b2p7g4y8"]
+[gd_scene load_steps=16 format=3 uid="uid://eog5b2p7g4y8"]
 
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="1_nv6qr"]
 [ext_resource type="Script" path="res://game/particles/script/boss_death_explosion.gd" id="2_j8v47"]
+[ext_resource type="AudioStream" uid="uid://c2e1mnan3uoi7" path="res://game/sound/boss/explosion_variant1.sfxr" id="3_r36be"]
 
 [sub_resource type="Gradient" id="Gradient_mxac3"]
 offsets = PackedFloat32Array(0.380952, 0.761905, 1)
@@ -85,3 +86,7 @@ texture = ExtResource("1_nv6qr")
 one_shot = true
 explosiveness = 0.83
 randomness = 0.78
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_r36be")
+pitch_scale = 0.69
