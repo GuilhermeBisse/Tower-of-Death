@@ -234,3 +234,7 @@ func _on_dash_timer_timeout():
 func _on_invencible_timer_timeout():
 	print("now player can be hitted!")
 	#can_be_hitted = true
+
+func ascend():
+	var tween = create_tween()
+	tween.tween_property(self, "position:y", position.y - 150, 3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)

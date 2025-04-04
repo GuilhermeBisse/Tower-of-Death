@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://bgsoxr6nsjbrr"]
+[gd_scene load_steps=76 format=3 uid="uid://bgsoxr6nsjbrr"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_glbys"]
 [ext_resource type="Texture2D" uid="uid://nr2565fatmm4" path="res://game/player/sprites/Run/Atlas-Run1.png" id="1_tvake"]
@@ -29,6 +29,8 @@
 [ext_resource type="Texture2D" uid="uid://cg7hkqm7p2kiv" path="res://game/particles/texture/ball.png" id="25_pjbwp"]
 [ext_resource type="Texture2D" uid="uid://cn3jbekf6a8yk" path="res://game/player/sprites/Attack/Atlas-atk3.png" id="25_sxipt"]
 [ext_resource type="PackedScene" uid="uid://cumvpgfebedbj" path="res://game/particles/scene/receiving_power_particle.tscn" id="26_rwgup"]
+[ext_resource type="Texture2D" uid="uid://c56xaobs1oax4" path="res://game/player/sprites/Upgrade/Atlas-Upgrade2.png" id="27_oirlh"]
+[ext_resource type="Texture2D" uid="uid://f0jlwwi2qas3" path="res://game/player/sprites/Upgrade/Atlas-Upgrade3.png" id="28_gawth"]
 [ext_resource type="AudioStream" uid="uid://dq78exguh4010" path="res://game/sound/explosion3.sfxr" id="30_hop0w"]
 [ext_resource type="AudioStream" uid="uid://b41a4nx8qg2io" path="res://game/sound/rapid_slash.mp3" id="31_yasg0"]
 [ext_resource type="AudioStream" uid="uid://cpyc6ffi16lv5" path="res://game/sound/dashSound.mp3" id="32_0p8ua"]
@@ -129,6 +131,14 @@ region = Rect2(0, 0, 100, 100)
 atlas = ExtResource("25_sxipt")
 region = Rect2(0, 0, 100, 100)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa57u"]
+atlas = ExtResource("27_oirlh")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw71u"]
+atlas = ExtResource("28_gawth")
+region = Rect2(0, 0, 128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_xettt"]
 animations = [{
 "frames": [{
@@ -217,6 +227,20 @@ animations = [{
 "loop": false,
 "name": &"Attack1",
 "speed": 9.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_pa57u")
+}, {
+"duration": 60.0,
+"texture": SubResource("AtlasTexture_aw71u")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_pa57u")
+}],
+"loop": false,
+"name": &"Upgrade",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30y0u"]
@@ -284,6 +308,30 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("animation:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Upgrade"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("animation:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_7hidi"]
 resource_name = "death"
@@ -333,7 +381,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_81u81"]
 resource_name = "receiving_dash"
-length = 5.0
+length = 6.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -341,7 +389,7 @@ tracks/0/path = NodePath("receiving_power_particle:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333),
+"times": PackedFloat32Array(1.6),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -353,7 +401,7 @@ tracks/1/path = NodePath("exploding_after_receiving:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(3.56667),
+"times": PackedFloat32Array(5.13334),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -365,10 +413,48 @@ tracks/2/path = NodePath("animation:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(2.4, 2.63333, 3.83333),
+"times": PackedFloat32Array(3.96667, 4.2, 5.4),
 "transitions": PackedFloat32Array(1, 2.82842, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(15, 15, 15, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("animation:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 6.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Upgrade", &"Atlas_idle"]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ascend"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("animation:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0333333, 6.4),
+"transitions": PackedFloat32Array(598240, 1),
+"update": 0,
+"values": [Vector2(1, -15), Vector2(1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_162de"]
@@ -411,7 +497,7 @@ script = ExtResource("1_glbys")
 texture_filter = 1
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_xettt")
-animation = &"Attack1"
+animation = &"Upgrade"
 autoplay = "Atlas_idle"
 frame = 2
 frame_progress = 1.0
