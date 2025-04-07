@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://owgvu4xqpji4"]
+[gd_scene load_steps=125 format=3 uid="uid://owgvu4xqpji4"]
 
 [ext_resource type="Texture2D" uid="uid://d1gtwnw5a64cl" path="res://game/map/tileset.png" id="1_nx72r"]
 [ext_resource type="PackedScene" uid="uid://bgsoxr6nsjbrr" path="res://game/player/player.tscn" id="2_j0sdp"]
@@ -896,6 +896,61 @@ gradient = SubResource("Gradient_ko7id")
 fill = 1
 fill_from = Vector2(0.496296, 0.514815)
 fill_to = Vector2(0.8, 0.9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_joy0e"]
+size = Vector2(220, 79)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75ytn"]
+size = Vector2(191, 73)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_466fb"]
+size = Vector2(223, 77)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2lb6"]
+size = Vector2(252, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibg6q"]
+size = Vector2(220, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tmvo4"]
+size = Vector2(199, 85)
+
+[sub_resource type="Animation" id="Animation_272ab"]
+resource_name = "reapers"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reaper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.633333, 0.9, 1.23333, 1.5, 1.86667, 2.13333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-725.959, 266.585), Vector2(-725.959, 854.585), Vector2(-725.959, 266.585), Vector2(-725.959, 854.585), Vector2(-725.959, 266.585), Vector2(-725.959, 854.585), Vector2(-725.959, 266.585), Vector2(-725.959, 854.585)]
+}
+
+[sub_resource type="Animation" id="Animation_sm6i7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reaper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-725.959, 266.585)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n13qa"]
+_data = {
+"RESET": SubResource("Animation_sm6i7"),
+"reapers": SubResource("Animation_272ab")
+}
 
 [node name="FirstLevel" type="Node2D"]
 
@@ -1989,6 +2044,56 @@ position = Vector2(2053, -1798)
 
 [node name="StandingEnemy2" parent="." instance=ExtResource("31_ql4wn")]
 position = Vector2(1996, -1139)
+
+[node name="Reapers" type="Node2D" parent="."]
+position = Vector2(9415.96, -3220.59)
+
+[node name="Reaper" type="Area2D" parent="Reapers"]
+position = Vector2(-725.959, 266.585)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reapers/Reaper"]
+position = Vector2(-1, -19.5)
+shape = SubResource("RectangleShape2D_joy0e")
+
+[node name="Reaper2" type="Area2D" parent="Reapers"]
+position = Vector2(-437.959, 266.585)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reapers/Reaper2"]
+position = Vector2(-15.5, -22.5)
+shape = SubResource("RectangleShape2D_75ytn")
+
+[node name="Reaper3" type="Area2D" parent="Reapers"]
+position = Vector2(-205.959, 255.585)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reapers/Reaper3"]
+position = Vector2(-1.5, -9.5)
+shape = SubResource("RectangleShape2D_466fb")
+
+[node name="Reaper4" type="Area2D" parent="Reapers"]
+position = Vector2(99.041, 261.585)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reapers/Reaper4"]
+position = Vector2(-3, -11)
+shape = SubResource("RectangleShape2D_r2lb6")
+
+[node name="Reaper5" type="Area2D" parent="Reapers"]
+position = Vector2(427.041, 267.585)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reapers/Reaper5"]
+position = Vector2(8, -17)
+shape = SubResource("RectangleShape2D_ibg6q")
+
+[node name="Reaper6" type="Area2D" parent="Reapers"]
+position = Vector2(749.041, 261.585)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reapers/Reaper6"]
+position = Vector2(-4.5, -12.5)
+shape = SubResource("RectangleShape2D_tmvo4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Reapers"]
+libraries = {
+"": SubResource("AnimationLibrary_n13qa")
+}
 
 [connection signal="body_entered" from="AcidLake" to="AcidLake" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraChangeArea/ShowUnderground" to="CameraChangeArea/ShowUnderground" method="_on_body_entered"]
